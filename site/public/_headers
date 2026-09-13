@@ -1,0 +1,20 @@
+# En-têtes HTTP servis par Cloudflare Pages.
+#
+# Le site de recette ne doit pas être indexé : seul jacob.cx a vocation à
+# apparaître dans Google. Deux sites décrivant la même activité, dont un
+# encore incomplet, se feraient concurrence dans les résultats.
+#
+# Les règles ci-dessous sont limitées à l'hôte pages.dev. Le domaine
+# jacob.cx n'est donc pas concerné : IL N'Y A RIEN À RETIRER au moment de
+# la bascule DNS, et aucun risque d'oublier un noindex en production.
+#
+# Syntaxe : « :nom » est un joker qui couvre un segment d'hôte.
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# https://jacob-cx.pages.dev/… — le déploiement de production
+https://:projet.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+# https://<branche>.jacob-cx.pages.dev/… — les déploiements de prévisualisation
+https://:branche.:projet.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
