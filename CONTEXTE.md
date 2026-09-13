@@ -307,6 +307,14 @@ Matériel installé : Aruba, Ruckus, Zyxel.
       posée au niveau du dépôt uniquement. `node_modules/`, `site/dist/` et
       `site/.astro/` exclus par le `.gitignore`. Les 30 photos sont dans
       l'historique : garder le dépôt privé.
-- [ ] Brancher Cloudflare Pages (racine `site`, build `npm run build`,
-      sortie `site/dist`)
+- [x] **Cloudflare Pages branché le 13/09/2026.** Projet `jacob-cx`, branche
+      de production `main`, préréglage Astro, racine `site`, build
+      `npm run build`, sortie `dist`, `NODE_VERSION = 22`. Chaque push sur
+      `main` redéploie automatiquement.
+      Site de recette : **https://jacob-cx.pages.dev** — 10 pages en 200,
+      404 correct. **Non indexable** : `site/public/_headers` sert
+      `X-Robots-Tag: noindex, nofollow`, vérifié en ligne. La règle est
+      limitée à l'hôte `pages.dev`, donc rien à retirer à la bascule DNS.
+      Le flux « Workers » proposé par défaut ne convient pas (il exige un
+      fichier `wrangler`) : c'est bien le flux **Pages** qu'il faut.
 - [ ] Redirections et bascule DNS
