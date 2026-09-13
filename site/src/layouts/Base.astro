@@ -17,6 +17,8 @@ interface Props {
 
 const { titre, description, chemin, chat = true } = Astro.props;
 const canonique = new URL(chemin, Astro.site ?? 'https://jacob.cx').href;
+// Image de partage : sans elle, tout lien vers le site poste un bloc gris.
+const partage = new URL('/partage.jpg', Astro.site ?? 'https://jacob.cx').href;
 
 /**
  * Données structurées LocalBusiness : elles aident Google à comprendre
@@ -55,6 +57,13 @@ const donneesStructurees = {
     <meta property="og:title" content={titre} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonique} />
+    <meta property="og:site_name" content="jacob.cx" />
+    <meta property="og:image" content={partage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Réflectomètre optique en mesure devant une baie de brassage" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#0b0f12" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(donneesStructurees)} />

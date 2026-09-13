@@ -1,0 +1,10 @@
+# jacob.cx — Alexandre Jacob (EI)
+# Infogérance, dépannage informatique et réseaux WiFi — Meudon (92)
+
+User-agent: *
+Allow: /
+
+# Le site de recette sur *.pages.dev n'est pas indexable : l'en-tête
+# X-Robots-Tag: noindex est servi par public/_headers, et il prime sur ce
+# fichier. Cette règle-ci ne vaut donc que pour le domaine définitif.
+Sitemap: https://jacob.cx/sitemap-index.xml

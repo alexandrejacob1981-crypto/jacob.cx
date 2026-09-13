@@ -5,7 +5,8 @@ import Appel from '../components/Appel.astro';
 import { references, site } from '../data/site';
 import { Hero } from '../components/hero-1';
 import { imageHero } from '../lib/hero-image';
-import baie from '../assets/baie-aruba.jpg';
+import baie from "../assets/baie-aruba.jpg";
+import qualif from "../assets/signaltek-poe.jpg";
 
 const heroImage = await imageHero(baie, "Baie de brassage propre : contrôleur Aruba, commutateurs et panneau étiqueté");
 
@@ -79,9 +80,12 @@ const questions = [
   <section class="section--line">
     <div class="split" style="gap: 0; align-items: stretch;">
       <div class="col-5">
+        {/* Pas la meme photo que le hero : elle y figurait deja a l.identique,
+            meme texte alternatif compris. Le qualificateur colle mieux au
+            propos de cette section, qui parle de mesurer plutot que supposer. */}
         <Image
-          src={baie}
-          alt="Baie de brassage propre : contrôleur Aruba, commutateurs et panneau étiqueté"
+          src={qualif}
+          alt="Qualificateur réseau mesurant une prise : débit et alimentation PoE relevés"
           widths={[420, 640, 900]}
           sizes="(max-width: 62rem) 100vw, 40vw"
           loading="lazy"

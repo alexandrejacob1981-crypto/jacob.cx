@@ -45,19 +45,34 @@ export interface HeroProps {
 
 const entree = "animate-in fade-in slide-in-from-bottom-6 fill-mode-both ease-out"
 
-function Punch({ texte }: { texte: string }) {
-  const parts = texte.split("*")
+/**
+ * Rendu de texte enrichi minimal.
+ *
+ * Le composant n'acceptait que des chaines plates : toutes les mises en relief
+ * <strong> des ouvertures d'origine avaient disparu a la reprise du contenu.
+ *
+ *   *accent*  ->  <em> dans la couleur d'accent, sans italique
+ *   **gras**  ->  <strong>
+ */
+function Riche({ texte }: { texte: string }) {
+  const morceaux = texte.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).filter(Boolean)
   return (
     <>
-      {parts.map((p, i) =>
-        i % 2 === 1 ? (
-          <em key={i} className="text-primary not-italic">
-            {p}
-          </em>
-        ) : (
-          <span key={i}>{p}</span>
-        )
-      )}
+      {morceaux.map((m, i) => {
+        if (m.startsWith("**") && m.endsWith("**"))
+          return (
+            <strong key={i} className="text-foreground font-semibold">
+              {m.slice(2, -2)}
+            </strong>
+          )
+        if (m.startsWith("*") && m.endsWith("*"))
+          return (
+            <em key={i} className="text-primary not-italic">
+              {m.slice(1, -1)}
+            </em>
+          )
+        return <span key={i}>{m}</span>
+      })}
     </>
   )
 }
@@ -83,8 +98,11 @@ export function Hero({
         clair && "hero-magic--clair"
       )}
     >
-      <div className="relative h-full overflow-hidden px-4 py-16 md:px-10 md:py-20">
-        <div className="z-10 mx-auto flex w-full max-w-6xl flex-col">
+      <div className="relative h-full overflow-hidden py-16 md:py-20 [padding-inline:var(--gutter)]">
+        {/* max-w-[90rem] et la gouttiere du site, pour que le hero soit aligne
+            au pixel pres sur .wrap (global.css). max-w-6xl + px-4/px-10
+            decalaient son contenu de 72 px a 1440 px de large. */}
+        <div className="z-10 mx-auto flex w-full max-w-[90rem] flex-col">
           <div className="mt-4 grid grid-cols-1 md:mt-8">
             <div className="flex flex-col items-center gap-6 text-center">
               <div className="flex flex-col items-center gap-3">
@@ -119,7 +137,7 @@ export function Hero({
                     "text-muted-foreground m-0 max-w-2xl text-center text-lg font-medium tracking-tight text-balance duration-700 delay-200 md:text-xl"
                   )}
                 >
-                  {texte}
+                  <Riche texte={texte} />
                 </p>
 
                 {punch && (
@@ -129,7 +147,7 @@ export function Hero({
                       "m-0 max-w-2xl text-center text-xl leading-snug font-semibold text-balance duration-700 delay-300 md:text-2xl"
                     )}
                   >
-                    <Punch texte={punch} />
+                    <Riche texte={punch} />
                   </p>
                 )}
 
@@ -141,7 +159,7 @@ export function Hero({
                       "text-muted-foreground m-0 max-w-2xl text-center text-base text-balance duration-700 delay-300"
                     )}
                   >
-                    {s}
+                    <Riche texte={s} />
                   </p>
                 ))}
               </div>
