@@ -2,8 +2,12 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { site, references } from '../data/site';
+import { Hero } from '../components/hero-1';
+import { imageHero } from '../lib/hero-image';
 import otdr from '../assets/otdr-mesure-baie.jpg';
 import baie from '../assets/baie-aruba.jpg';
+
+const heroImage = await imageHero(otdr, "Réflectomètre optique en cours de mesure devant une baie de brassage");
 
 const portes = [
   {
@@ -41,40 +45,24 @@ const portes = [
   description="Infogérance, dépannage informatique et réseaux WiFi à Meudon et en Île-de-France. Entreprises et particuliers. 25 ans d'expérience, mesures télécom à l'appui."
   chemin="/"
 >
-  <!-- ------------------------------------------------ ouverture -->
-  <section class="section wrap hero">
-    <div class="hero__texte">
-      <p class="eyebrow">Meudon (92) · Île-de-France · 25 ans de terrain</p>
-      <h1>Infogérance, dépannage informatique et réseaux WiFi.</h1>
-      <p class="lead hero__lead">
-        Mon métier de base, c'est le réseau télécom. J'interviens sur les lignes cuivre
-        et fibre avec les appareils de mesure des techniciens opérateurs.
-      </p>
-      <p class="hero__punch">
-        Là où d'autres supposent, <em>je mesure</em> — et je vous montre les chiffres.
-      </p>
-      <div class="actions">
-        <a class="btn" href={site.telephoneLien}>Appeler {site.telephone}</a>
-        <a class="btn btn--ghost" href="/infogerance">Demander un état des lieux</a>
-      </div>
-    </div>
-
-    <figure class="hero__figure">
-      <Image
-        src={otdr}
-        alt="Réflectomètre optique en cours de mesure devant une baie de brassage"
-        widths={[420, 640, 900]}
-        sizes="(max-width: 62rem) 92vw, 38vw"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <figcaption class="readout">
-        <div>OTDR 1310 nm — <b>coupure localisée à 5 380 m</b></div>
-        <div>Soudure fibre — <b>perte 0,02 dB</b></div>
-        <div>Lien cuivre — <b>1000 Mb/s · PoE 55 V</b></div>
-      </figcaption>
-    </figure>
-  </section>
+  <!-- ------------------------------------------------ ouverture (Magic UI hero-1) -->
+  <Hero
+    client:load
+    eyebrow="Meudon (92) · Île-de-France · 25 ans de terrain"
+    titre={['Infogérance, dépannage informatique', 'et réseaux WiFi.']}
+    texte="Mon métier de base, c'est le réseau télécom. J'interviens sur les lignes cuivre et fibre avec les appareils de mesure des techniciens opérateurs."
+    punch="Là où d'autres supposent, *je mesure* — et je vous montre les chiffres."
+    actions={[
+      { label: `Appeler ${site.telephone}`, href: site.telephoneLien },
+      { label: 'Demander un état des lieux', href: '/infogerance', secondaire: true },
+    ]}
+    image={heroImage}
+    releves={[
+      { label: 'OTDR 1310 nm', valeur: 'coupure localisée à 5 380 m' },
+      { label: 'Soudure fibre', valeur: 'perte 0,02 dB' },
+      { label: 'Lien cuivre', valeur: '1000 Mb/s · PoE 55 V' },
+    ]}
+  />
 
   <!-- ------------------------------------------------ repères -->
   <div class="reperes">
@@ -178,28 +166,6 @@ const portes = [
 </Base>
 
 <style>
-  .hero {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    align-items: start;
-  }
-  .hero__texte { grid-column: span 7; }
-  .hero__figure { grid-column: span 5; margin: 0; }
-  @media (max-width: 62rem) {
-    .hero__texte, .hero__figure { grid-column: 1 / -1; }
-  }
-  .hero__lead { margin-top: 1.4rem; }
-  .hero__punch {
-    margin-top: 1.1rem;
-    font-size: clamp(1.2rem, 2.2vw, 1.4rem);
-    font-weight: 600;
-    line-height: 1.4;
-    max-width: 32ch;
-  }
-  .hero__punch em { font-style: normal; color: var(--accent); }
-  .hero .actions { margin-top: 1.9rem; }
-
   .reperes { border-block: 1px solid var(--line); }
   .reperes__in {
     display: grid;

@@ -44,7 +44,10 @@ ouvrir un nouveau terminal — le PATH n'est lu qu'au démarrage.
 | `src/pages/` | une page = un fichier. Le nom du fichier donne l'URL. |
 | `src/layouts/Base.astro` | en-tête HTML commun, métadonnées, données structurées |
 | `src/components/` | en-tête, pied de page, bloc d'appel, lanceur de chat |
+| `src/components/hero-1.tsx` | ouverture des pages (bloc Magic UI Pro adapté, React) — contenu passé en props |
 | `src/styles/global.css` | **tous les réglages visuels** — couleurs, typographie, espacements |
+| `src/styles/tailwind.css` | Tailwind + jetons shadcn, **sans preflight** — réservé aux blocs React (Magic UI) |
+| `components.json` | registres shadcn : `@magicui-pro` (jeton dans `.env.local`) et `@magicui` |
 | `src/data/site.ts` | téléphone, adresse, SIRET, références clients, navigation |
 | `src/data/partoo.ts` | code du chat Partoo (à compléter) |
 | `src/assets/` | photos sources, optimisées automatiquement au build |
@@ -90,6 +93,14 @@ Le fichier `public/_redirects` est lu automatiquement par Cloudflare Pages.
 
 ## Choix techniques, et pourquoi
 
+- **Magic UI Pro via shadcn** (13/09/2026) : `npx shadcn@latest add @magicui-pro/<nom>`
+  installe un bloc dans `src/components/`. Il faut le jeton Pro dans `.env.local`
+  (voir `.env.example`). React et Tailwind sont là pour ces blocs uniquement : tant
+  qu'aucun bloc n'est utilisé dans une page, le visiteur ne reçoit aucun JS de plus.
+  Le hero est le premier bloc en service : ≈ 127 Ko de JS compressé par page.
+  Deux règles dans `src/styles/tailwind.css` : ne jamais redéfinir `--accent` (c'est
+  l'ambre du site, shadcn l'utilise pour autre chose), et garder les utilitaires
+  Tailwind hors `@layer`, sinon `global.css` l'emporte sur leurs classes.
 - **Pas de bandeau cookies** parce qu'aucun traceur n'est chargé. C'est un avantage réel
   sur mobile, où le bandeau s'interpose entre le visiteur et la page. Toute la chaîne en
   dépend : pas de Google Analytics, pas de carte Maps intégrée, pas de vidéo YouTube.

@@ -3,7 +3,11 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Appel from '../components/Appel.astro';
 import { site } from '../data/site';
+import { Hero } from '../components/hero-1';
+import { imageHero } from '../lib/hero-image';
 import otdr from '../assets/otdr-mesure-baie.jpg';
+
+const heroImage = await imageHero(otdr, "Mesure de ligne en cours avec un réflectomètre optique");
 
 const prestations = [
   ['Dépannage et réparation', 'Ordinateur lent, qui ne démarre plus, qui chauffe. Windows ou Mac. Virus, publicités intempestives, mots de passe perdus. Remplacement de disque, de batterie, d’écran, ajout de mémoire.'],
@@ -31,29 +35,23 @@ const questions = [
 >
   <!-- Hero volontairement clair : la page grand public doit accueillir,
        pas impressionner. Le reste du site garde le fond sombre. -->
-  <section class="section section--paper">
-    <div class="wrap split" style="align-items: center;">
-      <div class="col-7">
-        <p class="eyebrow">À domicile — Meudon et Île-de-France</p>
-        <h1>Dépannage informatique à domicile.</h1>
-        <p class="lead" style="margin-top: 1.3rem;">
-          Un ordinateur qui rame, une box qui ne couvre pas l'étage, des photos qu'on ne
-          retrouve plus, une télévision et une enceinte qui refusent de se parler.
-        </p>
-        <p style="margin-top: 0.9rem; max-width: var(--measure);">
-          Je me déplace chez vous, je regarde, je vous explique en français ce qui se
-          passe, et je répare. Sans vous faire sentir que la question était bête, et sans
-          vous vendre du matériel dont vous n'avez pas besoin.
-        </p>
-        <div class="actions" style="margin-top: 1.75rem;">
-          <a class="btn" href={site.telephoneLien}>Appeler {site.telephone}</a>
-          <span style="color: var(--ink-2);">
-            Soir et samedi <strong>sans supplément</strong>.
-          </span>
-        </div>
-      </div>
+  <Hero
+    client:load
+    clair
+    eyebrow="À domicile — Meudon et Île-de-France"
+    titre="Dépannage informatique à domicile."
+    texte="Un ordinateur qui rame, une box qui ne couvre pas l'étage, des photos qu'on ne retrouve plus, une télévision et une enceinte qui refusent de se parler."
+    suite={[
+      "Je me déplace chez vous, je regarde, je vous explique en français ce qui se passe, et je répare. Sans vous faire sentir que la question était bête, et sans vous vendre du matériel dont vous n'avez pas besoin.",
+      'Soir et samedi sans supplément.',
+    ]}
+    actions={[{ label: `Appeler ${site.telephone}`, href: site.telephoneLien }]}
+    image={heroImage}
+  />
 
-      <aside class="col-5 card prix">
+  <section class="section section--paper" style="padding-top: 0;">
+    <div class="wrap">
+      <aside class="card prix" style="max-width: 38rem; margin-inline: auto;">
         <p class="eyebrow eyebrow--quiet" style="margin-bottom: 0.75rem;">Intervention à domicile</p>
         <div class="prix__ligne">
           <span class="prix__net">145 €</span>

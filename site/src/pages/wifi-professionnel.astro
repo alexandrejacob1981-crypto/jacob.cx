@@ -2,8 +2,12 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Appel from '../components/Appel.astro';
-import { references } from '../data/site';
+import { references, site } from '../data/site';
+import { Hero } from '../components/hero-1';
+import { imageHero } from '../lib/hero-image';
 import signaltek from '../assets/signaltek-poe.jpg';
+
+const heroImage = await imageHero(signaltek, "Testeur réseau affichant une liaison à 1000 Mb/s avec alimentation PoE 55 V");
 import tiroir from '../assets/tiroir-optique.jpg';
 
 const symptomes = [
@@ -39,41 +43,25 @@ const questions = [
   description="Audit, installation et dépannage de réseaux WiFi pour commerces, cabinets, hôtels et bureaux. Mesures télécom à l'appui. Meudon, Hauts-de-Seine (92)."
   chemin="/wifi-professionnel"
 >
-  <section class="section wrap split" style="align-items: start;">
-    <div class="col-7">
-      <p class="eyebrow">Réseaux WiFi professionnels</p>
-      <h1>Votre WiFi professionnel, mesuré avant d'être installé.</h1>
-      <p class="lead" style="margin-top: 1.4rem;">
-        Un WiFi qui lâche en pleine journée, c'est une caisse qui ne prend plus la carte
-        bancaire, une visio qui décroche devant un client, un logiciel métier qui se fige.
-        Vous avez peut-être déjà ajouté un répéteur, changé de box, appelé l'opérateur.
-      </p>
-      <p class="punch">
-        Une panne de WiFi sur trois <em>n'est pas un problème de WiFi.</em>
-      </p>
-      <p style="margin-top: 0.9rem; max-width: var(--measure);">
-        C'est un problème de ligne, de débit réel ou d'installation en amont. Tant qu'on
-        ne mesure pas, on remplace du matériel au hasard.
-      </p>
-      <div class="actions" style="margin-top: 1.75rem;">
-        <a class="btn" href="#tarifs">Demander un audit de couverture</a>
-      </div>
-    </div>
-    <figure class="col-5" style="margin: 0;">
-      <Image
-        src={signaltek}
-        alt="Testeur réseau affichant une liaison à 1000 Mb/s avec alimentation PoE 55 V"
-        widths={[420, 640, 900]}
-        sizes="(max-width: 62rem) 92vw, 38vw"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <figcaption class="readout">
-        <div>Lien commutateur — <b>1000 Mb/s full duplex</b></div>
-        <div>Alimentation borne — <b>PoE 55 V</b></div>
-      </figcaption>
-    </figure>
-  </section>
+  <Hero
+    client:load
+    eyebrow="Réseaux WiFi professionnels"
+    titre="Votre WiFi professionnel, mesuré avant d'être installé."
+    texte="Un WiFi qui lâche en pleine journée, c'est une caisse qui ne prend plus la carte bancaire, une visio qui décroche devant un client, un logiciel métier qui se fige. Vous avez peut-être déjà ajouté un répéteur, changé de box, appelé l'opérateur."
+    punch="Une panne de WiFi sur trois *n'est pas un problème de WiFi.*"
+    suite={[
+      "C'est un problème de ligne, de débit réel ou d'installation en amont. Tant qu'on ne mesure pas, on remplace du matériel au hasard.",
+    ]}
+    actions={[
+      { label: 'Demander un audit de couverture', href: '#tarifs' },
+      { label: `Appeler ${site.telephone}`, href: site.telephoneLien, secondaire: true },
+    ]}
+    image={heroImage}
+    releves={[
+      { label: 'Lien commutateur', valeur: '1000 Mb/s full duplex' },
+      { label: 'Alimentation borne', valeur: 'PoE 55 V' },
+    ]}
+  />
 
   <section class="section wrap section--line">
     <h2>Les symptômes qu'on me décrit le plus souvent</h2>

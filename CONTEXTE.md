@@ -324,6 +324,41 @@ Matériel installé : Aruba, Ruckus, Zyxel.
       `/maintenance-distance`) n'ont jamais existé et ont été retirées.
       `/maintenance-a-distance` garde la même adresse sur le nouveau site :
       surtout ne pas lui ajouter de règle, ce serait une boucle.
+- [x] **Magic UI Pro branché le 13/09/2026 — décision d'Alexandre.** Il a un
+      abonnement Pro illimité. Le MCP officiel Magic UI ne lit que le registre
+      gratuit ; l'accès Pro passe par le registre shadcn `@magicui-pro` déclaré
+      dans `site/components.json`, jeton dans `site/.env.local` (ignoré par
+      git, ne jamais le copier ailleurs), et par le serveur MCP shadcn
+      (`.mcp.json` à la racine). Accès vérifié : 103 blocs (hero, footer,
+      pricing, call-to-action, header, stats, faq, social-proof…).
+      **Conséquence assumée** : React, Tailwind v4 et shadcn (Radix, préréglage
+      Nova) ajoutés à Astro. Tailwind est chargé **sans preflight** via
+      `site/src/styles/tailwind.css`, séparé de `global.css`, pour ne rien
+      réinitialiser ; police `--font-sans` = Archivo. Tant qu'aucun bloc React
+      n'est posé dans une page, **aucun JS supplémentaire n'est envoyé au
+      visiteur** (vérifié au build) ; la feuille CSS passe de 44 à 56 Ko à cause
+      des jetons de couleur shadcn. Installer un bloc :
+      `npx shadcn@latest add @magicui-pro/<nom>` depuis `site/`. Les blocs Pro
+      sont écrits pour Next.js (`next-themes`, `motion`) : à adapter à Astro
+      et à hydrater avec `client:visible`.
+- [x] **Hero Magic UI Pro « hero-1 » posé le 13/09/2026 sur les 7 pages de
+      contenu** (accueil, infogérance, particuliers, WiFi, télécom, maintenance à
+      distance, récupération de données), à la demande d'Alexandre. Composant
+      `site/src/components/hero-1.tsx` : bloc Pro adapté à Astro, contenu en
+      props (eyebrow, titre, texte, punch, suite, actions, image, relevés), entrée
+      en fondu par CSS (visible sans JS), faisceaux lumineux en ambre. Variante
+      `clair` sur Particuliers, fidèle au choix « page grand public en clair ».
+      Photos via `src/lib/hero-image.ts` (WebP responsive comme `<Image>`).
+      **Sans photo** faute d'image pertinente : maintenance à distance et
+      récupération de données (photos manquantes déjà listées dans le README).
+      **Volontairement sans hero** : 404, mentions légales, politique de
+      confidentialité — un bloc marketing n'y a pas sa place.
+      Coût mesuré : chaque page avec hero charge désormais **≈ 127 Ko de JS
+      compressé** (React 67 + bloc 56) ; CSS à 79 Ko brut / 31 Ko gzip.
+      Piège corrigé : shadcn nomme `--accent` son fond de survol, or c'est le
+      jeton ambre du site — ne jamais le redéfinir dans `tailwind.css`.
+      Tailwind est importé **hors layer** pour que ses classes battent les règles
+      d'éléments (h1, p) de `global.css`.
 - [ ] **Bascule DNS — à faire dans cet ordre, le jour J**
   - [ ] Ajouter le domaine `jacob.cx` au projet Pages (Custom domains),
         apex **et** `www`.

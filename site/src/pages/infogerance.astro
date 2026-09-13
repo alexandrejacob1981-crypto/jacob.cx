@@ -2,8 +2,12 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Appel from '../components/Appel.astro';
-import { references } from '../data/site';
+import { references, site } from '../data/site';
+import { Hero } from '../components/hero-1';
+import { imageHero } from '../lib/hero-image';
 import baie from '../assets/baie-aruba.jpg';
+
+const heroImage = await imageHero(baie, "Baie de brassage propre : contrôleur Aruba, commutateurs et panneau étiqueté");
 
 const couvert = [
   ['Postes de travail et serveurs', "Installation, mises à jour, supervision, dépannage. Le renouvellement du parc s'anticipe : une machine se remplace quand on l'a décidé, pas le matin où elle ne démarre plus."],
@@ -29,18 +33,22 @@ const questions = [
   description="Infogérance au forfait mensuel pour TPE et professions libérales : postes, serveurs, messagerie, sauvegarde, réseau et ligne. Meudon et Île-de-France."
   chemin="/infogerance"
 >
-  <section class="section wrap">
-    <p class="eyebrow">Entreprises · TPE et professions libérales</p>
-    <h1>Votre informatique, suivie au mois.<br />Pas réparée dans l'urgence.</h1>
+  <Hero
+    client:load
+    eyebrow="Entreprises · TPE et professions libérales"
+    titre={['Votre informatique, suivie au mois.', "Pas réparée dans l'urgence."]}
+    texte="Une TPE n'a pas de service informatique. Elle a un dirigeant qui s'en occupe le soir, un associé « qui s'y connaît un peu », et un prestataire qu'on appelle quand tout est déjà à l'arrêt."
+    actions={[
+      { label: 'Voir les tarifs', href: '#tarifs' },
+      { label: `Appeler ${site.telephone}`, href: site.telephoneLien, secondaire: true },
+    ]}
+    image={heroImage}
+  />
 
-    <div class="split" style="margin-top: 2.25rem; align-items: start;">
+  <section class="section wrap">
+    <div class="split" style="align-items: start;">
       <div class="col-7">
-        <p class="lead">
-          Une TPE n'a pas de service informatique. Elle a un dirigeant qui s'en occupe le
-          soir, un associé « qui s'y connaît un peu », et un prestataire qu'on appelle
-          quand tout est déjà à l'arrêt.
-        </p>
-        <p style="margin-top: 1rem; max-width: var(--measure);">
+        <p style="max-width: var(--measure);">
           Ça fonctionne — jusqu'au jour où ça ne fonctionne plus. Et ce jour-là, la
           facture n'est pas celle du dépannage : c'est celle de la journée perdue, du
           devis pas envoyé, des sauvegardes qu'on découvre inutilisables.
@@ -50,12 +58,9 @@ const questions = [
           suivi en continu, les problèmes traités avant qu'ils ne vous arrêtent, et un
           interlocuteur qui connaît déjà votre installation quand vous l'appelez.
         </p>
-        <div class="actions" style="margin-top: 1.75rem;">
-          <a class="btn" href="#tarifs">Voir les tarifs</a>
-          <span style="color: var(--faint); font-size: 0.92rem;">
-            État des lieux facturé, puis déduit du premier mois.
-          </span>
-        </div>
+        <p style="margin-top: 1.25rem; color: var(--faint); font-size: 0.92rem;">
+          État des lieux facturé, puis déduit du premier mois.
+        </p>
       </div>
 
       <aside class="col-5 encart">

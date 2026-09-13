@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Appel from '../components/Appel.astro';
+import { site } from '../data/site';
+import { Hero } from '../components/hero-1';
 
 const cas = [
   'Fichiers supprimés par erreur — documents, photos, corbeille vidée',
@@ -28,22 +30,20 @@ const questions = [
   description="Photos, documents ou disque illisible : diagnostic gratuit et récupération de données à Meudon et en Île-de-France. Particuliers et entreprises. 390 € TTC."
   chemin="/recuperation-de-donnees"
 >
-  <section class="section wrap split" style="align-items: start;">
-    <div class="col-7">
-      <p class="eyebrow">Récupération de données</p>
-      <h1>Vos fichiers ne sont pas forcément perdus.</h1>
-      <p class="lead" style="margin-top: 1.3rem;">
-        Un disque qui ne s'ouvre plus. Une carte mémoire que l'appareil ne reconnaît pas.
-        Un dossier effacé par erreur, un ordinateur qui ne démarre plus avec tout à
-        l'intérieur.
-      </p>
-      <p style="margin-top: 0.9rem; max-width: var(--measure);">
-        Dans la majorité des cas, <strong>les données sont toujours là.</strong> Ce qui a
-        lâché, c'est l'accès à ces données. Un fichier effacé n'est pas détruit : il est
-        déclaré comme espace réutilisable, et il le reste jusqu'à ce que quelque chose
-        vienne écrire par-dessus.
-      </p>
+  <Hero
+    client:load
+    eyebrow="Récupération de données"
+    titre="Vos fichiers ne sont pas forcément perdus."
+    texte="Un disque qui ne s'ouvre plus. Une carte mémoire que l'appareil ne reconnaît pas. Un dossier effacé par erreur, un ordinateur qui ne démarre plus avec tout à l'intérieur."
+    punch="Dans la majorité des cas, *les données sont toujours là.*"
+    suite={[
+      "Ce qui a lâché, c'est l'accès à ces données. Un fichier effacé n'est pas détruit : il est déclaré comme espace réutilisable, et il le reste jusqu'à ce que quelque chose vienne écrire par-dessus.",
+    ]}
+    actions={[{ label: `Appeler ${site.telephone}`, href: site.telephoneLien }]}
+  />
 
+  <section class="section wrap split" style="align-items: start; padding-top: 0;">
+    <div class="col-7">
       <div class="promesse">
         <div class="promesse__titre">390 € TTC, forfait. Diagnostic gratuit.</div>
         <p>Et si je récupère moins de la moitié de vos données, vous ne payez rien.</p>

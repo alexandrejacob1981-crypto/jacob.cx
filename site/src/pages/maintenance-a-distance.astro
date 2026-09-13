@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Appel from '../components/Appel.astro';
+import { site } from '../data/site';
+import { Hero } from '../components/hero-1';
 
 const marche = [
   'Ordinateur lent, démarrage interminable, disque saturé',
@@ -31,21 +33,20 @@ const questions = [
   description="Dépannage informatique à distance, sans déplacement : 90 € TTC, une heure incluse. Vous voyez tout ce que je fais sur votre écran. Particuliers et entreprises."
   chemin="/maintenance-a-distance"
 >
-  <section class="section wrap split" style="align-items: start;">
-    <div class="col-7">
-      <p class="eyebrow">Maintenance à distance</p>
-      <h1>Souvent réglé dans l'heure.</h1>
-      <p class="lead" style="margin-top: 1.3rem;">
-        Un logiciel qui refuse de s'installer, une messagerie qui ne se connecte plus, une
-        imprimante qui a disparu, un ordinateur devenu lent, un réglage à corriger.
-      </p>
-      <p style="margin-top: 0.9rem; max-width: var(--measure);">
-        Dans ces cas-là, une prise en main à distance règle l'affaire <strong>le jour
-        même</strong>, sans attendre un créneau de déplacement — et pour nettement moins
-        cher. Vous restez devant votre écran, vous voyez tout ce que je fais.
-      </p>
+  <Hero
+    client:load
+    eyebrow="Maintenance à distance"
+    titre="Souvent réglé dans l'heure."
+    texte="Un logiciel qui refuse de s'installer, une messagerie qui ne se connecte plus, une imprimante qui a disparu, un ordinateur devenu lent, un réglage à corriger."
+    suite={[
+      "Dans ces cas-là, une prise en main à distance règle l'affaire le jour même, sans attendre un créneau de déplacement — et pour nettement moins cher. Vous restez devant votre écran, vous voyez tout ce que je fais.",
+    ]}
+    actions={[{ label: `Appeler ${site.telephone}`, href: site.telephoneLien }]}
+  />
 
-      <h2 style="margin-top: 2.25rem;">Comment ça marche</h2>
+  <section class="section wrap split" style="align-items: start; padding-top: 0;">
+    <div class="col-7">
+      <h2>Comment ça marche</h2>
       <ol class="etapes">
         <li>Vous m'appelez et vous me décrivez le problème.</li>
         <li>Je vous dis tout de suite si c'est traitable à distance. Si ça ne l'est pas, je ne vous le fais pas payer pour le découvrir.</li>

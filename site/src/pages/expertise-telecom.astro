@@ -2,8 +2,13 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Appel from '../components/Appel.astro';
+import { site } from '../data/site';
+import { Hero } from '../components/hero-1';
+import { imageHero } from '../lib/hero-image';
 import otdr from '../assets/otdr-mesure-baie.jpg';
 import courbe from '../assets/otdr-courbe.jpg';
+
+const heroImage = await imageHero(otdr, "Réflectomètre optique raccordé, courbe de mesure à l'écran, devant une baie");
 
 const instruments = [
   ['Lignes cuivre — ADSL, VDSL, RTC', 'ARGUS 52+', 'Qualification complète de la paire : débit réellement synchronisable, atténuation, marge au bruit, longueur, défauts de ligne. C’est l’appareil qui établit l’écart entre le débit vendu et le débit que la ligne peut porter.'],
@@ -36,26 +41,18 @@ const questions = [
   description="Qualification de lignes cuivre et fibre, mesures OTDR, soudure de fibre, certification de câblage. Interventions et sous-traitance en Île-de-France."
   chemin="/expertise-telecom"
 >
-  <section class="ouverture">
-    <Image
-      src={otdr}
-      alt="Réflectomètre optique raccordé, courbe de mesure à l'écran, devant une baie"
-      widths={[640, 1100, 1600]}
-      sizes="100vw"
-      loading="eager"
-      fetchpriority="high"
-      class="ouverture__fond"
-    />
-    <div class="wrap ouverture__texte">
-      <p class="eyebrow">Expertise télécom — cuivre et fibre</p>
-      <h1>Je mesure, je localise, je répare.</h1>
-      <p class="lead" style="margin-top: 1.2rem; color: var(--text-2);">
-        C'est mon métier de base, et c'est ce qui donne son sérieux à tout le reste. Pas
-        pour constater qu'« il y a un problème quelque part », mais pour dire
-        <strong>où</strong>, <strong>de combien</strong>, et ce qu'il faut faire.
-      </p>
-    </div>
-  </section>
+  <Hero
+    client:load
+    eyebrow="Expertise télécom — cuivre et fibre"
+    titre="Je mesure, je localise, je répare."
+    texte="C'est mon métier de base, et c'est ce qui donne son sérieux à tout le reste. Pas pour constater qu'« il y a un problème quelque part », mais pour dire où, de combien, et ce qu'il faut faire."
+    actions={[{ label: `Appeler ${site.telephone}`, href: site.telephoneLien }]}
+    image={heroImage}
+    releves={[
+      { label: 'OTDR 1310 nm', valeur: 'coupure localisée à 5 380 m' },
+      { label: 'Soudure fibre', valeur: 'perte 0,02 dB' },
+    ]}
+  />
 
   <section class="urgence">
     <div class="wrap split" style="align-items: start;">
