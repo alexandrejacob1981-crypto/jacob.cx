@@ -56,7 +56,7 @@ const donneesStructurees = {
     <meta property="og:url" content={canonique} />
     <meta name="theme-color" content="#0b0f12" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <set:html value={`<script type="application/ld+json">${JSON.stringify(donneesStructurees)}</script>`} />
+    <script type="application/ld+json" set:html={JSON.stringify(donneesStructurees)} />
   </head>
   <body>
     <a href="#contenu" class="saut">Aller au contenu</a>
