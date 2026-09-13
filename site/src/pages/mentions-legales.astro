@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  titre="Mentions légales — jacob.cx"
+  description="Mentions légales du site jacob.cx : éditeur, hébergeur, propriété intellectuelle et responsabilité."
+  chemin="/mentions-legales"
+  chat={false}
+>
+  <section class="section wrap legal">
+    <h1>Mentions légales</h1>
+
+    <h2>Éditeur du site</h2>
+    <p>
+      <strong>{site.nom} — Entrepreneur individuel ({site.statut})</strong><br />
+      {site.adresse.rue}<br />
+      {site.adresse.codePostal} {site.adresse.ville}<br />
+      France
+    </p>
+    <p>
+      Téléphone : <a href={site.telephoneLien}>{site.telephone}</a><br />
+      Courriel : <a href={`mailto:${site.courriel}`}>{site.courriel}</a>
+    </p>
+    <p>
+      SIRET : {site.siret}<br />
+      Numéro de TVA intracommunautaire : {site.tva}
+    </p>
+    <p>Directeur de la publication : {site.nom}</p>
+
+    <h2>Services à la personne</h2>
+    <p>
+      Les prestations d'assistance informatique à domicile ouvrant droit au crédit
+      d'impôt sont réalisées dans le cadre de l'affiliation à la
+      <strong> MDSAP — Maison des Services À la Personne</strong>, déclarée sous le
+      numéro <strong>{site.sap}</strong>.
+    </p>
+    <p>
+      L'attestation fiscale annuelle permettant de bénéficier du crédit d'impôt est
+      délivrée par la MDSAP.
+    </p>
+
+    <h2>Hébergement</h2>
+    <p>
+      Le site est hébergé par <strong>Cloudflare, Inc.</strong><br />
+      101 Townsend Street, San Francisco, CA 94107, États-Unis<br />
+      <a href="https://www.cloudflare.com" rel="noopener">www.cloudflare.com</a>
+    </p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>
+      L'ensemble des contenus de ce site — textes, images, photographies, structure — est
+      la propriété de {site.nom}, sauf mention contraire. Toute reproduction ou
+      représentation, totale ou partielle, sans autorisation écrite préalable est
+      interdite.
+    </p>
+    <p>
+      Les marques et noms de produits cités (Aruba, Ruckus, Zyxel, Rusolut, Sumitomo,
+      IDEAL Networks, ARGUS, Microsoft, Google, Panasonic, TeamViewer) appartiennent à
+      leurs détenteurs respectifs et ne sont mentionnés qu'à titre d'information
+      technique. Leur citation n'implique aucun partenariat officiel.
+    </p>
+
+    <h2>Responsabilité</h2>
+    <p>
+      Les informations publiées sur ce site sont fournies à titre indicatif et peuvent
+      être modifiées à tout moment. Les tarifs affichés s'entendent pour des prestations
+      standard ; toute intervention fait l'objet d'une confirmation préalable, et d'un
+      devis lorsque la prestation le justifie.
+    </p>
+
+    <h2>Litiges</h2>
+    <p>
+      Le présent site est soumis au droit français. En cas de litige, et à défaut de
+      résolution amiable, les tribunaux français sont compétents.
+    </p>
+    <p>
+      Plateforme européenne de règlement en ligne des litiges :
+      <a href="https://ec.europa.eu/consumers/odr" rel="noopener">ec.europa.eu/consumers/odr</a>
+    </p>
+
+    <h2>Données personnelles</h2>
+    <p>
+      Le traitement des données collectées via ce site est décrit dans la
+      <a href="/politique-de-confidentialite">politique de confidentialité</a>.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .legal { max-width: 52rem; }
+  .legal h2 {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    margin-top: 2.5rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+  }
+  .legal h1 + h2 { margin-top: 2rem; }
+  .legal p { color: var(--dim); margin-top: 0.85rem; max-width: 62ch; }
+  .legal strong { color: var(--text); }
+</style>

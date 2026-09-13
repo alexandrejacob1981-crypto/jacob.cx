@@ -1,0 +1,53 @@
+{
+  "pages": [
+    { "id": "page-1", "name": "Le site" },
+    { "id": "page-2", "name": "Directions écartées" }
+  ],
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Accueil", "page": "page-1", "x": 0, "y": 0, "w": 1440, "h": 2300 },
+    { "file": "AccueilMobile.dc.html", "title": "Accueil — mobile", "page": "page-1", "x": 1560, "y": 0, "w": 390, "h": 1980 },
+    { "file": "Entreprises.dc.html", "title": "Entreprises / Infogérance", "page": "page-1", "x": 2070, "y": 0, "w": 1440, "h": 2560 },
+    { "file": "WiFiPro.dc.html", "title": "Réseaux WiFi professionnels", "page": "page-1", "x": 3630, "y": 0, "w": 1440, "h": 2620 },
+    { "file": "Particuliers.dc.html", "title": "Particuliers", "page": "page-1", "x": 0, "y": 2800, "w": 1440, "h": 2260 },
+    { "file": "Recuperation.dc.html", "title": "Récupération de données", "page": "page-1", "x": 1560, "y": 2800, "w": 1440, "h": 2180 },
+    { "file": "Telecom.dc.html", "title": "Expertise télécom", "page": "page-1", "x": 3120, "y": 2800, "w": 1440, "h": 2140 },
+    { "file": "Distance.dc.html", "title": "Maintenance à distance", "page": "page-1", "x": 4680, "y": 2800, "w": 1440, "h": 1900 },
+    { "file": "Artisan.dc.html", "title": "Direction B — Artisan (écartée)", "page": "page-2", "x": 0, "y": 0, "w": 1440, "h": 2280 },
+    { "file": "Infrastructure.dc.html", "title": "Direction C — Infrastructure (écartée)", "page": "page-2", "x": 1560, "y": 0, "w": 1440, "h": 2280 }
+  ],
+  "annotations": [
+    {
+      "id": "note-systeme",
+      "page": "page-1",
+      "x": 0,
+      "y": -300,
+      "w": 720,
+      "text": "DIRECTION A — RELEVÉ, déclinée sur tout le site.\n\nLe système : fond graphite, typo Archivo, valeurs de mesure en JetBrains Mono, un seul accent ambre. Chaque page pose un bandeau de relevé (tes vraies mesures) là où il y a une preuve à montrer.\n\nDeux respirations volontaires en clair : les trois portes sur l'accueil, et tout le hero de la page Particuliers — c'est le correctif au seul vrai risque de cette direction, intimider le grand public."
+    },
+    {
+      "id": "note-mobile",
+      "page": "page-1",
+      "x": 1560,
+      "y": -300,
+      "w": 440,
+      "text": "MOBILE\n\nLa majorité des recherches locales se font au téléphone, souvent en situation de panne.\n\nD'où la barre d'action collée en bas : « Appeler » occupe la place, le chat vient à côté. Le numéro est aussi en haut, dès la première ligne."
+    },
+    {
+      "id": "note-chat",
+      "page": "page-1",
+      "x": 3630,
+      "y": -300,
+      "w": 480,
+      "text": "CHAT PARTOO\n\nLe bouton flottant ambre est le lanceur. Le script Partoo ne se charge qu'au clic : aucun cookie n'est déposé avant, donc pas de bandeau de consentement.\n\nÀ vérifier de ton côté : que Partoo t'envoie bien les messages sur ton mobile. Un chat sans réponse fait plus de mal que pas de chat."
+    },
+    {
+      "id": "note-reste",
+      "page": "page-1",
+      "x": 0,
+      "y": 5140,
+      "w": 700,
+      "text": "Manquent encore, avant intégration : les avis Google (emplacement réservé sur l'accueil), une photo de toi en intervention, l'« après » d'une baie rangée, et les photos du poste de micro-soudure et du Rusolut.\n\nLes deux pages légales suivent le même système, en plus sobre — elles ne sont pas maquettées ici."
+    }
+  ],
+  "launch": { "view": "canvas", "page": "page-1" }
+}

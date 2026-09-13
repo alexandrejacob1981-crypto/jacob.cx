@@ -1,0 +1,226 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Appel from '../components/Appel.astro';
+import { references } from '../data/site';
+import baie from '../assets/baie-aruba.jpg';
+
+const couvert = [
+  ['Postes de travail et serveurs', "Installation, mises à jour, supervision, dépannage. Le renouvellement du parc s'anticipe : une machine se remplace quand on l'a décidé, pas le matin où elle ne démarre plus."],
+  ['Sauvegarde et récupération', "Mise en place, et surtout vérification régulière que la sauvegarde est restaurable. Une sauvegarde qu'on n'a jamais testée n'est pas une sauvegarde, c'est une hypothèse."],
+  ['Messagerie professionnelle', 'Exchange, Microsoft 365, Google Workspace : comptes, alias, migrations, sauvegarde des boîtes, spam et délivrabilité. Le départ d’un collaborateur se gère proprement.'],
+  ['Réseau et WiFi', 'Câblage, commutateurs, routage, segmentation, WiFi professionnel mesuré et non supposé.'],
+  ['Systèmes d’impression', 'Copieurs et imprimantes réseau, scan vers messagerie ou dossier partagé, pilotes, consommables. Poste banal, panne quotidienne.'],
+  ['Noms de domaine et Cloud', 'Domaines, zone DNS, certificats, renouvellements, services hébergés. Un domaine qui expire un vendredi soir coupe le site et la messagerie de toute l’entreprise.'],
+];
+
+const questions = [
+  ['Je n’ai que 4 postes. C’est rentable pour moi ?', 'C’est même le cas le plus fréquent. Une structure de 4 postes n’a personne pour surveiller ses sauvegardes, et c’est là que les incidents coûtent le plus cher rapportés au chiffre d’affaires. Le forfait plancher existe pour ça.'],
+  ['Vous êtes seul. Et quand vous êtes en congés ?', 'Vous m’avez au téléphone, congés compris. C’est la différence entre un prestataire indépendant et une hotline : vous ne tombez pas sur un répondeur ni sur quelqu’un qui découvre votre dossier.'],
+  ['Faut-il changer tout mon matériel pour commencer ?', 'Non. L’état des lieux distingue ce qui doit être remplacé maintenant, ce qui tiendra deux ans, et ce qui n’a aucune raison de bouger. Un plan étalé coûte moins cher qu’un parc remplacé en catastrophe.'],
+  ['Je suis déjà chez un prestataire.', 'Situation courante. L’état des lieux sert aussi à ça : récupérer les accès, documenter l’existant, reprendre la main proprement.'],
+  ['Quel est votre délai d’intervention ?', 'Il dépend de l’urgence, et je m’adapte. Sous contrat, la prise en main à distance est immédiate dans la plupart des cas — c’est l’intérêt d’être déjà connecté à votre parc.'],
+  ['Que se passe-t-il si je veux arrêter ?', 'Aucun engagement de durée, trois mois de préavis, et je vous restitue l’ensemble des accès et la documentation. Vous n’êtes pas prisonnier de votre prestataire.'],
+];
+---
+
+<Base
+  titre="Infogérance et maintenance informatique | Meudon (92)"
+  description="Infogérance au forfait mensuel pour TPE et professions libérales : postes, serveurs, messagerie, sauvegarde, réseau et ligne. Meudon et Île-de-France."
+  chemin="/infogerance"
+>
+  <section class="section wrap">
+    <p class="eyebrow">Entreprises · TPE et professions libérales</p>
+    <h1>Votre informatique, suivie au mois.<br />Pas réparée dans l'urgence.</h1>
+
+    <div class="split" style="margin-top: 2.25rem; align-items: start;">
+      <div class="col-7">
+        <p class="lead">
+          Une TPE n'a pas de service informatique. Elle a un dirigeant qui s'en occupe le
+          soir, un associé « qui s'y connaît un peu », et un prestataire qu'on appelle
+          quand tout est déjà à l'arrêt.
+        </p>
+        <p style="margin-top: 1rem; max-width: var(--measure);">
+          Ça fonctionne — jusqu'au jour où ça ne fonctionne plus. Et ce jour-là, la
+          facture n'est pas celle du dépannage : c'est celle de la journée perdue, du
+          devis pas envoyé, des sauvegardes qu'on découvre inutilisables.
+        </p>
+        <p style="margin-top: 1rem; max-width: var(--measure);">
+          <strong>L'infogérance inverse la logique.</strong> Un forfait mensuel, votre parc
+          suivi en continu, les problèmes traités avant qu'ils ne vous arrêtent, et un
+          interlocuteur qui connaît déjà votre installation quand vous l'appelez.
+        </p>
+        <div class="actions" style="margin-top: 1.75rem;">
+          <a class="btn" href="#tarifs">Voir les tarifs</a>
+          <span style="color: var(--faint); font-size: 0.92rem;">
+            État des lieux facturé, puis déduit du premier mois.
+          </span>
+        </div>
+      </div>
+
+      <aside class="col-5 encart">
+        <p class="eyebrow eyebrow--quiet">Ce que couvre le contrat</p>
+        <ul class="ticks">
+          <li>Postes de travail et serveurs</li>
+          <li>Sauvegarde — et vérification qu'elle est restaurable</li>
+          <li>Messagerie : Exchange, Microsoft 365, Google Workspace</li>
+          <li>Réseau, WiFi, systèmes d'impression</li>
+          <li>Noms de domaine, DNS, certificats, Cloud</li>
+          <li>Assistance aux utilisateurs, à distance et sur site</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section--line">
+    <div class="split" style="gap: 0; align-items: stretch;">
+      <div class="col-5">
+        <Image
+          src={baie}
+          alt="Baie de brassage propre : contrôleur Aruba, commutateurs et panneau étiqueté"
+          widths={[420, 640, 900]}
+          sizes="(max-width: 62rem) 100vw, 40vw"
+          loading="lazy"
+          style="width: 100%; height: 100%; object-fit: cover;"
+        />
+      </div>
+      <div class="col-7 interlocuteur">
+        <p class="eyebrow">Ce qui me distingue</p>
+        <h2>Un seul interlocuteur, du poste de travail jusqu'à la ligne.</h2>
+        <p class="lead" style="margin-top: 1rem;">
+          Le scénario habituel : l'informaticien dit que le problème vient de la ligne,
+          l'opérateur dit qu'il vient du réseau interne, et le dirigeant fait la navette
+          entre les deux pendant trois jours sans que personne ne mesure quoi que ce soit.
+        </p>
+        <p style="margin-top: 0.9rem; max-width: var(--measure);">
+          Je couvre les deux bouts de la chaîne — testeur de ligne ARGUS, réflectomètre
+          optique, soudeuse fibre, qualificateur SignalTEK II. Je ne renvoie pas la
+          responsabilité à l'opérateur : je mesure, j'établis où est la panne, et je vous
+          donne de quoi la faire valoir si elle est chez lui.
+        </p>
+        <p style="margin-top: 1.1rem;">
+          <a href="/expertise-telecom" class="souligne">En savoir plus sur l'expertise télécom</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Ce que couvre le contrat</h2>
+    <div class="grid grid--3" style="margin-top: 1.75rem;">
+      {couvert.map(([t, d]) => (
+        <div class="card"><h3>{t}</h3><p>{d}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap section--line">
+    <h2>Pourquoi au forfait, et pas à l'intervention</h2>
+    <div class="grid grid--2" style="margin-top: 1.75rem;">
+      <div class="card">
+        <p class="eyebrow eyebrow--quiet" style="margin-bottom: 0.35rem;">À l'intervention</p>
+        <p>
+          Votre prestataire gagne de l'argent quand vous tombez en panne. Personne ne
+          surveille vos sauvegardes, personne ne voit venir le disque qui fatigue, et vous
+          n'appelez qu'une fois l'activité arrêtée. Le coût est imprévisible et arrive
+          toujours au mauvais moment.
+        </p>
+      </div>
+      <div class="card card--accent" style="background: var(--accent-wash);">
+        <p class="eyebrow" style="margin-bottom: 0.35rem;">Au forfait</p>
+        <p style="color: var(--text-2);">
+          Mon intérêt est exactement le vôtre : que rien ne casse. Votre parc est suivi,
+          les mises à jour sont faites, les sauvegardes sont testées, et l'incident se
+          traite pendant qu'il est encore petit. Votre budget devient une ligne fixe.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="tarifs">
+    <div class="wrap">
+      <p class="eyebrow">Tarifs</p>
+      <h2>Un prix par poste, qui grandit avec vous.</h2>
+
+      <div class="grid grid--3" style="margin-top: 1.9rem;">
+        <div class="card offre">
+          <h3>Suivi</h3>
+          <div class="offre__prix">29 €<small> HT / poste / mois</small></div>
+          <p>Supervision du parc, mises à jour, assistance à distance illimitée, sauvegarde surveillée.</p>
+        </div>
+        <div class="card offre offre--fort">
+          <h3>Infogérance</h3>
+          <div class="offre__prix">49 €<small> HT / poste / mois</small></div>
+          <p>Le Suivi, plus la messagerie administrée, le réseau et le WiFi, les interventions sur site incluses et un test de restauration annuel.</p>
+        </div>
+        <div class="card offre">
+          <h3>Sur mesure</h3>
+          <div class="offre__prix">sur devis</div>
+          <p>Serveurs, multi-sites, contraintes métier, délai d'intervention garanti.</p>
+        </div>
+      </div>
+
+      <div class="rates" style="margin-top: 1.4rem;">
+        <div><span>Forfait plancher</span><span class="price">149 € HT / mois</span></div>
+        <div><span>État des lieux initial</span><span class="price">facturé, déduit du premier mois</span></div>
+        <div><span>Intervention sur site hors contrat</span><span class="price">290 € HT</span></div>
+        <div><span>Intervention hors heures ouvrées (soir, samedi)</span><span class="price">+ 50 %</span></div>
+        <div class="hl"><span><strong>Engagement</strong></span><span class="price">aucun — 3 mois de préavis</span></div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--ink-faint);">
+        Tarifs hors taxes. Matériel et licences en sus. Je suis revendeur Microsoft et peux
+        fournir vos licences Microsoft 365 ; vous pouvez aussi les acheter vous-même.
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Questions fréquentes</h2>
+    <div class="grid grid--2" style="margin-top: 1.75rem; gap: 1.75rem 3rem;">
+      {questions.map(([q, r]) => (
+        <dl class="qa"><dt>{q}</dt><dd>{r}</dd></dl>
+      ))}
+    </div>
+  </section>
+
+  <section class="refs">
+    <div class="wrap refs__in">
+      <p class="eyebrow eyebrow--quiet" style="margin: 0;">Ils me font confiance</p>
+      <div class="refs__liste">
+        {references.map((r) => <span>{r}</span>)}
+        <span class="refs__suite">…</span>
+      </div>
+    </div>
+  </section>
+
+  <Appel
+    titre="Commençons par un état des lieux."
+    texte="Vous saurez exactement où en est votre informatique, ce qui vous expose, et ce que coûterait un suivi."
+  />
+</Base>
+
+<style>
+  .encart { background: var(--panel); border-left: 2px solid var(--accent); padding: 1.5rem 1.6rem; }
+  .interlocuteur { padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 3.75rem); }
+  @media (max-width: 62rem) { .interlocuteur { padding-inline: var(--gutter); } }
+
+  .offre__prix {
+    font-family: var(--mono);
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .offre__prix small { font-family: var(--sans); font-size: 0.82rem; font-weight: 400; color: var(--ink-faint); }
+  .offre--fort { background: var(--ink); border-color: var(--ink); }
+  .offre--fort h3 { color: var(--paper); }
+  .offre--fort p { color: #b6c3cb; }
+  .offre--fort .offre__prix { color: var(--accent); }
+  .offre--fort .offre__prix small { color: #93a3ae; }
+
+  .refs { background: var(--panel); border-top: 1px solid var(--line); padding-block: 2.25rem; }
+  .refs__in { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.75rem; }
+  .refs__liste { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; font-weight: 600; color: var(--text-2); }
+  .refs__suite { color: var(--faint); }
+  .souligne { font-weight: 600; color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+  .souligne:hover { color: var(--accent); }
+</style>

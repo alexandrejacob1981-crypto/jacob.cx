@@ -1,0 +1,176 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Appel from '../components/Appel.astro';
+import { site } from '../data/site';
+import otdr from '../assets/otdr-mesure-baie.jpg';
+
+const prestations = [
+  ['Dépannage et réparation', 'Ordinateur lent, qui ne démarre plus, qui chauffe. Windows ou Mac. Virus, publicités intempestives, mots de passe perdus. Remplacement de disque, de batterie, d’écran, ajout de mémoire.'],
+  ['Vos photos et vos documents', 'Sauvegarde mise en place pour de bon, et pas seulement expliquée. Récupération de fichiers effacés, de disques qui ne s’ouvrent plus, de cartes mémoire.'],
+  ['Le WiFi de la maison', 'Maisons anciennes, murs en pierre, plusieurs niveaux, dépendances. Je mesure au lieu d’ajouter un répéteur de plus — un répéteur posé là où le signal est déjà faible propage un signal faible.'],
+  ['Domotique', 'Volets, éclairage, chauffage, prises et thermostats connectés, vidéosurveillance, sonnette et interphone vidéo. Et surtout : faire fonctionner ensemble des équipements de marques différentes.'],
+  ['Son et vidéo', 'Téléviseur, barre de son, home cinéma, enceintes multiroom, vidéoprojecteur. Fixation murale comprise, câbles dissimulés proprement en apparent. Et qu’une seule télécommande suffise.'],
+  ['Assistance à distance', 'Beaucoup de problèmes se règlent sans déplacement, dans l’heure, avec vous au téléphone. Moins cher et plus rapide.'],
+];
+
+const questions = [
+  ['Vous déplacez-vous vraiment à domicile ?', 'Oui, c’est le cœur de l’activité pour les particuliers. Et quand le problème se règle à distance, je vous le dis — ça vous coûte moins cher.'],
+  ['Mon ordinateur a huit ans, ça vaut le coup de le réparer ?', 'Souvent oui, et je vous le dirai honnêtement dans les deux sens. Un disque remplacé et un nettoyage suffisent dans beaucoup de cas. Quand la réparation n’a pas de sens, je vous le dis aussi.'],
+  ['J’ai perdu mes photos. C’est fichu ?', 'Rarement, si vous arrêtez d’utiliser l’appareil tout de suite — continuer à s’en servir écrase les données effacées. Éteignez, et appelez.'],
+  ['Vous emportez mon ordinateur ?', 'La plupart des interventions se font chez vous, sous vos yeux. Si un atelier est nécessaire, c’est dit à l’avance et convenu avec vous.'],
+  ['Je n’y connais rien du tout, je vais vous faire perdre votre temps.', 'Non. C’est mon métier, et expliquer en fait partie. Vous n’aurez pas à faire semblant de comprendre.'],
+  ['Intervenez-vous le soir ou le samedi ?', 'Oui, et sans supplément. La plupart de mes clients travaillent en journée ; il serait absurde de leur faire payer le fait d’être disponibles quand ils le sont.'],
+];
+---
+
+<Base
+  titre="Dépannage informatique à domicile — Meudon et région (92)"
+  description="Dépannage et réparation informatique à domicile ou à distance, WiFi de la maison, domotique, son et vidéo. Meudon, Hauts-de-Seine et Île-de-France."
+  chemin="/particuliers"
+>
+  <!-- Hero volontairement clair : la page grand public doit accueillir,
+       pas impressionner. Le reste du site garde le fond sombre. -->
+  <section class="section section--paper">
+    <div class="wrap split" style="align-items: center;">
+      <div class="col-7">
+        <p class="eyebrow">À domicile — Meudon et Île-de-France</p>
+        <h1>Dépannage informatique à domicile.</h1>
+        <p class="lead" style="margin-top: 1.3rem;">
+          Un ordinateur qui rame, une box qui ne couvre pas l'étage, des photos qu'on ne
+          retrouve plus, une télévision et une enceinte qui refusent de se parler.
+        </p>
+        <p style="margin-top: 0.9rem; max-width: var(--measure);">
+          Je me déplace chez vous, je regarde, je vous explique en français ce qui se
+          passe, et je répare. Sans vous faire sentir que la question était bête, et sans
+          vous vendre du matériel dont vous n'avez pas besoin.
+        </p>
+        <div class="actions" style="margin-top: 1.75rem;">
+          <a class="btn" href={site.telephoneLien}>Appeler {site.telephone}</a>
+          <span style="color: var(--ink-2);">
+            Soir et samedi <strong>sans supplément</strong>.
+          </span>
+        </div>
+      </div>
+
+      <aside class="col-5 card prix">
+        <p class="eyebrow eyebrow--quiet" style="margin-bottom: 0.75rem;">Intervention à domicile</p>
+        <div class="prix__ligne">
+          <span class="prix__net">145 €</span>
+          <span class="prix__brut">290 € TTC</span>
+        </div>
+        <p class="prix__note">
+          après crédit d'impôt — déplacement et <strong>2 h incluses</strong>
+        </p>
+        <div class="rates" style="margin-top: 1rem;">
+          <div><span>Heure supplémentaire</span><span class="price">60 € <small>(120 € TTC)</small></span></div>
+          <div><span>Assistance à distance</span><span class="price">90 € TTC</span></div>
+          <div><span>Soir et samedi</span><span class="price">sans supplément</span></div>
+        </div>
+        <p class="prix__mdsap">
+          Affilié à la <strong>MDSAP</strong> : l'assistance informatique à domicile ouvre
+          droit à 50 % de crédit d'impôt, dans la limite de 3 000 € de dépenses par an et
+          par foyer. L'attestation fiscale vous est envoyée chaque année — vous n'avez
+          aucune démarche à faire.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Ce que je fais chez vous</h2>
+    <div class="grid grid--3" style="margin-top: 1.75rem;">
+      {prestations.map(([t, d]) => (
+        <div class="card"><h3>{t}</h3><p>{d}</p></div>
+      ))}
+      <div class="card card--accent">
+        <h3 style="color: var(--accent);">Réparation au niveau du circuit</h3>
+        <p>
+          Mon laboratoire est équipé pour la micro-soudure sous microscope : port de
+          charge ou connecteur arraché, nappe dessoudée, piste coupée, rebillage.
+          « Carte mère à changer » n'est pas toujours la bonne réponse — et une soudure
+          reprise coûte une fraction du prix d'un appareil neuf.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--line">
+    <div class="split" style="gap: 0; align-items: stretch;">
+      <div class="col-6 operateur">
+        <p class="eyebrow">Ce que personne d'autre ne fait</p>
+        <h2>« Mon opérateur me dit que tout va bien, mais ça ne marche pas. »</h2>
+        <p class="lead" style="margin-top: 1rem;">
+          Je travaille aussi pour des entreprises et des hôtels, avec les appareils de
+          mesure des techniciens télécom. Chez un particulier, ça change une chose très
+          concrète.
+        </p>
+        <p style="margin-top: 0.9rem; max-width: 52ch;">
+          Je qualifie votre ligne et j'établis les chiffres réels. S'ils montrent que le
+          problème vient de l'opérateur, vous avez enfin de quoi le lui opposer — au lieu
+          de vous débrouiller seul avec le service client.
+        </p>
+      </div>
+      <div class="col-6">
+        <Image
+          src={otdr}
+          alt="Mesure de ligne en cours avec un réflectomètre optique"
+          widths={[420, 700, 1000]}
+          sizes="(max-width: 62rem) 100vw, 50vw"
+          loading="lazy"
+          style="width: 100%; height: 100%; object-fit: cover;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Le crédit d'impôt, concrètement</h2>
+    <div class="grid grid--2" style="margin-top: 1.5rem; gap: 1.5rem 3rem;">
+      <div>
+        <h3 style="color: var(--accent); font-size: 1.05rem;">Ce qui y ouvre droit</h3>
+        <p class="detail">
+          L'assistance, le dépannage et la réparation informatique <strong>réalisés à
+          votre domicile</strong>. L'État prend la moitié à sa charge.
+        </p>
+      </div>
+      <div>
+        <h3 style="font-size: 1.05rem;">Ce qui n'y ouvre pas droit</h3>
+        <p class="detail">
+          La récupération de données, l'assistance à distance, l'installation de
+          domotique, le son et la vidéo, et les interventions télécom. Autant le dire ici
+          plutôt que de laisser la déception pour plus tard.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap section--line">
+    <h2>Questions fréquentes</h2>
+    <div class="grid grid--2" style="margin-top: 1.75rem; gap: 1.75rem 3rem;">
+      {questions.map(([q, r]) => (
+        <dl class="qa"><dt>{q}</dt><dd>{r}</dd></dl>
+      ))}
+    </div>
+  </section>
+
+  <Appel
+    titre="Décrivez-moi votre problème, je vous dis quoi faire."
+    texte="Un appel suffit souvent à savoir si ça se règle à distance, tout de suite, ou s'il vaut mieux que je passe."
+  />
+</Base>
+
+<style>
+  .prix { gap: 0.3rem; }
+  .prix__ligne { display: flex; align-items: baseline; gap: 0.8rem; }
+  .prix__net { font-family: var(--mono); font-size: 2.35rem; font-weight: 700; line-height: 1.05; }
+  .prix__brut { font-size: 0.95rem; color: var(--ink-faint); text-decoration: line-through; }
+  .prix__note { color: var(--ink-2); font-size: 0.95rem; margin-top: 0.35rem; }
+  .prix__mdsap { font-size: 0.85rem; line-height: 1.55; color: var(--ink-faint); margin-top: 1rem; }
+  .prix .rates .price small { font-family: var(--sans); font-weight: 400; color: var(--ink-faint); }
+
+  .operateur { padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vw, 3.25rem) var(--gutter); background: var(--panel); }
+  @media (max-width: 62rem) { .operateur { padding-inline: var(--gutter); } }
+
+  .detail { color: var(--dim); margin-top: 0.5rem; }
+</style>

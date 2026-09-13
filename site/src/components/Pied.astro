@@ -1,0 +1,104 @@
+---
+import { site, navPied, communes } from '../data/site';
+---
+
+<footer class="pied">
+  <div class="wrap">
+    <div class="pied__cols">
+      <div>
+        <div class="pied__nom">{site.nom} <span class="pied__ei">{site.statut}</span></div>
+        <address class="pied__adr">
+          {site.adresse.rue}<br />
+          {site.adresse.codePostal} {site.adresse.ville}
+        </address>
+        <div class="pied__contact">
+          <a href={site.telephoneLien}>{site.telephone}</a><br />
+          <a href={`mailto:${site.courriel}`}>{site.courriel}</a>
+        </div>
+      </div>
+
+      <nav aria-label="Prestations">
+        <div class="pied__titre">Prestations</div>
+        <ul class="pied__liste">
+          {navPied.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div>
+        <div class="pied__titre">Zone d'intervention</div>
+        <p class="pied__zone">
+          Basé à Meudon (92), j'interviens dans toute l'Île-de-France&nbsp;:
+          {communes.join(', ')} et au-delà.
+        </p>
+      </div>
+    </div>
+
+    <div class="pied__bas">
+      <span>SIRET {site.siret} — TVA {site.tva}</span>
+      <nav class="pied__legal" aria-label="Informations légales">
+        <a href="/mentions-legales">Mentions légales</a>
+        <a href="/politique-de-confidentialite">Politique de confidentialité</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .pied {
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+    padding-block: clamp(2.25rem, 4vw, 3rem) 1.5rem;
+    font-size: 0.92rem;
+  }
+  .pied__cols {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1.2fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+  @media (max-width: 56rem) { .pied__cols { grid-template-columns: minmax(0, 1fr); } }
+
+  /* À partir de 48rem la bulle de contact flotte en bas à droite : on lui
+     laisse la place pour qu.elle ne recouvre pas les liens légaux. */
+  @media (min-width: 48rem) { .pied { padding-bottom: 5.5rem; } }
+
+  .pied__nom { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .pied__ei {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--faint);
+    letter-spacing: 0.08em;
+  }
+  .pied__adr { font-style: normal; color: var(--dim); margin-bottom: 0.75rem; }
+  .pied__contact { font-family: var(--mono); line-height: 1.9; }
+  .pied__contact a { display: inline-block; padding-block: 0.15rem; }
+
+  .pied__titre {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 0.85rem;
+  }
+  .pied__liste { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+  .pied__liste a { display: inline-block; padding-block: 0.25rem; }
+  .pied__liste a { color: var(--text-2); }
+  .pied__liste a:hover { color: var(--accent); }
+  .pied__zone { color: var(--dim); line-height: 1.6; }
+
+  .pied__bas {
+    margin-top: clamp(1.75rem, 4vw, 2.5rem);
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    justify-content: space-between;
+    color: var(--faint);
+    font-size: 0.82rem;
+  }
+  .pied__legal { display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; }
+  .pied__legal a { display: inline-block; padding-block: 0.2rem; }
+  .pied__legal a { color: var(--faint); }
+  .pied__legal a:hover { color: var(--accent); }
+</style>

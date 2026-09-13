@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { navPied, site } from '../data/site';
+---
+
+<Base
+  titre="Page introuvable — jacob.cx"
+  description="Cette page n'existe pas ou a changé d'adresse."
+  chemin="/404"
+  chat={false}
+>
+  <section class="section wrap" style="max-width: 46rem;">
+    <p class="eyebrow eyebrow--quiet">Erreur 404</p>
+    <h1>Cette page n'existe pas.</h1>
+    <p class="lead" style="margin-top: 1.2rem;">
+      Elle a peut-être changé d'adresse lors de la refonte du site. Voici où aller —
+      ou appelez-moi, c'est souvent plus rapide.
+    </p>
+    <ul class="ticks" style="margin-top: 1.75rem;">
+      {navPied.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+    </ul>
+    <div class="actions" style="margin-top: 2rem;">
+      <a class="btn" href={site.telephoneLien}>Appeler {site.telephone}</a>
+      <a class="btn btn--ghost" href="/">Retour à l'accueil</a>
+    </div>
+  </section>
+</Base>

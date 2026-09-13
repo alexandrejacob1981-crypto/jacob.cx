@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+  <style>
+    body { margin: 0; background: #0B0F12; font-family: Archivo, "Helvetica Neue", Arial, sans-serif; }
+    a { color: #E3A93C; text-decoration: none; }
+    a:hover { color: #F0BE63; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #0B0F12; color: #EEF2F4; position: relative;">
+
+  <!-- barre de navigation -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 72px; border-bottom: 1px solid #1D272E;">
+    <div style="display: flex; align-items: baseline; gap: 10px;">
+      <span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">jacob.cx</span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6E8290; letter-spacing: 0.08em;">ALEXANDRE JACOB</span>
+    </div>
+    <div style="display: flex; gap: 30px; align-items: center;">
+      <span style="font-size: 14px; color: #A9B8C2;">Entreprises</span>
+      <span style="font-size: 14px; color: #A9B8C2;">Particuliers</span>
+      <span style="font-size: 14px; color: #A9B8C2;">WiFi</span>
+      <span style="font-size: 14px; color: #A9B8C2;">Télécom</span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: #0B0F12; background: #E3A93C; padding: 9px 16px;">06 14 02 60 47</span>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding: 76px 72px 60px;">
+    <div style="grid-column: span 7;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #E3A93C; margin-bottom: 26px;">MEUDON (92) &nbsp;·&nbsp; ÎLE-DE-FRANCE &nbsp;·&nbsp; 25 ANS DE TERRAIN</div>
+      <h1 style="font-size: 62px; line-height: 1.02; font-weight: 800; letter-spacing: -0.035em; margin: 0 0 24px; text-wrap: balance;">Infogérance, dépannage informatique et réseaux WiFi.</h1>
+      <p style="font-size: 19px; line-height: 1.55; color: #9FB0BB; margin: 0 0 30px; max-width: 40ch;">Mon métier de base, c'est le réseau télécom. J'interviens sur les lignes cuivre et fibre avec les appareils de mesure des techniciens opérateurs.</p>
+      <p style="font-size: 22px; line-height: 1.4; font-weight: 600; margin: 0 0 38px; max-width: 30ch;">Là où d'autres supposent, <span style="color: #E3A93C;">je mesure</span> — et je vous montre les chiffres.</p>
+      <div style="display: flex; gap: 14px; align-items: center;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 700; color: #0B0F12; background: #E3A93C; padding: 15px 26px;">06 14 02 60 47</span>
+        <span style="font-size: 15px; font-weight: 500; color: #EEF2F4; border: 1px solid #33434E; padding: 15px 24px;">Demander un état des lieux</span>
+      </div>
+    </div>
+    <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 0;">
+      <img src="otdr.jpg" alt="Réflectomètre optique en cours de mesure devant une baie" style="width: 100%; display: block; filter: saturate(0.85);">
+      <div style="background: #121A20; border-left: 2px solid #E3A93C; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.75; color: #93A3AE;">
+        <div>OTDR 1310 nm &nbsp;—&nbsp; <span style="color: #EEF2F4;">coupure localisée à 5 380 m</span></div>
+        <div>Soudure fibre &nbsp;—&nbsp; <span style="color: #EEF2F4;">perte 0,02 dB</span></div>
+        <div>Lien cuivre &nbsp;—&nbsp; <span style="color: #EEF2F4;">1000 Mb/s · PoE 55 V</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- bandeau chiffres -->
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid #1D272E; border-bottom: 1px solid #1D272E;">
+    <div style="padding: 26px 32px; border-right: 1px solid #1D272E;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; color: #E3A93C;">25 ans</div>
+      <div style="font-size: 13px; color: #7E909C; margin-top: 4px;">de terrain, télécom compris</div>
+    </div>
+    <div style="padding: 26px 32px; border-right: 1px solid #1D272E;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; color: #E3A93C;">Cuivre &amp; fibre</div>
+      <div style="font-size: 13px; color: #7E909C; margin-top: 4px;">mesure, diagnostic, soudure sur place</div>
+    </div>
+    <div style="padding: 26px 32px; border-right: 1px solid #1D272E;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; color: #E3A93C;">Aruba · Ruckus</div>
+      <div style="font-size: 13px; color: #7E909C; margin-top: 4px;">matériel d'infrastructure, pas de grande surface</div>
+    </div>
+    <div style="padding: 26px 32px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; color: #E3A93C;">Île-de-France</div>
+      <div style="font-size: 13px; color: #7E909C; margin-top: 4px;">base à Meudon (92)</div>
+    </div>
+  </div>
+
+  <!-- trois portes -->
+  <div style="background: #F2F4F3; color: #10171C; padding: 66px 72px 72px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #66798A; margin-bottom: 34px;">PAR OÙ COMMENCER</div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+
+      <div style="background: #FFFFFF; border: 1px solid #DCE2E1; padding: 30px 28px 32px; display: flex; flex-direction: column; gap: 14px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10171C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V6l7-3 7 3v15"></path><path d="M9 10h2M9 14h2M13 10h2M13 14h2"></path></svg>
+        <h3 style="font-size: 21px; font-weight: 700; margin: 0; letter-spacing: -0.015em;">Entreprises</h3>
+        <p style="font-size: 15px; line-height: 1.55; color: #4A5A64; margin: 0;">Infogérance au forfait mensuel. Postes, serveurs, messagerie, sauvegarde, réseau et ligne. Un seul interlocuteur, du poste de travail jusqu'à la prise.</p>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #8A7434; margin-top: auto;">à partir de 29 € HT / poste / mois</span>
+        <span style="font-size: 14.5px; font-weight: 600; color: #10171C; border-bottom: 2px solid #E3A93C; align-self: flex-start; padding-bottom: 2px;">Découvrir l'infogérance</span>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid #DCE2E1; padding: 30px 28px 32px; display: flex; flex-direction: column; gap: 14px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10171C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg>
+        <h3 style="font-size: 21px; font-weight: 700; margin: 0; letter-spacing: -0.015em;">Particuliers</h3>
+        <p style="font-size: 15px; line-height: 1.55; color: #4A5A64; margin: 0;">Dépannage à domicile : ordinateur, WiFi, photos perdues, domotique, son et vidéo. Soir et samedi sans supplément.</p>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #8A7434; margin-top: auto;">290 € TTC — soit 145 € après crédit d'impôt</span>
+        <span style="font-size: 14.5px; font-weight: 600; color: #10171C; border-bottom: 2px solid #E3A93C; align-self: flex-start; padding-bottom: 2px;">Voir les interventions</span>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid #DCE2E1; padding: 30px 28px 32px; display: flex; flex-direction: column; gap: 14px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10171C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a15 15 0 0 1 19 0"></path><path d="M5.5 12.5a10.5 10.5 0 0 1 13 0"></path><path d="M8.5 16a6 6 0 0 1 7 0"></path><circle cx="12" cy="19.5" r="1.1" fill="#10171C"></circle></svg>
+        <h3 style="font-size: 21px; font-weight: 700; margin: 0; letter-spacing: -0.015em;">Réseaux WiFi</h3>
+        <p style="font-size: 15px; line-height: 1.55; color: #4A5A64; margin: 0;">Commerces, cabinets, hôtels, bureaux. Couverture mesurée avant d'être installée, réseau invité séparé, matériel professionnel.</p>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #8A7434; margin-top: auto;">audit 290 € HT — déduit si installation</span>
+        <span style="font-size: 14.5px; font-weight: 600; color: #10171C; border-bottom: 2px solid #E3A93C; align-self: flex-start; padding-bottom: 2px;">Découvrir le WiFi pro</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- un seul interlocuteur -->
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding: 72px 72px 66px; align-items: center;">
+    <div style="grid-column: span 5;">
+      <img src="baie.jpg" alt="Baie de brassage avec contrôleur Aruba et panneau étiqueté" style="width: 100%; display: block;">
+    </div>
+    <div style="grid-column: span 7;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #E3A93C; margin-bottom: 20px;">CE QUI ME DISTINGUE</div>
+      <h2 style="font-size: 38px; line-height: 1.12; font-weight: 700; letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;">Un seul interlocuteur, du poste de travail jusqu'à la ligne.</h2>
+      <p style="font-size: 16.5px; line-height: 1.6; color: #9FB0BB; margin: 0 0 16px; max-width: 58ch;">Le scénario habituel : l'informaticien dit que le problème vient de la ligne, l'opérateur dit qu'il vient du réseau interne, et vous faites la navette pendant trois jours sans que personne ne mesure quoi que ce soit.</p>
+      <p style="font-size: 16.5px; line-height: 1.6; color: #EEF2F4; margin: 0; max-width: 58ch;">Je couvre les deux bouts de la chaîne. Quand j'affirme que la panne est chez votre opérateur, je vous le prouve — relevé à l'appui.</p>
+    </div>
+  </div>
+
+  <!-- urgences -->
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid #1D272E;">
+    <div style="padding: 42px 48px; border-right: 1px solid #1D272E; display: flex; flex-direction: column; gap: 12px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #E3A93C;">URGENCE</div>
+      <h3 style="font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.02em;">Fibre coupée dans vos locaux ?</h3>
+      <p style="font-size: 15.5px; line-height: 1.55; color: #9FB0BB; margin: 0;">Localisation à l'OTDR et soudure sur place. Intervention dans la journée, ou sous 4 heures si votre activité ne peut pas attendre.</p>
+    </div>
+    <div style="padding: 42px 48px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #E3A93C;">URGENCE</div>
+      <h3 style="font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.02em;">Données perdues ?</h3>
+      <p style="font-size: 15.5px; line-height: 1.55; color: #9FB0BB; margin: 0;">Clé USB, carte mémoire, SSD. Diagnostic gratuit — et si je récupère moins de la moitié de vos données, vous ne payez rien.</p>
+    </div>
+  </div>
+
+  <!-- références -->
+  <div style="background: #121A20; padding: 46px 72px; display: flex; align-items: center; gap: 46px; border-top: 1px solid #1D272E;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #6E8290; white-space: nowrap;">ILS ME FONT CONFIANCE</div>
+    <div style="display: flex; gap: 34px; flex-wrap: wrap; font-size: 16px; font-weight: 600; color: #C4D0D8;">
+      <span>Passman</span><span>Punto Architecte</span><span>Agnès et Agnès</span><span>Fréquence Architecture</span><span>Agence Lacombe</span><span style="color: #6E8290;">…</span>
+    </div>
+  </div>
+
+  <!-- pied -->
+  <div style="padding: 40px 72px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1D272E;">
+    <div style="font-size: 14px; color: #7E909C;">Alexandre Jacob EI — 146 rue de Paris, 92190 Meudon</div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #E3A93C;">alexandre@jacob.cx</div>
+  </div>
+
+  <!-- lanceur de chat Partoo : le script ne se charge qu'au clic, donc aucun cookie avant -->
+  <div style="position: absolute; right: 36px; top: 760px; display: flex; align-items: center; gap: 12px; background: #E3A93C; color: #0B0F12; padding: 13px 20px 13px 17px; border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B0F12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.9 9.9 0 0 1-3.9-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"></path></svg>
+    <span style="font-size: 15px; font-weight: 700;">Une question ? Écrivez-moi</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import Entete from '../components/Entete.astro';
+import Pied from '../components/Pied.astro';
+import Chat from '../components/Chat.astro';
+import { site } from '../data/site';
+
+interface Props {
+  titre: string;
+  description: string;
+  /** chemin canonique, ex. « /wifi-professionnel » */
+  chemin: string;
+  /** false sur les pages légales pour ne pas afficher le chat */
+  chat?: boolean;
+}
+
+const { titre, description, chemin, chat = true } = Astro.props;
+const canonique = new URL(chemin, Astro.site ?? 'https://jacob.cx').href;
+
+/**
+ * Données structurées LocalBusiness : elles aident Google à comprendre
+ * l'activité, la zone et les coordonnées. Aucun balisage d'avis ici —
+ * Google sanctionne le balisage des avis auto-promotionnels.
+ */
+const donneesStructurees = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: `${site.nom} — Infogérance, dépannage informatique et réseaux WiFi`,
+  url: 'https://jacob.cx',
+  telephone: '+33614026047',
+  email: site.courriel,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.adresse.rue,
+    postalCode: site.adresse.codePostal,
+    addressLocality: site.adresse.ville,
+    addressCountry: site.adresse.pays,
+  },
+  areaServed: { '@type': 'AdministrativeArea', name: 'Île-de-France' },
+  sameAs: [site.ficheGoogle],
+};
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titre}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonique} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content={titre} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonique} />
+    <meta name="theme-color" content="#0b0f12" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <set:html value={`<script type="application/ld+json">${JSON.stringify(donneesStructurees)}</script>`} />
+  </head>
+  <body>
+    <a href="#contenu" class="saut">Aller au contenu</a>
+    <Entete />
+    <main id="contenu">
+      <slot />
+    </main>
+    <Pied />
+    {chat && <Chat />}
+  </body>
+</html>

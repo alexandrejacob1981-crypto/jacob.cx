@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+
+const maj = '9 septembre 2026';
+---
+
+<Base
+  titre="Politique de confidentialité — jacob.cx"
+  description="Ce que le site jacob.cx collecte, pourquoi, combien de temps, et comment exercer vos droits. Aucun cookie publicitaire, aucun traceur d'audience."
+  chemin="/politique-de-confidentialite"
+  chat={false}
+>
+  <section class="section wrap legal">
+    <h1>Politique de confidentialité</h1>
+
+    <h2>Responsable du traitement</h2>
+    <p>
+      <strong>{site.nom} — Entrepreneur individuel ({site.statut})</strong><br />
+      {site.adresse.rue}, {site.adresse.codePostal} {site.adresse.ville}<br />
+      <a href={`mailto:${site.courriel}`}>{site.courriel}</a> — <a href={site.telephoneLien}>{site.telephone}</a>
+    </p>
+    <p>
+      C'est moi, et personne d'autre, qui décide de ce qui est collecté sur ce site et de
+      l'usage qui en est fait.
+    </p>
+
+    <h2>Ce que je collecte</h2>
+    <p>Uniquement ce que vous m'écrivez dans le formulaire de contact :</p>
+    <ul class="ticks" style="margin-top: 0.85rem;">
+      <li>votre nom</li>
+      <li>votre adresse électronique</li>
+      <li>votre numéro de téléphone, si vous le renseignez</li>
+      <li>le contenu de votre message</li>
+    </ul>
+    <p>
+      Rien d'autre. Pas de compte à créer, pas de profil, pas de suivi de votre navigation
+      d'une page à l'autre.
+    </p>
+
+    <h2>Pourquoi</h2>
+    <p>
+      Pour vous répondre, établir un devis, et assurer le suivi de nos échanges. C'est
+      tout. <strong>Base légale :</strong> votre demande elle-même — en m'écrivant, vous
+      sollicitez une réponse.
+    </p>
+    <p>
+      Vos données ne sont ni vendues, ni louées, ni cédées à des tiers, et ne servent à
+      aucune prospection commerciale. Vous ne recevrez pas de lettre d'information que
+      vous n'auriez pas demandée.
+    </p>
+
+    <h2>Combien de temps</h2>
+    <p>
+      <strong>Demandes sans suite :</strong> supprimées au bout de trois ans à compter de
+      notre dernier échange.<br />
+      <strong>Clients :</strong> les données nécessaires au suivi de la relation et à la
+      facturation sont conservées pendant la durée de la relation commerciale, puis
+      pendant la durée légale de conservation des documents comptables (dix ans).
+    </p>
+
+    <h2>Qui y a accès</h2>
+    <p>
+      Moi seul. Les messages transitent par mon hébergeur et par mon service de
+      messagerie, qui les acheminent techniquement sans les exploiter.
+    </p>
+
+    <h2>Cookies</h2>
+    <p>
+      <strong>Ce site ne dépose aucun cookie publicitaire ni aucun traceur de mesure
+      d'audience.</strong> Il n'y a donc pas de bandeau à accepter : il n'y a rien à
+      accepter.
+    </p>
+    <p>
+      Si un service de discussion en ligne est proposé, il n'est chargé qu'au moment où
+      vous cliquez sur le bouton pour l'ouvrir. Tant que vous ne le demandez pas, rien
+      n'est déposé sur votre appareil.
+    </p>
+
+    <h2>Vos droits</h2>
+    <p>
+      Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et
+      d'opposition sur vos données. Pour l'exercer, écrivez-moi à
+      <a href={`mailto:${site.courriel}`}>{site.courriel}</a> ou par courrier au
+      {' '}{site.adresse.rue}, {site.adresse.codePostal} {site.adresse.ville}. Je réponds
+      sous un mois.
+    </p>
+    <p>
+      Si ma réponse ne vous satisfait pas, vous pouvez saisir la <strong>CNIL</strong> :
+      3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07 —
+      <a href="https://www.cnil.fr" rel="noopener">www.cnil.fr</a>
+    </p>
+
+    <h2>Sécurité</h2>
+    <p>
+      Les données sont conservées sur des supports protégés par mot de passe et
+      sauvegardés. Le site est servi en HTTPS, ce qui chiffre les échanges entre votre
+      navigateur et le serveur, formulaire compris.
+    </p>
+
+    <h2>Données de vos propres clients</h2>
+    <p>
+      Lors d'une intervention d'infogérance, de maintenance ou de récupération de données,
+      je peux être amené à accéder à des données appartenant à votre entreprise — y
+      compris des données personnelles concernant vos salariés ou vos clients. Dans ce
+      cadre : je n'accède qu'à ce que l'intervention exige, je ne conserve aucune copie
+      au-delà de ce que le travail nécessite, rien n'est transmis à un tiers, et un
+      engagement de confidentialité peut être signé sur simple demande.
+    </p>
+
+    <h2>Modifications</h2>
+    <p>Dernière mise à jour : {maj}.</p>
+  </section>
+</Base>
+
+<style>
+  .legal { max-width: 52rem; }
+  .legal h2 {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    margin-top: 2.5rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+  }
+  .legal h1 + h2 { margin-top: 2rem; }
+  .legal p { color: var(--dim); margin-top: 0.85rem; max-width: 62ch; }
+  .legal strong { color: var(--text); }
+</style>

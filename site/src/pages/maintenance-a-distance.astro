@@ -1,0 +1,157 @@
+---
+import Base from '../layouts/Base.astro';
+import Appel from '../components/Appel.astro';
+
+const marche = [
+  'Ordinateur lent, démarrage interminable, disque saturé',
+  'Virus, publicités intempestives, faux messages d’alerte',
+  'Messagerie qui ne se connecte plus, mots de passe, nouveau compte',
+  'Imprimante qui n’apparaît plus, scan qui ne fonctionne plus',
+  'Mises à jour bloquées, installation et configuration de logiciels',
+  'Sauvegarde : mise en place, vérification, restauration d’un fichier',
+];
+
+const surPlace = [
+  'Tout ce qui est matériel : écran, disque, batterie, alimentation',
+  'Un ordinateur qui ne démarre plus du tout, ou qui n’a plus de réseau',
+  'Le WiFi, le réseau et la ligne — ça se mesure sur place',
+  'L’installation d’équipements : bornes, box, domotique, son et vidéo',
+];
+
+const questions = [
+  ['Faut-il installer quelque chose de compliqué ?', 'Non. Un petit programme à ouvrir, un code à me communiquer, et c’est parti. Si vous n’y arrivez pas, je vous guide au téléphone.'],
+  ['Et si mon ordinateur est trop lent pour se connecter ?', 'Ça fonctionne quand même dans la plupart des cas — la prise en main demande très peu de ressources. En revanche, sans connexion Internet du tout, il faut un déplacement.'],
+  ['Combien de temps ça prend ?', 'La plupart des interventions se règlent en moins d’une heure. Un nettoyage complet ou une réinstallation peuvent demander plus longtemps — je vous le dis avant de commencer.'],
+  ['Vous intervenez le soir ?', 'Oui, comme pour les interventions à domicile, et sans supplément.'],
+];
+---
+
+<Base
+  titre="Dépannage informatique à distance — intervention rapide"
+  description="Dépannage informatique à distance, sans déplacement : 90 € TTC, une heure incluse. Vous voyez tout ce que je fais sur votre écran. Particuliers et entreprises."
+  chemin="/maintenance-a-distance"
+>
+  <section class="section wrap split" style="align-items: start;">
+    <div class="col-7">
+      <p class="eyebrow">Maintenance à distance</p>
+      <h1>Souvent réglé dans l'heure.</h1>
+      <p class="lead" style="margin-top: 1.3rem;">
+        Un logiciel qui refuse de s'installer, une messagerie qui ne se connecte plus, une
+        imprimante qui a disparu, un ordinateur devenu lent, un réglage à corriger.
+      </p>
+      <p style="margin-top: 0.9rem; max-width: var(--measure);">
+        Dans ces cas-là, une prise en main à distance règle l'affaire <strong>le jour
+        même</strong>, sans attendre un créneau de déplacement — et pour nettement moins
+        cher. Vous restez devant votre écran, vous voyez tout ce que je fais.
+      </p>
+
+      <h2 style="margin-top: 2.25rem;">Comment ça marche</h2>
+      <ol class="etapes">
+        <li>Vous m'appelez et vous me décrivez le problème.</li>
+        <li>Je vous dis tout de suite si c'est traitable à distance. Si ça ne l'est pas, je ne vous le fais pas payer pour le découvrir.</li>
+        <li>Vous ouvrez un petit logiciel de connexion — un clic, pas d'installation compliquée.</li>
+        <li>Vous me donnez la main. Votre écran reste allumé devant vous : vous suivez chaque manipulation.</li>
+        <li>Je répare, et je vous explique ce qui s'était passé.</li>
+        <li>La connexion se ferme à la fin. Je n'ai plus aucun accès à votre ordinateur.</li>
+      </ol>
+    </div>
+
+    <aside class="col-5 card">
+      <p class="eyebrow eyebrow--quiet" style="margin-bottom: 0.75rem;">Tarif</p>
+      <div class="tarif">90 €<small> TTC — 1 h incluse</small></div>
+      <p style="color: var(--dim); font-size: 0.94rem; margin-top: 0.6rem;">
+        Au-delà de la première heure, l'intervention se poursuit au même tarif horaire —
+        et je vous préviens toujours avant de dépasser, jamais après.
+      </p>
+      <div class="rates" style="margin-top: 1.1rem;">
+        <div><span>Règlement</span><span class="price price--quiet">virement ou lien bancaire</span></div>
+        <div><span>Si non résolu à distance</span><span class="price">non facturé</span></div>
+        <div><span>Crédit d'impôt</span><span class="price price--quiet">non éligible</span></div>
+      </div>
+      <p style="color: var(--faint); font-size: 0.85rem; margin-top: 0.9rem;">
+        Le crédit d'impôt s'applique à l'assistance réalisée <strong>à domicile</strong>.
+        Pour une intervention chez vous, voir la <a href="/particuliers">page Particuliers</a>.
+      </p>
+    </aside>
+  </section>
+
+  <section class="section wrap section--line">
+    <div class="grid grid--2" style="gap: 2rem 3rem;">
+      <div>
+        <h2>Ce qui se règle très bien à distance</h2>
+        <ul class="ticks" style="margin-top: 1.1rem;">{marche.map((m) => <li>{m}</li>)}</ul>
+      </div>
+      <div>
+        <h2>Ce qui demande un déplacement</h2>
+        <ul class="ticks ticks--quiet" style="margin-top: 1.1rem;">{surPlace.map((m) => <li>{m}</li>)}</ul>
+        <p style="margin-top: 1.1rem; color: var(--faint); max-width: 50ch;">
+          Je vous dis dès l'appel dans quel cas vous êtes.
+          <a href="/particuliers" class="souligne">Interventions à domicile</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sur">
+    <div class="wrap">
+      <h2>C'est sûr ?</h2>
+      <p class="lead" style="margin-top: 0.8rem;">
+        La question que tout le monde se pose, et elle est légitime. J'utilise
+        <strong>TeamViewer</strong>, sous licence professionnelle — la connexion est
+        chiffrée et ne s'ouvre que parce que vous m'y autorisez.
+      </p>
+      <div class="grid grid--4" style="margin-top: 1.9rem;">
+        <div class="card"><h3>Vous voyez tout</h3><p>Votre écran reste allumé, chaque action est visible. Rien ne se passe en coulisses.</p></div>
+        <div class="card"><h3>Vous gardez la main</h3><p>Vous pouvez interrompre la connexion à tout moment, d'un clic.</p></div>
+        <div class="card"><h3>L'accès n'est pas permanent</h3><p>La connexion se ferme à la fin. Je ne peux pas me reconnecter sans que vous me redonniez l'autorisation.</p></div>
+        <div class="card card--accent">
+          <h3 style="color: var(--accent);">Je ne vous appellerai jamais</h3>
+          <p>Les arnaques au faux support technique fonctionnent ainsi : un appel non sollicité, une urgence inventée, une prise en main demandée. De mon côté, c'est toujours vous qui appelez en premier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="split" style="align-items: start;">
+      <div class="col-7">
+        <h2>Questions fréquentes</h2>
+        <div class="grid grid--2" style="margin-top: 1.5rem; gap: 1.5rem 2.5rem;">
+          {questions.map(([q, r]) => (<dl class="qa"><dt>{q}</dt><dd>{r}</dd></dl>))}
+        </div>
+      </div>
+      <aside class="col-5 card" style="border-color: var(--line-strong);">
+        <h3>Pour les entreprises</h3>
+        <p>
+          À distance, c'est aussi le quotidien de l'infogérance : un utilisateur bloqué est
+          repris en main dans la foulée, sans attendre un créneau ni immobiliser un poste
+          une demi-journée.
+        </p>
+        <p style="margin-top: 0.5rem;">
+          Sous contrat, l'assistance à distance est <strong>incluse et illimitée</strong> —
+          c'est justement ce qui évite que les petits problèmes deviennent des pannes.
+        </p>
+        <p style="margin-top: 0.7rem;">
+          <a href="/infogerance" class="souligne">Infogérance au forfait mensuel</a>
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <Appel
+    titre="Décrivez-moi le problème, on voit tout de suite si ça se règle à distance."
+    texte="Et si ce n'est pas le cas, on convient d'un déplacement — sans que la tentative vous soit facturée."
+  />
+</Base>
+
+<style>
+  .tarif { font-family: var(--mono); font-size: 2.3rem; font-weight: 700; line-height: 1.05; color: var(--accent); }
+  .tarif small { font-family: var(--sans); font-size: 0.85rem; font-weight: 400; color: var(--dim); }
+
+  .etapes { margin: 1.1rem 0 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.55rem; color: var(--dim); max-width: var(--measure); }
+  .etapes li::marker { color: var(--accent); font-family: var(--mono); font-size: 0.85rem; }
+
+  .sur { background: var(--panel); border-block: 1px solid var(--line); padding-block: clamp(2.5rem, 5vw, 3.5rem); }
+  .souligne { font-weight: 600; color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+  .souligne:hover { color: var(--accent); }
+</style>

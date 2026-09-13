@@ -1,0 +1,296 @@
+/* ------------------------------------------------------------------
+   jacob.cx — direction « Relevé »
+   Un seul accent, deux familles de caractères, des filets plutôt que
+   des ombres. Tout est piloté par les jetons ci-dessous.
+------------------------------------------------------------------- */
+
+@import '@fontsource-variable/archivo';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/700.css';
+
+:root {
+  /* fonds et filets */
+  --ground: #0b0f12;
+  --panel: #121a20;
+  --line: #1d272e;
+  --line-strong: #24313a;
+
+  /* texte sur fond sombre */
+  --text: #eef2f4;
+  --text-2: #c4d0d8;
+  --dim: #9fb0bb;
+  --faint: #7e909c;
+
+  /* zones claires */
+  --paper: #f2f4f3;
+  --paper-pure: #ffffff;
+  --paper-line: #dce2e1;
+  --paper-line-soft: #e7ecea;
+  --ink: #10171c;
+  --ink-2: #4a5a64;
+  --ink-faint: #66798a;
+
+  /* accent unique */
+  --accent: #e3a93c;
+  --accent-hi: #f0be63;
+  --accent-deep: #8a6414;
+  --accent-wash: #141b14;
+
+  /* sémantique */
+  --alert: #c4553a;
+  --alert-wash: #2a1512;
+  --alert-line: #e08a6e;
+  --ok: #6fae86;
+
+  /* typographie */
+  --sans: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+
+  /* rythme */
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --measure: 62ch;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hi); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.15rem, 5.2vw, 3.85rem); }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.25rem); font-weight: 700; letter-spacing: -0.026em; line-height: 1.14; }
+h3 { font-size: clamp(1.15rem, 1.9vw, 1.35rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; }
+
+p { margin: 0 0 0.9rem; }
+p:last-child { margin-bottom: 0; }
+p, li { text-wrap: pretty; }
+
+strong { font-weight: 600; color: var(--text); }
+
+/* --- éléments récurrents ------------------------------------------ */
+
+.wrap {
+  max-width: 90rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.35rem;
+}
+.eyebrow--quiet { color: var(--faint); }
+.eyebrow--alert { color: var(--alert-line); }
+
+.lead {
+  font-size: clamp(1.02rem, 1.35vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--dim);
+  max-width: var(--measure);
+}
+
+.section { padding-block: clamp(2.75rem, 6vw, 4.25rem); }
+.section--line { border-top: 1px solid var(--line); }
+
+/* zones claires : on inverse les jetons de texte */
+.section--paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+.section--paper .lead { color: var(--ink-2); }
+.section--paper .eyebrow { color: var(--accent-deep); }
+.section--paper .eyebrow--quiet { color: var(--ink-faint); }
+.section--paper strong { color: var(--ink); }
+
+.grid { display: grid; gap: clamp(1rem, 2vw, 1.4rem); }
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 62rem) { .grid--3, .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 40rem) { .grid--2, .grid--3, .grid--4 { grid-template-columns: minmax(0, 1fr); } }
+
+.split {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  align-items: center;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.split > .col-5 { grid-column: span 5; }
+.split > .col-6 { grid-column: span 6; }
+.split > .col-7 { grid-column: span 7; }
+@media (max-width: 62rem) {
+  .split > .col-5,
+  .split > .col-6,
+  .split > .col-7 { grid-column: 1 / -1; }
+}
+
+.card {
+  border: 1px solid var(--line-strong);
+  padding: clamp(1.25rem, 2vw, 1.6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.card h3 { margin-bottom: 0.15rem; }
+.card p { color: var(--dim); font-size: 0.95rem; line-height: 1.55; }
+.card--accent { border-color: var(--accent); }
+.section--paper .card {
+  background: var(--paper-pure);
+  border-color: var(--paper-line);
+}
+.section--paper .card p { color: var(--ink-2); }
+
+/* boutons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.95rem 1.5rem;
+  background: var(--accent);
+  color: var(--ground);
+  border: 1px solid var(--accent);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.btn:hover { background: var(--accent-hi); color: var(--ground); transform: translateY(-1px); }
+.btn--ghost {
+  background: none;
+  color: var(--text);
+  border-color: var(--line-strong);
+  font-family: var(--sans);
+  font-weight: 600;
+}
+.btn--ghost:hover { background: none; border-color: var(--faint); color: var(--text); }
+.section--paper .btn--ghost { color: var(--ink); border-color: var(--paper-line); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center; }
+
+/* bandeau de relevé : la signature de la direction */
+.readout {
+  background: var(--panel);
+  border-left: 2px solid var(--accent);
+  padding: 0.9rem 1.15rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.75;
+  color: #93a3ae;
+}
+.readout b { color: var(--text); font-weight: 500; }
+
+/* tableau de tarifs */
+.rates {
+  border: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+}
+.rates > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 0.95rem 1.35rem;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 0.97rem;
+}
+.rates > div:last-child { border-bottom: 0; }
+.rates .price {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.rates .price--quiet { color: var(--dim); font-weight: 400; }
+.rates .hl { background: var(--accent-wash); }
+.section--paper .rates { background: var(--paper-pure); border-color: var(--paper-line); }
+.section--paper .rates > div { border-color: var(--paper-line-soft); }
+.section--paper .rates .price { color: var(--accent-deep); }
+.section--paper .rates .hl { background: #fbf6ec; }
+
+/* listes à filet */
+.ticks { display: flex; flex-direction: column; gap: 0.6rem; margin: 0; padding: 0; list-style: none; }
+.ticks li { border-left: 2px solid var(--accent); padding-left: 0.9rem; color: var(--text-2); }
+.ticks--quiet li { border-left-color: var(--line-strong); color: var(--dim); }
+
+.qa { display: flex; flex-direction: column; gap: 0.45rem; }
+.qa dt { font-size: 1.05rem; font-weight: 600; }
+.qa dd { margin: 0; color: var(--dim); font-size: 0.97rem; line-height: 1.6; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+
+/* Lien d'évitement. Il était en .visually-hidden, donc introuvable même au
+   clavier : un lien d'évitement doit apparaître quand il reçoit le focus. */
+.saut {
+  position: absolute;
+  left: var(--gutter);
+  top: 0.6rem;
+  z-index: 60;
+  transform: translateY(-250%);
+  background: var(--accent);
+  color: var(--ground);
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.7rem 1.1rem;
+  transition: transform 0.15s ease;
+}
+.saut:focus { transform: translateY(0); color: var(--ground); }
+
+/* WCAG 2.2 — 2.4.11 « Focus non masqué ». L'en-tête est collant (≈69 px) :
+   sans cette marge, le lien d'évitement et toute ancre déposent la cible
+   DERRIÈRE l'en-tête, donc invisible pour qui navigue au clavier. */
+html { scroll-padding-top: 5rem; }
+
+/* WCAG 2.2 — 2.5.8 « Taille de cible (minimum) », 24 × 24 px CSS.
+   Les liens de navigation empilés passaient à 16 px de haut pour 6 px
+   d'écart : deux cibles de 24 px se chevauchaient. */
+.souligne { padding-top: 0.2rem; }

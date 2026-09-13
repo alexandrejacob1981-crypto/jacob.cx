@@ -1,0 +1,225 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Appel from '../components/Appel.astro';
+import otdr from '../assets/otdr-mesure-baie.jpg';
+import courbe from '../assets/otdr-courbe.jpg';
+
+const instruments = [
+  ['Lignes cuivre — ADSL, VDSL, RTC', 'ARGUS 52+', 'Qualification complète de la paire : débit réellement synchronisable, atténuation, marge au bruit, longueur, défauts de ligne. C’est l’appareil qui établit l’écart entre le débit vendu et le débit que la ligne peut porter.'],
+  ['Lignes SHDSL', 'ARGUS SHDSL', 'Pour les liaisons symétriques d’entreprise. Peu de prestataires informatiques savent seulement les tester, et c’est pourtant le support de nombreuses liaisons professionnelles encore en service.'],
+  ['Fibre optique', 'Réflectomètre OTDR', 'Mesure de la ligne sur toute sa longueur : localisation d’une coupure, d’une soudure défaillante, d’un connecteur sale ou d’une courbure trop serrée — au mètre près. On ouvre le bon regard, pas les cinq d’à côté.'],
+  ['Raccordement et soudure', 'Soudeuse Sumitomo', 'Je soude la fibre sur place : raccordement, réparation après coupure, reprise d’une épissure défectueuse. Pour une entreprise, c’est la différence entre une interruption d’une heure et une interruption de plusieurs jours.'],
+  ['Câblage réseau', 'IDEAL SignalTEK II', 'Vérification et qualification des liaisons cuivre du bâtiment : continuité, appairage, tenue du débit, alimentation PoE. Un câble mal serti ou une paire abîmée dans une cloison bride toute une installation sans jamais tomber franchement en panne.'],
+  ['Poste de terrain', 'Panasonic Toughbook CF-20', 'PC durci pour l’analyse en local technique, en cave, en gaine ou en toiture.'],
+];
+
+const interventions = [
+  'Qualification de ligne avant emménagement, avant travaux, ou avant de signer un contrat d’accès',
+  'Recherche de défaut sur cuivre ou fibre, avec localisation',
+  'Raccordement et soudure de fibre, création ou reprise d’épissures',
+  'Certification de câblage et remise en état d’une baie de brassage',
+  'Arbitrage entre vous et votre opérateur : un relevé daté et chiffré met fin à la discussion',
+  'Accompagnement de déménagement : vérifier les nouveaux locaux avant de s’y installer',
+];
+
+const questions = [
+  ['Mon opérateur affirme que la ligne est bonne. Vous pouvez vérifier ?', 'Oui, et c’est un motif d’intervention fréquent. Je qualifie la ligne et je vous remets les mesures. Elles valent bien mieux qu’une discussion avec un service client.'],
+  ['Ma fibre est coupée, il faut attendre l’opérateur ?', 'Pas si la coupure est sur la partie privative — à l’intérieur du bâtiment, dans vos fourreaux, dans votre local technique. Je localise à l’OTDR et je soude sur place, dans la journée. Si elle est en amont, je vous fournis la localisation exacte : un signalement précis est traité beaucoup plus vite qu’une déclaration de panne.'],
+  ['Vous tirez aussi les câbles ?', 'Occasionnellement, quand le parcours reste simple. Ce n’est pas mon cœur de métier : je suis là pour mesurer, raccorder et souder. Sur un chantier de câblage important, mieux vaut un installateur spécialisé — je m’occupe alors de la qualification et de la recette.'],
+  ['Le RTC n’existe plus, pourquoi le tester encore ?', 'Parce que l’analogique reste bien présent. Beaucoup d’entreprises et d’hôtels conservent des standards internes qui ne peuvent pas encore basculer en full IP, et il subsiste des lignes en service ou en sommeil pour l’alarme, l’ascenseur, le portail ou le terminal de paiement.'],
+];
+---
+
+<Base
+  titre="Expertise télécom — lignes cuivre et fibre optique | Meudon"
+  description="Qualification de lignes cuivre et fibre, mesures OTDR, soudure de fibre, certification de câblage. Interventions et sous-traitance en Île-de-France."
+  chemin="/expertise-telecom"
+>
+  <section class="ouverture">
+    <Image
+      src={otdr}
+      alt="Réflectomètre optique raccordé, courbe de mesure à l'écran, devant une baie"
+      widths={[640, 1100, 1600]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="ouverture__fond"
+    />
+    <div class="wrap ouverture__texte">
+      <p class="eyebrow">Expertise télécom — cuivre et fibre</p>
+      <h1>Je mesure, je localise, je répare.</h1>
+      <p class="lead" style="margin-top: 1.2rem; color: var(--text-2);">
+        C'est mon métier de base, et c'est ce qui donne son sérieux à tout le reste. Pas
+        pour constater qu'« il y a un problème quelque part », mais pour dire
+        <strong>où</strong>, <strong>de combien</strong>, et ce qu'il faut faire.
+      </p>
+    </div>
+  </section>
+
+  <section class="urgence">
+    <div class="wrap split" style="align-items: start;">
+      <div class="col-7">
+        <p class="eyebrow eyebrow--alert">Urgence</p>
+        <h2>Fibre coupée : réparation rapide.</h2>
+        <p class="lead" style="margin-top: 1rem;">
+          Une fibre sectionnée pendant des travaux, un câble arraché dans une gaine, une
+          soudure qui lâche dans un local technique : l'activité s'arrête, et l'opérateur
+          répond fréquemment que le tronçon concerné ne relève pas de lui. Il a raison —
+          et c'est précisément là que j'interviens.
+        </p>
+        <p style="margin-top: 0.9rem; max-width: var(--measure);">
+          <strong>Sur la partie privative</strong> — à l'intérieur de votre bâtiment, de
+          votre propriété, de vos fourreaux — je localise la coupure à l'OTDR et
+          <strong>je soude sur place</strong>. Intervention dans la journée, ou sous
+          4 heures si votre activité ne peut pas attendre.
+        </p>
+        <p style="margin-top: 0.9rem; max-width: var(--measure); color: var(--faint);">
+          Au-delà, sur le réseau de l'opérateur, je ne peux pas intervenir : ce domaine ne
+          m'appartient pas. En revanche, je vous fournis la localisation exacte du défaut,
+          ce qui change tout dans le traitement de votre dossier.
+        </p>
+      </div>
+
+      <div class="col-5">
+        <div class="rates">
+          <div><span>Intervention dans la journée</span><span class="price">590 € HT</span></div>
+          <div><span>Intervention sous 4 heures</span><span class="price">790 € HT</span></div>
+          <div><span>Défaut en amont, chez l'opérateur<br /><small>diagnostic et distance exacte de la coupure</small></span><span class="price">390 € HT</span></div>
+        </div>
+        <p style="margin-top: 0.9rem; font-size: 0.88rem; color: var(--faint);">
+          Le troisième cas est annoncé <strong>avant le déplacement</strong> : si le défaut
+          se révèle hors de votre domaine, vous repartez avec la localisation exacte —
+          c'est ce document qui fera avancer votre dossier chez l'opérateur.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Ce que je mesure, et avec quoi</h2>
+    <div class="grid grid--2" style="margin-top: 1.75rem; gap: 0 3rem;">
+      {instruments.map(([quoi, nom, texte]) => (
+        <div class="instrument">
+          <div class="instrument__tete">
+            <h3>{quoi}</h3>
+            <span class="instrument__nom">{nom}</span>
+          </div>
+          <p>{texte}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section--line">
+    <div class="split" style="gap: 0; align-items: stretch;">
+      <div class="col-6">
+        <Image
+          src={courbe}
+          alt="Courbe de réflectométrie montrant une coupure localisée à 5 380 mètres"
+          widths={[420, 700, 1000]}
+          sizes="(max-width: 62rem) 100vw, 50vw"
+          loading="lazy"
+          style="width: 100%; height: 100%; object-fit: cover;"
+        />
+      </div>
+      <div class="col-6 argument">
+        <p class="eyebrow">L'argument qui compte pour vous</p>
+        <h2>Vous n'aurez plus à arbitrer entre deux prestataires qui se renvoient la balle.</h2>
+        <p class="lead" style="margin-top: 1rem;">
+          L'informaticien dit que le problème vient de la ligne, l'opérateur dit qu'il
+          vient du réseau interne, et vous faites la navette pendant des jours. Aucun des
+          deux ne mesure quoi que ce soit — ils supposent.
+        </p>
+        <p style="margin-top: 0.9rem; max-width: 52ch;">
+          Je couvre les deux bouts de la chaîne : du poste de travail à la prise, de la
+          prise au réseau, du réseau à la ligne. Je constate, je chiffre, et je vous donne
+          le relevé. S'il montre que la panne est chez l'opérateur, vous avez enfin de
+          quoi la lui opposer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Les interventions</h2>
+    <ul class="ticks" style="margin-top: 1.35rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem 2.5rem;">
+      {interventions.map((i) => <li>{i}</li>)}
+    </ul>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--quiet">Pour les professionnels du secteur</p>
+      <div class="split" style="align-items: start;">
+        <div class="col-7">
+          <h2>Sous-traitance technique</h2>
+          <p class="lead" style="margin-top: 1rem;">
+            J'interviens en sous-traitance pour des opérateurs, des intégrateurs et des
+            installateurs, en Île-de-France : mesures, qualification, raccordement fibre,
+            recherche de défaut, mise en service, reprise de chantier.
+          </p>
+          <p style="margin-top: 0.9rem; max-width: var(--measure);">
+            Je travaille notamment pour <strong>Passman</strong>, spécialiste de la
+            connectivité hôtelière, sur de nombreux hôtels parisiens.
+          </p>
+        </div>
+        <div class="col-5 card">
+          <h3>Ce que vous cherchez sans doute</h3>
+          <p>
+            Un intervenant autonome, équipé de son propre matériel de mesure, capable de
+            produire un relevé exploitable et de souder sur place — sans mobiliser vos
+            équipes pour l'encadrer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap section--line">
+    <h2>Questions fréquentes</h2>
+    <div class="grid grid--2" style="margin-top: 1.75rem; gap: 1.75rem 3rem;">
+      {questions.map(([q, r]) => (<dl class="qa"><dt>{q}</dt><dd>{r}</dd></dl>))}
+    </div>
+  </section>
+
+  <Appel
+    titre="Un doute sur votre ligne ? Ça se mesure."
+    texte="Meudon (92), toute l'Île-de-France. Cuivre, fibre, mesure et soudure sur place."
+  />
+</Base>
+
+<style>
+  .ouverture { position: relative; isolation: isolate; }
+  .ouverture__fond {
+    width: 100%;
+    height: clamp(20rem, 40vw, 26rem);
+    object-fit: cover;
+    opacity: 0.42;
+  }
+  .ouverture__texte {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(90deg, var(--ground) 20%, rgb(11 15 18 / 0.6) 68%, rgb(11 15 18 / 0.25) 100%);
+  }
+  .ouverture__texte h1 { max-width: 17ch; }
+  .ouverture__texte .lead { max-width: 52ch; }
+
+  .urgence { background: var(--panel); border-block: 1px solid var(--line); padding-block: clamp(2.5rem, 5vw, 3.5rem); }
+  .rates small { font-size: 0.82rem; color: var(--faint); }
+
+  .instrument { border-top: 1px solid var(--line-strong); padding: 1.15rem 0; }
+  .instrument__tete { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; }
+  .instrument__nom { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); white-space: nowrap; }
+  .instrument p { color: var(--dim); font-size: 0.95rem; line-height: 1.55; }
+
+  .argument { padding: clamp(2rem, 4vw, 3.25rem) var(--gutter) clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3vw, 3rem); }
+  @media (max-width: 62rem) { .argument { padding-inline: var(--gutter); } }
+  @media (max-width: 48rem) {
+    .ticks[style] { grid-template-columns: minmax(0, 1fr) !important; }
+    .instrument__tete { flex-direction: column; gap: 0.2rem; }
+  }
+</style>

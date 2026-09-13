@@ -1,0 +1,30 @@
+# Redirections 301 — Cloudflare Pages
+#
+# Les anciennes URL du site Wix sont indexées, certaines depuis 2023.
+# Elles doivent toutes atterrir quelque part : une 404 sur une page
+# indexée, c'est du trafic acquis qu'on jette.
+#
+# L'URL fautive /recuperation-donnnees (trois « n ») était en ligne et
+# indexée : c'est la redirection la plus importante du lot.
+
+/recuperation-donnnees        /recuperation-de-donnees        301
+/recuperation-donnees         /recuperation-de-donnees        301
+/recuperation-de-donnnees     /recuperation-de-donnees        301
+
+/pro                          /infogerance                    301
+/professionnels               /infogerance                    301
+/entreprises                  /infogerance                    301
+/particulier                  /particuliers                   301
+/wifi                         /wifi-professionnel             301
+/maintenance-distance         /maintenance-a-distance         301
+/telecom                      /expertise-telecom              301
+
+# ⚠️ À COMPLÉTER AVANT LA BASCULE DNS
+#
+# Relever la liste exacte des URL du site Wix — Search Console
+# (Couverture > Pages indexées) donne la liste réelle, y compris les
+# pages oubliées — et ajouter une ligne par ancienne adresse.
+#
+# Ne rediriger vers l'accueil qu'en dernier recours : une redirection
+# vers une page au sujet équivalent conserve le référencement acquis,
+# une redirection vers l'accueil le dilue.

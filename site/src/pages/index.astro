@@ -1,0 +1,288 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { site, references } from '../data/site';
+import otdr from '../assets/otdr-mesure-baie.jpg';
+import baie from '../assets/baie-aruba.jpg';
+
+const portes = [
+  {
+    href: '/infogerance',
+    titre: 'Entreprises',
+    texte:
+      "Infogérance au forfait mensuel. Postes, serveurs, messagerie, sauvegarde, réseau et ligne. Un seul interlocuteur, du poste de travail jusqu'à la prise.",
+    prix: 'à partir de 29 € HT / poste / mois',
+    lien: "Découvrir l'infogérance",
+    icone: 'entreprise',
+  },
+  {
+    href: '/particuliers',
+    titre: 'Particuliers',
+    texte:
+      'Dépannage à domicile : ordinateur, WiFi, photos perdues, domotique, son et vidéo. Soir et samedi sans supplément.',
+    prix: '290 € TTC — soit 145 € après crédit d’impôt',
+    lien: 'Voir les interventions',
+    icone: 'maison',
+  },
+  {
+    href: '/wifi-professionnel',
+    titre: 'Réseaux WiFi',
+    texte:
+      'Commerces, cabinets, hôtels, bureaux. Couverture mesurée avant d’être installée, réseau invité séparé, matériel professionnel.',
+    prix: 'audit 290 € HT — déduit si installation',
+    lien: 'Découvrir le WiFi pro',
+    icone: 'wifi',
+  },
+];
+---
+
+<Base
+  titre="Infogérance, dépannage informatique et WiFi | Meudon (92)"
+  description="Infogérance, dépannage informatique et réseaux WiFi à Meudon et en Île-de-France. Entreprises et particuliers. 25 ans d'expérience, mesures télécom à l'appui."
+  chemin="/"
+>
+  <!-- ------------------------------------------------ ouverture -->
+  <section class="section wrap hero">
+    <div class="hero__texte">
+      <p class="eyebrow">Meudon (92) · Île-de-France · 25 ans de terrain</p>
+      <h1>Infogérance, dépannage informatique et réseaux WiFi.</h1>
+      <p class="lead hero__lead">
+        Mon métier de base, c'est le réseau télécom. J'interviens sur les lignes cuivre
+        et fibre avec les appareils de mesure des techniciens opérateurs.
+      </p>
+      <p class="hero__punch">
+        Là où d'autres supposent, <em>je mesure</em> — et je vous montre les chiffres.
+      </p>
+      <div class="actions">
+        <a class="btn" href={site.telephoneLien}>Appeler {site.telephone}</a>
+        <a class="btn btn--ghost" href="/infogerance">Demander un état des lieux</a>
+      </div>
+    </div>
+
+    <figure class="hero__figure">
+      <Image
+        src={otdr}
+        alt="Réflectomètre optique en cours de mesure devant une baie de brassage"
+        widths={[420, 640, 900]}
+        sizes="(max-width: 62rem) 92vw, 38vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <figcaption class="readout">
+        <div>OTDR 1310 nm — <b>coupure localisée à 5 380 m</b></div>
+        <div>Soudure fibre — <b>perte 0,02 dB</b></div>
+        <div>Lien cuivre — <b>1000 Mb/s · PoE 55 V</b></div>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ------------------------------------------------ repères -->
+  <div class="reperes">
+    <div class="wrap reperes__in">
+      <div><b>25 ans</b><span>de terrain, télécom compris</span></div>
+      <div><b>Cuivre &amp; fibre</b><span>mesure, diagnostic, soudure sur place</span></div>
+      <div><b>Aruba · Ruckus</b><span>matériel d'infrastructure</span></div>
+      <div><b>Île-de-France</b><span>base à Meudon (92)</span></div>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------ trois portes -->
+  <section class="section section--paper">
+    <div class="wrap">
+      <h2 class="eyebrow eyebrow--quiet">Par où commencer</h2>
+      <div class="grid grid--3">
+        {portes.map((p) => (
+          <a class="card porte" href={p.href}>
+            <span class="porte__icone" aria-hidden="true">
+              {p.icone === 'entreprise' && (
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V6l7-3 7 3v15"></path><path d="M9 10h2M9 14h2M13 10h2M13 14h2"></path></svg>
+              )}
+              {p.icone === 'maison' && (
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg>
+              )}
+              {p.icone === 'wifi' && (
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a15 15 0 0 1 19 0"></path><path d="M5.5 12.5a10.5 10.5 0 0 1 13 0"></path><path d="M8.5 16a6 6 0 0 1 7 0"></path><circle cx="12" cy="19.5" r="1.1" fill="currentColor"></circle></svg>
+              )}
+            </span>
+            <h3>{p.titre}</h3>
+            <p>{p.texte}</p>
+            <span class="porte__prix">{p.prix}</span>
+            <span class="porte__lien">{p.lien}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ interlocuteur -->
+  <section class="section wrap split">
+    <div class="col-5">
+      <Image
+        src={baie}
+        alt="Baie de brassage : contrôleur Aruba, commutateurs et panneau étiqueté borne par borne"
+        widths={[420, 640, 900]}
+        sizes="(max-width: 62rem) 92vw, 38vw"
+        loading="lazy"
+      />
+    </div>
+    <div class="col-7">
+      <p class="eyebrow">Ce qui me distingue</p>
+      <h2>Un seul interlocuteur, du poste de travail jusqu'à la ligne.</h2>
+      <p class="lead distingue__lead">
+        Le scénario habituel : l'informaticien dit que le problème vient de la ligne,
+        l'opérateur dit qu'il vient du réseau interne, et vous faites la navette pendant
+        trois jours sans que personne ne mesure quoi que ce soit.
+      </p>
+      <p class="distingue__p">
+        Je couvre les deux bouts de la chaîne. Quand j'affirme que la panne est chez
+        votre opérateur, je vous le prouve — relevé à l'appui.
+      </p>
+      <p class="distingue__lien">
+        <a href="/expertise-telecom" class="souligne">L'expertise télécom en détail</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ urgences -->
+  <section class="section--line urgences">
+    <div class="wrap urgences__tete">
+      <h2 class="eyebrow eyebrow--alert">En urgence</h2>
+    </div>
+    <div class="wrap urgences__in">
+      <div>
+        <h3>Fibre coupée dans vos locaux ?</h3>
+        <p>Localisation à l'OTDR et soudure sur place, dans la journée — ou sous 4 heures.</p>
+        <a href="/expertise-telecom" class="souligne">En savoir plus</a>
+      </div>
+      <div>
+        <h3>Données perdues ?</h3>
+        <p>
+          Clé USB, carte mémoire, SSD. Diagnostic gratuit — et si je récupère moins de la
+          moitié de vos données, vous ne payez rien.
+        </p>
+        <a href="/recuperation-de-donnees" class="souligne">Récupération de données</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ références -->
+  <section class="refs">
+    <div class="wrap refs__in">
+      <h2 class="eyebrow eyebrow--quiet refs__titre">Ils me font confiance</h2>
+      <div class="refs__liste">
+        {references.map((r) => <span>{r}</span>)}
+        <span class="refs__suite">…</span>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+  }
+  .hero__texte { grid-column: span 7; }
+  .hero__figure { grid-column: span 5; margin: 0; }
+  @media (max-width: 62rem) {
+    .hero__texte, .hero__figure { grid-column: 1 / -1; }
+  }
+  .hero__lead { margin-top: 1.4rem; }
+  .hero__punch {
+    margin-top: 1.1rem;
+    font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+    font-weight: 600;
+    line-height: 1.4;
+    max-width: 32ch;
+  }
+  .hero__punch em { font-style: normal; color: var(--accent); }
+  .hero .actions { margin-top: 1.9rem; }
+
+  .reperes { border-block: 1px solid var(--line); }
+  .reperes__in {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-inline: 0;
+  }
+  .reperes__in > div {
+    padding: 1.5rem clamp(1rem, 2vw, 2rem);
+    border-right: 1px solid var(--line);
+  }
+  .reperes__in > div:first-child { padding-left: var(--gutter); }
+  .reperes__in > div:last-child { border-right: 0; }
+  .reperes b {
+    display: block;
+    font-family: var(--mono);
+    font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.15;
+  }
+  .reperes span { display: block; margin-top: 0.35rem; font-size: 0.85rem; color: var(--faint); }
+  @media (max-width: 62rem) {
+    .reperes__in { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .reperes__in > div { border-bottom: 1px solid var(--line); }
+    .reperes__in > div:nth-child(2n) { border-right: 0; }
+    .reperes__in > div:nth-child(odd) { padding-left: var(--gutter); }
+  }
+
+  .porte { color: var(--ink); gap: 0.75rem; }
+  .porte:hover { color: var(--ink); border-color: var(--accent); }
+  .porte__icone { color: var(--ink); }
+  .porte__prix {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent-deep);
+    margin-top: auto;
+  }
+  .porte__lien {
+    font-size: 0.92rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent);
+    align-self: flex-start;
+    padding-bottom: 2px;
+  }
+
+  .urgences__in {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+  }
+  .urgences__in > div {
+    padding: clamp(1.75rem, 3vw, 2.6rem) clamp(1.25rem, 3vw, 3rem);
+    border-right: 1px solid var(--line);
+  }
+  .urgences__in > div:first-child { padding-left: 0; }
+  .urgences__in > div:last-child { border-right: 0; padding-right: 0; }
+  .urgences h3 { margin-bottom: 0.6rem; }
+  .urgences p { color: var(--dim); max-width: 48ch; margin-bottom: 0.8rem; }
+  @media (max-width: 48rem) {
+    .urgences__in { grid-template-columns: minmax(0, 1fr); }
+    .urgences__in > div { border-right: 0; border-bottom: 1px solid var(--line); padding-inline: 0; }
+    .urgences__in > div:last-child { border-bottom: 0; }
+  }
+
+  .refs { background: var(--panel); border-top: 1px solid var(--line); padding-block: 2.25rem; }
+  .refs__in { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.75rem; }
+  .refs__liste { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; font-weight: 600; color: var(--text-2); }
+  .refs__suite { color: var(--faint); }
+
+  .souligne {
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+  }
+  .souligne:hover { color: var(--accent); }
+
+  .urgences__tete { padding-top: clamp(1.75rem, 3vw, 2.6rem); }
+  .urgences__tete .eyebrow { margin-bottom: 0; }
+
+  .distingue__lead { margin-top: 1.1rem; }
+  .distingue__p { margin-top: 0.9rem; max-width: var(--measure); }
+  .distingue__lien { margin-top: 1.1rem; }
+
+  .refs__titre { margin: 0; }
+</style>

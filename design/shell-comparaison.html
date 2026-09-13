@@ -1,0 +1,231 @@
+<title>Directions jacob.cx</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Karla:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#EDEFF1; --surface:#FFFFFF; --ink:#141A20; --muted:#5C6975;
+  --faint:#8A96A1; --rule:#D5DBE1; --accent:#0F5C8C; --accent-soft:#E4EEF5;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0B0F13; --surface:#141A20; --ink:#E5EBF0; --muted:#98A5B0;
+    --faint:#6F7C88; --rule:#25313B; --accent:#5EAEDA; --accent-soft:#132936;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0B0F13; --surface:#141A20; --ink:#E5EBF0; --muted:#98A5B0;
+  --faint:#6F7C88; --rule:#25313B; --accent:#5EAEDA; --accent-soft:#132936;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Libre Franklin",system-ui,sans-serif;font-size:15px;line-height:1.6}
+
+header{border-bottom:1px solid var(--rule);background:var(--surface)}
+.head-in{max-width:1560px;margin:0 auto;padding:30px 26px 24px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 9px}
+h1{font-size:clamp(23px,3.4vw,31px);font-weight:800;letter-spacing:-.03em;margin:0;line-height:1.15}
+.sub{color:var(--muted);margin:9px 0 0;max-width:70ch;font-size:15px}
+
+.tabs{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
+.tabs-in{max-width:1560px;margin:0 auto;padding:0 26px;display:flex;gap:4px;align-items:stretch;flex-wrap:wrap}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;
+  padding:15px 18px;font:inherit;font-size:14.5px;font-weight:600;color:var(--muted);cursor:pointer;
+  display:flex;align-items:center;gap:9px}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.dot{width:11px;height:11px;border-radius:2px;flex:0 0 auto;display:inline-block}
+.tab .lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);letter-spacing:.08em}
+.spacer{flex:1 1 auto}
+.zoom{appearance:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  padding:7px 13px;font:inherit;font-size:13px;color:var(--muted);cursor:pointer;align-self:center}
+.zoom:hover{color:var(--ink);border-color:var(--faint)}
+
+main{max-width:1560px;margin:0 auto;padding:26px}
+.pane[hidden]{display:none!important}
+
+.brief{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:0;
+  background:var(--surface);border:1px solid var(--rule);border-radius:4px;margin:0 0 22px;overflow:hidden}
+.brief > div{padding:20px 24px;border-right:1px solid var(--rule)}
+.brief > div:last-child{border-right:0}
+.brief h2{font-size:18px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
+.brief .axis{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.brief p{margin:0;font-size:14px;color:var(--muted)}
+.brief .lab{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 6px}
+.brief .pro .lab{color:#2C7A55}
+.brief .con .lab{color:#A8562A}
+
+.stage{background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+  overflow:auto;padding:0}
+.viewport{overflow:hidden}
+.scaler{transform-origin:top left;width:1440px}
+
+/* chaque maquette porte sa propre typographie */
+.pane[data-p="A"] .scaler{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+.pane[data-p="B"] .scaler{font-family:Karla,"Helvetica Neue",Arial,sans-serif}
+.pane[data-p="C"] .scaler{font-family:"Libre Franklin","Helvetica Neue",Arial,sans-serif}
+.scaler h1,.scaler h2,.scaler h3,.scaler p{margin:0}
+.scaler img{max-width:none}
+
+footer{max-width:1560px;margin:0 auto;padding:8px 26px 60px;color:var(--faint);font-size:13px}
+
+@media (max-width:900px){
+  .brief{grid-template-columns:1fr}
+  .brief > div{border-right:0;border-bottom:1px solid var(--rule)}
+  .brief > div:last-child{border-bottom:0}
+  main{padding:16px}
+  .tabs-in{padding:0 12px}
+  .tab{padding:13px 12px}
+}
+</style>
+
+<header>
+  <div class="head-in">
+    <p class="eyebrow">Refonte du site · direction graphique · 8 septembre 2026</p>
+    <h1>Trois directions pour la page d'accueil</h1>
+    <p class="sub">Même contenu, mêmes photos, trois partis pris opposés. Regarde-les, dis-moi
+    laquelle te ressemble — je déclinerai ensuite la direction retenue sur les six autres pages.</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-in">
+    <button class="tab" role="tab" aria-selected="true" data-p="A">
+      <i class="dot" style="background:#0B0F12;border:1px solid #E3A93C"></i>
+      <span>Relevé</span><span class="lbl">A</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-p="B">
+      <i class="dot" style="background:#F6F7F5;border:1px solid #1F5F52"></i>
+      <span>Artisan</span><span class="lbl">B</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-p="C">
+      <i class="dot" style="background:#FFFFFF;border:1px solid #0F5C8C"></i>
+      <span>Infrastructure</span><span class="lbl">C</span>
+    </button>
+    <span class="spacer"></span>
+    <button class="zoom" id="zoom">Taille réelle</button>
+  </div>
+</nav>
+
+<main>
+  <div class="pane" data-p="A">
+    <div class="brief">
+      <div>
+        <p class="axis">L'axe : la preuve</p>
+        <h2>Direction A — Relevé</h2>
+        <p>Fond sombre d'instrument de mesure, chiffres en typographie machine. Tes vraies valeurs —
+        coupure à 5 380 m, PoE 55 V, soudure à 0,02 dB — deviennent des éléments de design.</p>
+      </div>
+      <div class="pro">
+        <p class="lab">Ce qu'elle gagne</p>
+        <p>C'est la seule direction qu'aucun concurrent local ne peut copier : elle repose sur du
+        matériel que les autres n'ont pas. Elle impressionne un hôtel ou un donneur d'ordre.</p>
+      </div>
+      <div class="con">
+        <p class="lab">Ce qu'elle coûte</p>
+        <p>Elle peut intimider un particulier de 70 ans dont l'ordinateur ne démarre plus —
+        or c'est aussi lui qui appelle.</p>
+      </div>
+    </div>
+    <div class="stage"><div class="viewport"><div class="scaler">{{A}}</div></div></div>
+  </div>
+
+  <div class="pane" data-p="B" hidden>
+    <div class="brief">
+      <div>
+        <p class="axis">L'axe : la confiance</p>
+        <h2>Direction B — Artisan</h2>
+        <p>Clair, aéré, titres en serif, ton parlé. La page s'adresse à une personne avant de
+        s'adresser à une entreprise. Le téléphone et le crédit d'impôt sont très lisibles.</p>
+      </div>
+      <div class="pro">
+        <p class="lab">Ce qu'elle gagne</p>
+        <p>C'est elle qui convertira le mieux côté particuliers, et elle rassure une profession
+        libérale. « Éteignez l'appareil et appelez-moi » y trouve sa place naturelle.</p>
+      </div>
+      <div class="con">
+        <p class="lab">Ce qu'elle coûte</p>
+        <p>Moins de poids face à un groupe hôtelier, et un risque réel de ressembler à beaucoup
+        d'autres sites d'artisans.</p>
+      </div>
+    </div>
+    <div class="stage"><div class="viewport"><div class="scaler">{{B}}</div></div></div>
+  </div>
+
+  <div class="pane" data-p="C" hidden>
+    <div class="brief">
+      <div>
+        <p class="axis">L'axe : la crédibilité</p>
+        <h2>Direction C — Infrastructure</h2>
+        <p>Grille stricte, filets, typographie grasse. Les trois portes ont exactement le même
+        poids et les tarifs sont affichés partout, sans détour.</p>
+      </div>
+      <div class="pro">
+        <p class="lab">Ce qu'elle gagne</p>
+        <p>Lisible, dense, sérieuse. Elle sert aussi bien l'infogérance que la sous-traitance
+        télécom, et elle vieillira bien.</p>
+      </div>
+      <div class="con">
+        <p class="lab">Ce qu'elle coûte</p>
+        <p>Plus impersonnelle : on voit une entreprise, pas un homme. Or ton meilleur argument,
+        c'est que le client t'a, toi, au téléphone.</p>
+      </div>
+    </div>
+    <div class="stage"><div class="viewport"><div class="scaler">{{C}}</div></div></div>
+  </div>
+</main>
+
+<footer>
+  Contenu et photos réels — rien n'est inventé. Manquent encore les avis Google, une photo de toi
+  en intervention, et l'« après » d'une baie rangée.
+</footer>
+
+<script>
+(function(){
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var panes = [].slice.call(document.querySelectorAll('.pane'));
+  var full = false;
+  var zoomBtn = document.getElementById('zoom');
+
+  function fit(){
+    panes.forEach(function(p){
+      var vp = p.querySelector('.viewport');
+      var sc = p.querySelector('.scaler');
+      if(!vp || !sc) return;
+      if(full){
+        sc.style.transform = 'none';
+        vp.style.overflowX = 'auto';
+        vp.style.height = '';
+      } else {
+        var w = vp.clientWidth || vp.parentNode.clientWidth;
+        var k = Math.min(1, w / 1440);
+        sc.style.transform = 'scale(' + k + ')';
+        vp.style.overflowX = 'hidden';
+        vp.style.height = Math.ceil(sc.scrollHeight * k) + 'px';
+      }
+    });
+  }
+
+  function show(id){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.p === id)); });
+    panes.forEach(function(p){ p.hidden = (p.dataset.p !== id); });
+    fit();
+  }
+
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.p); }); });
+  zoomBtn.addEventListener('click', function(){
+    full = !full;
+    zoomBtn.textContent = full ? 'Ajuster à la largeur' : 'Taille réelle';
+    fit();
+  });
+
+  window.addEventListener('resize', function(){ window.requestAnimationFrame(fit); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fit); }
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>

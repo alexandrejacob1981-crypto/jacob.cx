@@ -1,0 +1,240 @@
+---
+import Base from '../layouts/Base.astro';
+import Appel from '../components/Appel.astro';
+
+const cas = [
+  'Fichiers supprimés par erreur — documents, photos, corbeille vidée',
+  'Clé USB, carte SD ou microSD non reconnue, ou que le système propose de formater',
+  'SSD qui n’apparaît plus dans l’ordinateur',
+  'Partition perdue, table de partition endommagée',
+  'Ordinateur qui ne démarre plus alors que les données sont intactes',
+  'Suite à un virus ou à un rançongiciel',
+  'Formatage accidentel, réinstallation qui a écrasé un compte',
+  'Cartes mémoire d’appareil photo, supports endommagés électriquement',
+];
+
+const questions = [
+  ['Mes photos sont-elles vraiment récupérables ?', 'Souvent oui, si vous avez cessé d’utiliser l’appareil. Les photos effacées restent présentes tant que rien n’a été écrit par-dessus. C’est le diagnostic qui tranche.'],
+  ['J’ai déjà essayé un logiciel trouvé sur Internet.', 'Pas nécessairement fichu, mais ça complique : ces logiciels s’installent et écrivent sur le disque, parfois là où se trouvaient les fichiers. Arrêtez là et ne relancez rien.'],
+  ['Ma clé USB n’apparaît même plus. C’est mort ?', 'C’est au contraire un cas fréquent et souvent récupérable. Quand une clé disparaît complètement, c’est en général le contrôleur qui est en cause, pas la mémoire. Je lis les puces directement, sans passer par lui.'],
+  ['Une boutique m’a dit que c’était irrécupérable.', 'Demandez-leur si elles lisent les puces mémoire directement. Beaucoup se limitent aux logiciels de récupération : si le support n’est pas reconnu par l’ordinateur, elles ne peuvent effectivement rien faire.'],
+  ['Combien de temps ça prend ?', 'De quelques jours à quelques semaines, selon la nature de la panne et le travail que demande la reconstruction. Un cas urgent peut passer en priorité — dites-le-moi dès le premier appel.'],
+  ['Est-ce que je paie si vous ne récupérez rien ?', 'Non. Si je récupère moins de la moitié de vos données, l’intervention ne vous est pas facturée. Vous ne payez que pour un résultat.'],
+];
+---
+
+<Base
+  titre="Récupération de données — disque dur, SSD, carte | Meudon"
+  description="Photos, documents ou disque illisible : diagnostic gratuit et récupération de données à Meudon et en Île-de-France. Particuliers et entreprises. 390 € TTC."
+  chemin="/recuperation-de-donnees"
+>
+  <section class="section wrap split" style="align-items: start;">
+    <div class="col-7">
+      <p class="eyebrow">Récupération de données</p>
+      <h1>Vos fichiers ne sont pas forcément perdus.</h1>
+      <p class="lead" style="margin-top: 1.3rem;">
+        Un disque qui ne s'ouvre plus. Une carte mémoire que l'appareil ne reconnaît pas.
+        Un dossier effacé par erreur, un ordinateur qui ne démarre plus avec tout à
+        l'intérieur.
+      </p>
+      <p style="margin-top: 0.9rem; max-width: var(--measure);">
+        Dans la majorité des cas, <strong>les données sont toujours là.</strong> Ce qui a
+        lâché, c'est l'accès à ces données. Un fichier effacé n'est pas détruit : il est
+        déclaré comme espace réutilisable, et il le reste jusqu'à ce que quelque chose
+        vienne écrire par-dessus.
+      </p>
+
+      <div class="promesse">
+        <div class="promesse__titre">390 € TTC, forfait. Diagnostic gratuit.</div>
+        <p>Et si je récupère moins de la moitié de vos données, vous ne payez rien.</p>
+      </div>
+    </div>
+
+    <aside class="col-5 alerte">
+      <p class="eyebrow eyebrow--alert">Avant tout — arrêtez d'utiliser l'appareil</p>
+      <ul class="alerte__liste">
+        <li><strong>Éteignez</strong> et ne rallumez pas : chaque démarrage écrit sur le disque.</li>
+        <li><strong>N'installez aucun logiciel</strong> de récupération sur le disque concerné.</li>
+        <li><strong>Cliquetis, grattement ?</strong> Débranchez immédiatement — c'est mécanique, et chaque minute aggrave les dégâts.</li>
+        <li><strong>N'ouvrez pas le disque</strong> : hors salle blanche, un cas récupérable devient perdu.</li>
+        <li><strong>Ne reformatez pas</strong>, même si le système le propose.</li>
+      </ul>
+      <p class="alerte__fin">
+        Ensuite, appelez. Même un dimanche : le diagnostic peut attendre lundi, la mauvaise
+        manipulation, non.
+      </p>
+    </aside>
+  </section>
+
+  <section class="mesure">
+    <div class="wrap split" style="align-items: start;">
+      <div class="col-7">
+        <p class="eyebrow">Ce qui me sépare d'un dépanneur</p>
+        <h2>Je lis les puces mémoire directement.</h2>
+        <p class="lead" style="margin-top: 1rem;">
+          Quand une clé USB, une carte SD ou un SSD cesse d'être reconnu, la mémoire est
+          très souvent intacte : <strong>c'est le contrôleur qui a lâché</strong> — la
+          puce qui traduit les demandes de l'ordinateur en adresses dans la mémoire. Tant
+          qu'on passe par lui, le support reste muet, et aucun logiciel du commerce n'y
+          changera rien.
+        </p>
+        <p style="margin-top: 0.9rem; max-width: var(--measure);">
+          Je travaille avec le <strong>Rusolut VNR — Visual NAND Reconstructor</strong>,
+          un équipement de laboratoire conçu pour ces cas : je lis directement les puces
+          mémoire, sans passer par le contrôleur défaillant, puis je reconstruis la
+          structure des fichiers à partir des données brutes.
+          <strong>Je dessoude les puces moi-même</strong>, sous microscope.
+        </p>
+        <p style="margin-top: 0.9rem; max-width: var(--measure); color: var(--faint);">
+          Rien ne part en sous-traitance, rien n'attend le retour d'un laboratoire
+          lointain : le support reste ici, et vous avez un interlocuteur qui l'a
+          réellement entre les mains.
+        </p>
+      </div>
+
+      <div class="col-5">
+        <p class="eyebrow eyebrow--quiet">Ce que ça couvre</p>
+        <ul class="ticks" style="margin-top: 1rem;">
+          <li>Clé USB non reconnue, ou qui « doit être formatée »</li>
+          <li>Carte SD et microSD illisibles, monolithiques comprises</li>
+          <li>SSD qui n'apparaît plus dans l'ordinateur</li>
+          <li>Supports endommagés électriquement, connecteur arraché</li>
+        </ul>
+        <div class="card" style="margin-top: 1.35rem;">
+          <h3 style="font-size: 1.02rem;">Et si votre cas sort de mon domaine</h3>
+          <p>
+            Les disques durs mécaniques — ceux qui cliquettent — et les serveurs en RAID
+            demandent une salle blanche. Vous n'êtes pas renvoyé à une recherche sur
+            Internet : je travaille avec un laboratoire partenaire spécialisé en région
+            parisienne, et je fais le lien. Vous gardez un seul interlocuteur.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Ce que je vous dirai honnêtement</h2>
+    <p class="lead" style="margin-top: 0.9rem;">
+      Toutes les données ne sont pas récupérables, et personne de sérieux ne promet le
+      contraire.
+    </p>
+    <div class="grid grid--3" style="margin-top: 1.75rem;">
+      <div class="card">
+        <p class="franc franc--ok">Se récupère très souvent</p>
+        <p>L'effacement accidentel, le formatage, la partition perdue, le système qui ne démarre plus. Et les supports flash dont le contrôleur a lâché — ceux où l'on vous répondra le plus volontiers que c'est perdu.</p>
+      </div>
+      <div class="card">
+        <p class="franc franc--mid">Se récupère parfois</p>
+        <p>Les disques qui présentent des secteurs défectueux, les supports partiellement écrasés. On récupère alors une partie des fichiers, et je vous dis laquelle avant que vous ne payiez quoi que ce soit.</p>
+      </div>
+      <div class="card">
+        <p class="franc franc--no">Ne se récupère pas</p>
+        <p>Ce qui a été physiquement détruit, ou écrasé par de nouvelles écritures. C'est la raison pour laquelle il faut cesser d'utiliser l'appareil tout de suite.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap">
+      <p class="eyebrow">Tarifs</p>
+      <div class="rates" style="margin-top: 1.2rem;">
+        <div><span><strong>Diagnostic</strong></span><span class="price">gratuit</span></div>
+        <div><span>Récupération de données, forfait</span><span class="price">390 € TTC</span></div>
+        <div class="hl"><span><strong>Si je récupère moins de la moitié de vos données</strong></span><span class="price">vous ne payez rien</span></div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--ink-faint); max-width: 70ch;">
+        La récupération est réputée réussie au-delà de la moitié des données présentes sur
+        le support. <strong>Pas de crédit d'impôt sur cette prestation</strong> : elle ne
+        relève pas des services à la personne, contrairement à l'assistance informatique
+        réalisée à domicile. Le support de restitution est en sus si vous n'en fournissez pas.
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap split" style="align-items: start;">
+    <div class="col-6">
+      <h2>Confidentialité</h2>
+      <p class="detail">
+        Vos fichiers ne regardent que vous. Les données récupérées ne sont ni consultées
+        au-delà de ce que le travail exige, ni transmises à qui que ce soit.
+      </p>
+      <p class="detail">
+        Je conserve une copie jusqu'à ce que vous ayez vérifié et validé la restitution —
+        ensuite elle est effacée. Pour les entreprises : engagement de confidentialité
+        signé sur simple demande.
+      </p>
+    </div>
+    <div class="col-6">
+      <h2>Pour les entreprises</h2>
+      <p class="detail">
+        Une base de comptabilité, un serveur de fichiers ou une messagerie perdus, c'est
+        l'activité qui s'arrête. J'interviens dans l'urgence, et je traite ensuite la
+        vraie cause : pourquoi la sauvegarde n'a pas joué son rôle.
+      </p>
+      <p class="detail">
+        Parce que dans la plupart des cas d'entreprise, il y avait une sauvegarde. Elle
+        n'avait simplement jamais été testée.
+        <a href="/infogerance" class="souligne">Infogérance et maintenance</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap section--line">
+    <h2>Les situations que je traite</h2>
+    <ul class="ticks" style="margin-top: 1.35rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem 2.5rem;">
+      {cas.map((c) => <li>{c}</li>)}
+    </ul>
+  </section>
+
+  <section class="section wrap">
+    <h2>Questions fréquentes</h2>
+    <div class="grid grid--2" style="margin-top: 1.75rem; gap: 1.75rem 3rem;">
+      {questions.map(([q, r]) => (
+        <dl class="qa"><dt>{q}</dt><dd>{r}</dd></dl>
+      ))}
+    </div>
+  </section>
+
+  <Appel
+    titre="N'attendez pas, et surtout ne manipulez plus l'appareil."
+    texte="Un appel suffit pour savoir si vos données sont récupérables."
+  />
+</Base>
+
+<style>
+  .promesse {
+    margin-top: 1.6rem;
+    max-width: var(--measure);
+    border: 1px solid var(--accent);
+    background: var(--accent-wash);
+    padding: 1.15rem 1.35rem;
+  }
+  .promesse__titre { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .promesse p { color: var(--accent); font-weight: 600; }
+
+  .alerte {
+    background: var(--alert-wash);
+    border-left: 3px solid var(--alert);
+    padding: 1.5rem 1.6rem;
+  }
+  .alerte__liste { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; color: #ebd9d3; font-size: 0.96rem; line-height: 1.5; }
+  .alerte__liste strong { color: #fff; }
+  .alerte__fin { margin-top: 1rem; font-size: 0.9rem; color: #c9a79c; }
+
+  .mesure { background: var(--panel); border-block: 1px solid var(--line); padding-block: clamp(2.75rem, 6vw, 4rem); }
+  .mesure .wrap { display: grid; }
+
+  .franc { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .franc--ok { color: var(--ok); }
+  .franc--mid { color: var(--accent); }
+  .franc--no { color: var(--alert-line); }
+
+  .detail { color: var(--dim); margin-top: 0.7rem; max-width: 54ch; }
+  .souligne { font-weight: 600; color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+  .souligne:hover { color: var(--accent); }
+
+  @media (max-width: 48rem) {
+    .ticks[style] { grid-template-columns: minmax(0, 1fr) !important; }
+  }
+</style>

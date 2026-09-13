@@ -1,0 +1,263 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Appel from '../components/Appel.astro';
+import { references } from '../data/site';
+import signaltek from '../assets/signaltek-poe.jpg';
+import tiroir from '../assets/tiroir-optique.jpg';
+
+const symptomes = [
+  ['Le WiFi tombe aux heures de forte affluence', 'Trop de terminaux sur une borne unique, ou un canal saturé par les réseaux voisins.'],
+  ['Ça marche à l’accueil, pas au fond du local', 'Couverture non étudiée : murs porteurs, cloisons métalliques, réserve, cave, étage.'],
+  ['Le terminal de paiement se déconnecte', 'Cas fréquent en commerce, et le plus coûteux à laisser traîner.'],
+  ['Le débit est bon en test, mauvais à l’usage', 'Le problème est souvent en amont du WiFi : ligne, atténuation, matériel opérateur mal paramétré.'],
+  ['La visio décroche, le téléphone IP grésille', 'Instabilité et latence, pas manque de débit brut. Deux problèmes différents, deux diagnostics.'],
+  ['Le WiFi client ralentit celui de l’entreprise', 'Réseau invité inexistant ou mal séparé du réseau de production.'],
+];
+
+const materiel = [
+  ['IDEAL SignalTEK II', 'Qualification du câblage existant : continuité, appairage, longueur des paires, tenue du débit — et test de l’alimentation PoE, celle qui fait vivre vos bornes par le câble réseau.'],
+  ['ARGUS 52+', 'Lignes cuivre ADSL, VDSL et RTC : débit réellement synchronisable, atténuation, bruit. La différence entre le débit de votre contrat et celui que la ligne peut porter.'],
+  ['ARGUS SHDSL', 'Liaisons symétriques d’entreprise. Peu de prestataires informatiques savent seulement les tester.'],
+  ['Réflectomètre OTDR', 'Localise une coupure ou une soudure défaillante au mètre près sur la longueur de la fibre, au lieu d’ouvrir des fourreaux au hasard.'],
+  ['Soudeuse fibre Sumitomo', 'Je soude la fibre sur place. Diagnostiquer une panne optique est une chose, la réparer dans la foulée en est une autre.'],
+  ['Panasonic Toughbook CF-20', 'Poste de terrain durci pour l’analyse réseau et WiFi : local technique, cave, toiture.'],
+];
+
+const questions = [
+  ['Combien de bornes faut-il pour mes locaux ?', 'Impossible à dire sans relevé, et se tromper coûte cher dans les deux sens : trop peu de bornes laisse des zones mortes, trop de bornes se gênent entre elles. C’est ce que l’audit détermine.'],
+  ['Un répéteur ne suffirait pas ?', 'Rarement en usage professionnel. Un répéteur réémet ce qu’il reçoit : placé là où le signal est déjà faible, il propage un signal faible et divise le débit. Il dépanne un logement, il ne tient pas une activité.'],
+  ['Faut-il changer ma box ou mon abonnement ?', 'Pas forcément, et c’est ce que les mesures tranchent. Si le problème est en amont, je vous donne les éléments chiffrés pour le faire valoir auprès de votre opérateur.'],
+  ['Avec quelles marques travaillez-vous ?', 'Aruba, Ruckus et Zyxel — de l’infrastructure professionnelle. Je ne pose pas de matériel grand public sur un réseau dont dépend une activité : il n’encaisse pas la densité, s’administre mal et n’est plus suivi au bout de deux ans.'],
+  ['Dois-je conserver une trace des connexions de mes clients ?', 'Dès lors que vous mettez un accès Internet à disposition du public, oui. C’est prévu dans les installations que je livre. Si votre WiFi client se résume à un mot de passe partagé noté sur la box, ce n’est pas le cas.'],
+  ['Pouvez-vous intervenir en dehors des heures d’ouverture ?', 'Oui, le soir ou le samedi. Pour un commerce, fermer une demi-journée coûte presque toujours plus cher que le supplément.'],
+];
+---
+
+<Base
+  titre="Installation WiFi professionnel — Meudon et Île-de-France"
+  description="Audit, installation et dépannage de réseaux WiFi pour commerces, cabinets, hôtels et bureaux. Mesures télécom à l'appui. Meudon, Hauts-de-Seine (92)."
+  chemin="/wifi-professionnel"
+>
+  <section class="section wrap split" style="align-items: start;">
+    <div class="col-7">
+      <p class="eyebrow">Réseaux WiFi professionnels</p>
+      <h1>Votre WiFi professionnel, mesuré avant d'être installé.</h1>
+      <p class="lead" style="margin-top: 1.4rem;">
+        Un WiFi qui lâche en pleine journée, c'est une caisse qui ne prend plus la carte
+        bancaire, une visio qui décroche devant un client, un logiciel métier qui se fige.
+        Vous avez peut-être déjà ajouté un répéteur, changé de box, appelé l'opérateur.
+      </p>
+      <p class="punch">
+        Une panne de WiFi sur trois <em>n'est pas un problème de WiFi.</em>
+      </p>
+      <p style="margin-top: 0.9rem; max-width: var(--measure);">
+        C'est un problème de ligne, de débit réel ou d'installation en amont. Tant qu'on
+        ne mesure pas, on remplace du matériel au hasard.
+      </p>
+      <div class="actions" style="margin-top: 1.75rem;">
+        <a class="btn" href="#tarifs">Demander un audit de couverture</a>
+      </div>
+    </div>
+    <figure class="col-5" style="margin: 0;">
+      <Image
+        src={signaltek}
+        alt="Testeur réseau affichant une liaison à 1000 Mb/s avec alimentation PoE 55 V"
+        widths={[420, 640, 900]}
+        sizes="(max-width: 62rem) 92vw, 38vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <figcaption class="readout">
+        <div>Lien commutateur — <b>1000 Mb/s full duplex</b></div>
+        <div>Alimentation borne — <b>PoE 55 V</b></div>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="section wrap section--line">
+    <h2>Les symptômes qu'on me décrit le plus souvent</h2>
+    <p class="lead" style="margin-top: 0.9rem;">
+      Ces situations ont presque toujours une cause identifiable. Si vous vous reconnaissez
+      dans deux de ces lignes, l'audit se rentabilise seul.
+    </p>
+    <div class="grid grid--3" style="margin-top: 1.75rem;">
+      {symptomes.map(([t, d]) => (
+        <div class="card"><h3>{t}</h3><p>{d}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mesure">
+    <div class="wrap">
+      <p class="eyebrow">Je mesure, je ne suppose pas</p>
+      <h2>Le matériel que j'emporte</h2>
+      <p class="lead" style="margin-top: 0.9rem; max-width: 74ch;">
+        Ce n'est pas de l'équipement d'installateur informatique. C'est celui d'un
+        technicien opérateur, et c'est ce qui me permet de vous montrer les chiffres au
+        lieu de vous demander de me croire.
+      </p>
+      <div class="grid grid--3" style="margin-top: 1.9rem;">
+        {materiel.map(([nom, quoi]) => (
+          <div class="outil">
+            <div class="outil__nom">{nom}</div>
+            <p>{quoi}</p>
+          </div>
+        ))}
+      </div>
+      <p style="margin-top: 1.6rem; max-width: var(--measure); color: var(--text-2);">
+        Quand j'affirme que votre problème de WiFi vient de la ligne et non des bornes, je
+        vous le prouve — et ce relevé vous sert aussi face à votre opérateur.
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Les prestations</h2>
+    <div class="grid grid--2" style="margin-top: 1.75rem; gap: 2rem 3rem;">
+      <div>
+        <h3>Audit de couverture</h3>
+        <p class="detail">
+          Relevé complet : mesure du signal pièce par pièce, analyse des canaux et des
+          réseaux concurrents, qualification de la ligne d'accès, inventaire de l'existant.
+          Vous recevez un <strong>rapport écrit</strong> — et il vous appartient : vous êtes
+          libre de le faire exécuter par qui vous voulez.
+        </p>
+      </div>
+      <div>
+        <h3>Installation</h3>
+        <p class="detail">
+          Choix et positionnement des bornes en fonction du relevé, câblage, configuration,
+          recette. Une borne bien placée remplace souvent trois répéteurs mal posés.
+          Matériel <strong>Aruba, Ruckus, Zyxel</strong> : de l'infrastructure
+          professionnelle, pas du matériel de grande surface.
+        </p>
+      </div>
+      <div>
+        <h3>Réseau invité séparé — et journalisé</h3>
+        <p class="detail">
+          Vos clients accèdent à Internet sans jamais toucher à votre réseau de travail.
+          Je livre le portail d'accueil avec la <strong>journalisation et la conservation
+          des données de connexion</strong> : un établissement qui met un accès Internet à
+          disposition du public y est tenu, et <strong>ça ne se rattrape pas après coup</strong>
+          — une connexion non journalisée est perdue.
+        </p>
+      </div>
+      <div>
+        <h3>Segmentation et dépannage</h3>
+        <p class="detail">
+          Séparer ce qui doit l'être : postes, caisse et terminal de paiement,
+          vidéosurveillance, objets connectés, WiFi invité. Et sur une installation
+          existante, je diagnostique avant de proposer de remplacer — souvent, un problème
+          de configuration, de canal ou de ligne se corrige sans changer le matériel.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--line">
+    <div class="split" style="gap: 0; align-items: stretch;">
+      <div class="col-6 pourqui">
+        <p class="eyebrow">Pour qui</p>
+        <ul class="ticks" style="margin-top: 1.1rem;">
+          <li><strong>Commerces</strong> — caisse et terminal de paiement fiables, WiFi client séparé.</li>
+          <li><strong>Cabinets et professions libérales</strong> — logiciel métier, salle d'attente, séparation stricte.</li>
+          <li><strong>Hôtels et chambres d'hôtes</strong> — couverture chambre par chambre, portail invité.</li>
+          <li><strong>Restaurants et cafés</strong> — commande en salle, paiement, WiFi client.</li>
+          <li><strong>Bureaux et coworking</strong> — densité de terminaux, visioconférence, itinérance.</li>
+          <li><strong>Artisans et TPE avec local</strong> — atelier, réserve, étages, dépendances.</li>
+        </ul>
+        <p style="margin-top: 1.25rem; color: var(--dim); max-width: 52ch;">
+          Locaux anciens, murs en pierre, plafonds hauts, sous-sols : ce sont précisément
+          les cas où le relevé change tout.
+        </p>
+      </div>
+      <div class="col-6">
+        <Image
+          src={tiroir}
+          alt="Tiroir optique et jarretières fibre dans une baie"
+          widths={[420, 700, 1000]}
+          sizes="(max-width: 62rem) 100vw, 50vw"
+          loading="lazy"
+          style="width: 100%; height: 100%; object-fit: cover;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="tarifs">
+    <div class="wrap">
+      <p class="eyebrow">Tarifs</p>
+      <div class="rates" style="margin-top: 1.4rem;">
+        <div><span>Audit de couverture — local jusqu'à 100 m², rapport écrit inclus</span><span class="price">290 € HT</span></div>
+        <div><span>Audit de couverture — au-delà de 100 m²</span><span class="price price--quiet">sur devis</span></div>
+        <div><span>Installation WiFi</span><span class="price price--quiet">sur devis après audit, matériel en sus</span></div>
+        <div><span>Dépannage de performances sur installation existante</span><span class="price">290 € HT</span></div>
+        <div class="hl"><span><strong>Audit déduit si l'installation m'est confiée</strong></span><span class="price">déduit intégralement</span></div>
+        <div><span>Intervention hors heures ouvrées (soir, samedi)</span><span class="price">+ 50 %</span></div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--ink-faint);">
+        Tarifs hors taxes. Le rapport d'audit vous appartient : si vous préférez faire
+        exécuter les travaux par quelqu'un d'autre, vous partez avec.
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <h2>Questions fréquentes</h2>
+    <div class="grid grid--2" style="margin-top: 1.75rem; gap: 1.75rem 3rem;">
+      {questions.map(([q, r]) => (
+        <dl class="qa"><dt>{q}</dt><dd>{r}</dd></dl>
+      ))}
+    </div>
+  </section>
+
+  <section class="refs">
+    <div class="wrap refs__in">
+      <p class="eyebrow eyebrow--quiet" style="margin: 0;">Ils me font confiance</p>
+      <div class="refs__liste">
+        {references.map((r) => <span>{r}</span>)}
+        <span class="refs__suite">…</span>
+      </div>
+    </div>
+  </section>
+
+  <Appel
+    titre="Un WiFi qui pose problème se diagnostique avant de se remplacer."
+    texte="Décrivez-moi votre situation, je vous dis en quelques minutes si un audit est justifié."
+  />
+</Base>
+
+<style>
+  .punch {
+    margin-top: 1.1rem;
+    font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+    font-weight: 600;
+    line-height: 1.4;
+    max-width: 34ch;
+  }
+  .punch em { font-style: normal; color: var(--accent); }
+
+  .mesure {
+    background: var(--panel);
+    border-block: 1px solid var(--line);
+    padding-block: clamp(2.75rem, 6vw, 4.25rem);
+  }
+  .outil { border-top: 1px solid var(--line-strong); padding-top: 1rem; }
+  .outil__nom {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.45rem;
+  }
+  .outil p { color: var(--dim); font-size: 0.93rem; line-height: 1.55; }
+
+  .detail { color: var(--dim); margin-top: 0.6rem; }
+  .pourqui { padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vw, 3.25rem) var(--gutter); }
+  @media (max-width: 62rem) { .pourqui { padding-inline: var(--gutter); } }
+
+  .refs { background: var(--panel); border-top: 1px solid var(--line); padding-block: 2.25rem; }
+  .refs__in { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.75rem; }
+  .refs__liste { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; font-weight: 600; color: var(--text-2); }
+  .refs__suite { color: var(--faint); }
+</style>

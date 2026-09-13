@@ -1,0 +1,199 @@
+---
+import { site, nav, navPied } from '../data/site';
+const ici = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="entete">
+  <div class="wrap entete__in">
+    <a href="/" class="marque">
+      <span class="marque__nom">jacob.cx</span>
+      <span class="marque__qui">Alexandre Jacob</span>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      {nav.map((l) => (
+        <a href={l.href} class:list={['nav__l', { 'nav__l--on': ici === l.href }]}>{l.label}</a>
+      ))}
+      <a href={site.telephoneLien} class="nav__tel">
+        <span class="nav__tel-verbe">Appeler</span> {site.telephone}
+      </a>
+    </nav>
+
+    <button type="button" class="menu-b js-menu" aria-expanded="false" aria-controls="menu-site">
+      <span class="menu-b__barres" aria-hidden="true"><i></i><i></i></span>
+      <span class="menu-b__mot">Menu</span>
+    </button>
+  </div>
+
+  <!--
+    Sous 60rem la navigation en ligne ne tient plus. Elle bascule ici, en
+    panneau dépliant — et non dans le néant, comme c'était le cas avant.
+    On y met les six prestations, pas seulement les quatre de la barre.
+  -->
+  <nav id="menu-site" class="menu" aria-label="Prestations" hidden>
+    <ul class="menu__liste">
+      {navPied.map((l) => (
+        <li>
+          <a href={l.href} class:list={['menu__l', { 'menu__l--on': ici === l.href }]}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
+    <div class="menu__pied">
+      <a class="menu__tel" href={site.telephoneLien}>Appeler {site.telephone}</a>
+      <a class="menu__mail" href={`mailto:${site.courriel}`}>{site.courriel}</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .entete {
+    border-bottom: 1px solid var(--line);
+    background: var(--ground);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+  .entete__in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.95rem;
+  }
+  .marque { display: flex; align-items: baseline; gap: 0.6rem; color: var(--text); }
+  .marque:hover { color: var(--text); }
+  .marque__nom { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; }
+  .marque__qui {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .nav { display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 1.85rem); }
+  .nav__l {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    padding-block: 0.2rem;
+    border-bottom: 2px solid transparent;
+  }
+  .nav__l:hover { color: var(--text); }
+  .nav__l--on { color: var(--text); border-bottom-color: var(--accent); }
+  .nav__tel {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ground);
+    background: var(--accent);
+    padding: 0.55rem 1rem;
+    white-space: nowrap;
+  }
+  .nav__tel:hover { background: var(--accent-hi); color: var(--ground); }
+  .nav__tel-verbe { font-family: var(--sans); font-weight: 700; }
+
+  /* --- bouton menu : n'existe qu'en dessous de 60rem ---------------- */
+  .menu-b {
+    display: none;
+    align-items: center;
+    gap: 0.55rem;
+    background: none;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.85rem;
+    cursor: pointer;
+  }
+  .menu-b:hover { border-color: var(--faint); }
+  .menu-b__barres { display: grid; gap: 4px; width: 16px; }
+  .menu-b__barres i {
+    display: block;
+    height: 2px;
+    background: var(--accent);
+    transition: transform 0.16s ease;
+  }
+  .menu-b[aria-expanded='true'] .menu-b__barres i:first-child { transform: translateY(3px) rotate(45deg); }
+  .menu-b[aria-expanded='true'] .menu-b__barres i:last-child { transform: translateY(-3px) rotate(-45deg); }
+
+  .menu { display: none; border-top: 1px solid var(--line); background: var(--ground); }
+  .menu__liste { list-style: none; margin: 0; padding: 0; }
+  .menu__l {
+    display: block;
+    padding: 0.95rem var(--gutter);
+    border-bottom: 1px solid var(--line);
+    color: var(--text-2);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .menu__l:hover { color: var(--text); background: var(--panel); }
+  .menu__l--on { color: var(--text); box-shadow: inset 2px 0 0 var(--accent); }
+  .menu__pied {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 1.1rem var(--gutter) 1.35rem;
+  }
+  .menu__tel {
+    font-family: var(--mono);
+    font-weight: 700;
+    background: var(--accent);
+    color: var(--ground);
+    padding: 0.8rem 1.25rem;
+  }
+  .menu__tel:hover { background: var(--accent-hi); color: var(--ground); }
+  .menu__mail { font-family: var(--mono); font-size: 0.9rem; }
+
+  @media (max-width: 60rem) {
+    .marque__qui { display: none; }
+    .nav__l { display: none; }
+    .nav__tel-verbe { display: none; }
+    /* la barre ne porte plus que le téléphone : on le colle au bouton Menu
+       plutôt que de le laisser flotter au milieu de l.en-tête. */
+    .nav { margin-left: auto; }
+    .entete__in { gap: 0.75rem; }
+    .menu-b { display: inline-flex; }
+    .menu:not([hidden]) { display: block; }
+  }
+
+  /* Sous 48rem la barre collée en bas porte déjà « Appeler » : inutile de
+     répéter le numéro une troisième fois dans l'en-tête. */
+  @media (max-width: 47.99rem) {
+    .nav__tel { display: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var b = document.querySelector('.js-menu');
+    var m = document.getElementById('menu-site');
+    if (!b || !m) return;
+
+    function fermer() {
+      m.hidden = true;
+      b.setAttribute('aria-expanded', 'false');
+    }
+
+    b.addEventListener('click', function () {
+      var ouvert = b.getAttribute('aria-expanded') === 'true';
+      m.hidden = ouvert;
+      b.setAttribute('aria-expanded', String(!ouvert));
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && b.getAttribute('aria-expanded') === 'true') {
+        fermer();
+        b.focus();
+      }
+    });
+
+    // Repasser au-dessus du seuil laisserait le panneau ouvert dans le DOM :
+    // on le referme pour que l'état colle à ce qui est affiché.
+    var seuil = window.matchMedia('(min-width: 60.01rem)');
+    var onSeuil = function (e) { if (e.matches) fermer(); };
+    if (seuil.addEventListener) seuil.addEventListener('change', onSeuil);
+    else if (seuil.addListener) seuil.addListener(onSeuil);
+  })();
+</script>
