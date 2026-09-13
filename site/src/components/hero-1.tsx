@@ -176,7 +176,10 @@ export function Hero({
                     asChild
                     variant={a.secondaire ? "outline" : "default"}
                     className={cn(
-                      "group mx-auto h-11 w-full overflow-hidden rounded-full px-6 text-sm font-semibold tracking-tight whitespace-pre sm:w-fit md:mx-0 md:flex md:text-base",
+                      // whitespace-pre + h-11 fixe + overflow-hidden tronquaient le libelle
+                      // des que le texte devenait trop long : au zoom, ou sur un
+                      // numero de telephone. Hauteur minimale et retour a la ligne.
+                      "group mx-auto min-h-11 w-full items-center rounded-full px-6 py-2 text-sm font-semibold tracking-tight whitespace-normal sm:w-fit md:mx-0 md:flex md:text-base",
                       "transform-gpu transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2 hover:ring-offset-background",
                       a.secondaire ? "hover:ring-border" : "hover:ring-primary"
                     )}

@@ -161,3 +161,20 @@
   outline: 2px solid var(--ring, var(--accent));
   outline-offset: 3px;
 }
+/* ------------------------------------------------------------------
+   Mouvement réduit : afficher tout de suite, sans attendre.
+
+   L'entrée du hero combine `fill-mode-both` et des délais de 100 à 500 ms.
+   La règle générale de global.css ramène la DURÉE à 0,01 ms mais laisse le
+   DÉLAI intact : l'élément conservait donc son état initial — invisible —
+   pendant un demi-seconde chez les personnes qui ont désactivé les
+   animations. Exactement l'inverse du service rendu.
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-magic .animate-in {
+    animation: none !important;
+    animation-delay: 0s !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

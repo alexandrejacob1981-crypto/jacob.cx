@@ -18,3 +18,15 @@ https://:projet.pages.dev/*
 # https://<branche>.jacob-cx.pages.dev/… — les déploiements de prévisualisation
 https://:branche.:projet.pages.dev/*
   X-Robots-Tag: noindex, nofollow
+
+# ------------------------------------------------------------------
+# Cache des ressources versionnées.
+#
+# Astro préfixe chaque fichier de /_astro/ d'une empreinte de contenu :
+# un changement de contenu change le nom du fichier. Ces fichiers peuvent
+# donc être mis en cache définitivement, sans revalidation. Sans cette
+# règle, la feuille de style partagée était revalidée à chaque navigation
+# d'une page à l'autre.
+# ------------------------------------------------------------------
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
