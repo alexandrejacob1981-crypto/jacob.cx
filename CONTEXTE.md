@@ -216,7 +216,8 @@ Matériel installé : Aruba, Ruckus, Zyxel.
 ## 7. Choix techniques
 
 - Site **en code**, dans un dépôt **git**. Pas de constructeur visuel.
-- Dépôt sur **GitHub**, déploiement continu via **Cloudflare Pages** (ou Netlify).
+- Dépôt sur **GitHub**, **privé** : https://github.com/alexandrejacob1981-crypto/jacob.cx
+  Déploiement continu via **Cloudflare Pages** (ou Netlify) — reste à brancher.
 - Domaine **jacob.cx** branché sur l'hébergement — Alexandre gère la zone DNS.
 - Site vitrine : privilégier un rendu **statique**, rapide, sans dépendances lourdes.
   Priorités : performance, SEO local, accessibilité, responsive.
@@ -282,4 +283,30 @@ Matériel installé : Aruba, Ruckus, Zyxel.
       Restent avant mise en ligne : script Partoo à coller dans
       `site/src/data/partoo.ts`, avis Google, photos manquantes, liste réelle des
       anciennes URL, et décision sur le formulaire de contact.
+- [x] **Passe UI/UX du 13/09/2026 — direction « Relevé » conservée, rien de
+      graphique remis en cause.** Dix corrections, vérifiées au navigateur à
+      320, 390, 860 et 1440 px.
+      La plus grave : la navigation était masquée sous 960 px **sans menu de
+      remplacement** — ni sur téléphone, ni sur tablette, un visiteur ne
+      pouvait atteindre aucune des sept pages depuis l'en-tête. Ajout d'un
+      menu dépliant qui liste les **six** prestations, contre quatre dans la
+      barre desktop.
+      Accessibilité WCAG 2.2 AA : lien d'évitement rendu visible au focus,
+      `scroll-padding-top` (l'en-tête collant de 69 px masquait entièrement
+      la cible des ancres, critère 2.4.11), cibles interactives portées à
+      24 px (critère 2.5.8), hiérarchie h1 > h2 > h3 sans saut sur les 10
+      pages. Les liens en ligne dans les phrases des mentions légales
+      relèvent de l'exception et sont laissés tels quels.
+      Conversion : les appels téléphoniques portent un verbe (« Appeler 06… »)
+      au lieu du numéro nu ; le numéro n'est plus répété trois fois par écran
+      sur mobile.
+      Cohérence : la bulle de contact repasse à angle vif et sans ombre — elle
+      était le seul élément à contredire « des filets plutôt que des ombres ».
+- [x] **Projet versionné le 13/09/2026.** `git init` puis commit initial
+      `6e33755` (92 fichiers), poussé sur GitHub en dépôt privé. Identité git
+      posée au niveau du dépôt uniquement. `node_modules/`, `site/dist/` et
+      `site/.astro/` exclus par le `.gitignore`. Les 30 photos sont dans
+      l'historique : garder le dépôt privé.
+- [ ] Brancher Cloudflare Pages (racine `site`, build `npm run build`,
+      sortie `site/dist`)
 - [ ] Redirections et bascule DNS
