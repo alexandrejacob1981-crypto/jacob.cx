@@ -1,30 +1,74 @@
 # Redirections 301 — Cloudflare Pages
 #
-# Les anciennes URL du site Wix sont indexées, certaines depuis 2023.
-# Elles doivent toutes atterrir quelque part : une 404 sur une page
-# indexée, c'est du trafic acquis qu'on jette.
+# SOURCE DE CETTE LISTE (13/09/2026) : le sitemap du site Wix encore en
+# ligne — https://www.jacob.cx/sitemap.xml et ses cinq sous-sitemaps —
+# recoupé avec les archives Wayback (18 URL relevées depuis 2021).
+# Ce ne sont donc plus des suppositions : chaque ligne ci-dessous
+# correspond à une adresse réellement publiée.
 #
-# L'URL fautive /recuperation-donnnees (trois « n ») était en ligne et
-# indexée : c'est la redirection la plus importante du lot.
-
-/recuperation-donnnees        /recuperation-de-donnees        301
-/recuperation-donnees         /recuperation-de-donnees        301
-/recuperation-de-donnnees     /recuperation-de-donnees        301
-
-/pro                          /infogerance                    301
-/professionnels               /infogerance                    301
-/entreprises                  /infogerance                    301
-/particulier                  /particuliers                   301
-/wifi                         /wifi-professionnel             301
-/maintenance-distance         /maintenance-a-distance         301
-/telecom                      /expertise-telecom              301
-
-# ⚠️ À COMPLÉTER AVANT LA BASCULE DNS
+# À VÉRIFIER QUAND MÊME avant la bascule : la Search Console
+# (Indexation > Pages) liste les URL que Google connaît, y compris
+# celles absentes du sitemap. Ajouter ce qui manquerait.
 #
-# Relever la liste exacte des URL du site Wix — Search Console
-# (Couverture > Pages indexées) donne la liste réelle, y compris les
-# pages oubliées — et ajouter une ligne par ancienne adresse.
-#
-# Ne rediriger vers l'accueil qu'en dernier recours : une redirection
-# vers une page au sujet équivalent conserve le référencement acquis,
-# une redirection vers l'accueil le dilue.
+# ATTENTION — `_redirects` ne sait PAS filtrer par nom d'hôte, à la
+# différence de `_headers`. Le site Wix est indexé sur **www.jacob.cx**
+# alors que le nouveau site se déclare sur **jacob.cx** (apex, voir
+# astro.config.mjs). La redirection www → apex doit donc être créée
+# séparément, dans Cloudflare : Règles > Règles de redirection.
+# Sans elle, tout le référencement acquis sur www reste orphelin.
+
+# ---------------------------------------------------------------
+# Pages du sitemap Wix — correspondance par sujet
+# ---------------------------------------------------------------
+
+# L'URL fautive à trois « n » est bien réelle et indexée : elle figure
+# telle quelle dans le sitemap Wix. C'est la redirection la plus utile.
+/recuperation-donnnees              /recuperation-de-donnees    301
+
+/pro                                /infogerance                301
+/particulier                        /particuliers               301
+
+# « Assistance informatique à domicile pour professionnels et
+# particuliers » — l'intervention à domicile, donc la page Particuliers.
+/particulier-pro                    /particuliers               301
+
+# « maintenance informatique, réparation informatique et électronique,
+# récupération de données »
+/intervention-sur-site-particulier  /particuliers               301
+
+# /maintenance-a-distance : AUCUNE REDIRECTION.
+# L'adresse est identique sur le nouveau site. Une règle ici créerait
+# une boucle. Ne pas « compléter » cette ligne.
+
+# ---------------------------------------------------------------
+# Pages sans équivalent — vers l'accueil, faute de mieux
+# ---------------------------------------------------------------
+# Le nouveau site n'a pas de page contact dédiée : le téléphone est
+# dans l'en-tête, le pied et la barre mobile. À revoir si une page de
+# contact est créée.
+/contact                            /                           301
+
+# Réservation en ligne Wix : la prise de rendez-vous se fait par
+# téléphone.
+/book-online                        /                           301
+
+# Le blog n'est pas repris.
+/blog                               /                           301
+/post/*                             /                           301
+
+# ---------------------------------------------------------------
+# Boutique Wix — appartient à FuturEdge, pas à jacob.cx
+# ---------------------------------------------------------------
+# Le brief demande de ne pas reprendre la carte de visite métallique et
+# de ne pas mélanger les deux activités. On renvoie donc vers l'accueil
+# plutôt que vers futuredge.fr : une 301 vers l'autre domaine créerait
+# un lien public entre les deux. À changer si Alexandre le souhaite.
+/product-page/*                     /                           301
+/category/*                         /                           301
+/cart-page                          /                           301
+
+# ---------------------------------------------------------------
+# Reliquats de plateforme Wix
+# ---------------------------------------------------------------
+# Profils membres, relevés dans les archives.
+/profile/*                          /                           301
