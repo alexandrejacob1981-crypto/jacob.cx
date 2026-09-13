@@ -317,4 +317,24 @@ Matériel installé : Aruba, Ruckus, Zyxel.
       limitée à l'hôte `pages.dev`, donc rien à retirer à la bascule DNS.
       Le flux « Workers » proposé par défaut ne convient pas (il exige un
       fichier `wrangler`) : c'est bien le flux **Pages** qu'il faut.
-- [ ] Redirections et bascule DNS
+- [x] **Redirections 301 établies le 13/09/2026** dans `site/public/_redirects`,
+      à partir du sitemap du Wix encore en ligne recoupé avec les archives
+      Wayback. 13 règles. Les adresses inventées du premier jet
+      (`/professionnels`, `/entreprises`, `/wifi`, `/telecom`,
+      `/maintenance-distance`) n'ont jamais existé et ont été retirées.
+      `/maintenance-a-distance` garde la même adresse sur le nouveau site :
+      surtout ne pas lui ajouter de règle, ce serait une boucle.
+- [ ] **Bascule DNS — à faire dans cet ordre, le jour J**
+  - [ ] Ajouter le domaine `jacob.cx` au projet Pages (Custom domains),
+        apex **et** `www`.
+  - [ ] **Créer la redirection `www.jacob.cx/*` vers `jacob.cx/:splat` en 301.**
+        Cloudflare > Règles > Règles de redirection. Gratuit.
+        ⚠️ Ça ne peut PAS se faire dans `_redirects`, qui ne sait pas filtrer
+        par nom d'hôte (contrairement à `_headers`). Or le Wix est indexé sur
+        `www` et le nouveau site se déclare sur l'apex : sans cette règle, tout
+        le référencement acquis sur `www` reste orphelin.
+  - [ ] Vérifier les 13 redirections une fois le domaine branché.
+  - [ ] Contrôler en Search Console que les anciennes URL renvoient bien 301
+        et non 404, puis soumettre le nouveau sitemap.
+  - [ ] Le `noindex` de `_headers` ne vise que `pages.dev` : rien à retirer.
+        Vérifier tout de même qu'il n'apparaît pas sur `jacob.cx`.
