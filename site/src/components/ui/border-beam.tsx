@@ -1,51 +1,45 @@
-import { motion, type MotionStyle, type Transition } from "motion/react"
-
 import { cn } from "@/lib/utils"
 
+/**
+ * Faisceau lumineux de bordure — version SANS JavaScript.
+ *
+ * L'original Magic UI animait `offset-distance` avec motion/react, ce qui
+ * obligeait à hydrater tout le hero côté client : 126,8 Ko gzip de React par
+ * page, pour deux filets décoratifs de 1 px.
+ *
+ * `offset-distance` est nativement animable en CSS. Le rendu est identique,
+ * l'animation tourne sur le compositeur, et le composant devient purement
+ * présentationnel : Astro le rend en HTML statique au build et ne livre plus
+ * un octet de JavaScript.
+ *
+ * Les réglages passent par des variables CSS posées en style en ligne, pour
+ * garder l'API d'origine (size, duration, delay, reverse, initialOffset).
+ *
+ * `prefers-reduced-motion` est respecté dans tailwind.css : le faisceau est
+ * masqué, pas seulement accéléré. La règle générale de global.css ramène les
+ * durées à 0,01 ms sans toucher au nombre d'itérations — sur une animation
+ * infinie, ça produirait un clignotement bien pire que le mouvement d'origine.
+ */
 interface BorderBeamProps {
-  /**
-   * The size of the border beam.
-   */
+  /** Taille du faisceau, en pixels. */
   size?: number
-  /**
-   * The duration of the border beam.
-   */
+  /** Durée d'un tour complet, en secondes. */
   duration?: number
-  /**
-   * The delay of the border beam.
-   */
+  /** Décalage de départ, en secondes. */
   delay?: number
-  /**
-   * The color of the border beam from.
-   */
+  /** Couleur de tête du dégradé. */
   colorFrom?: string
-  /**
-   * The color of the border beam to.
-   */
+  /** Couleur de cœur du dégradé. */
   colorTo?: string
-  /**
-   * The motion transition of the border beam.
-   */
-  transition?: Transition
-  /**
-   * The class name of the border beam.
-   */
+  /** Classes supplémentaires. */
   className?: string
-  /**
-   * The style of the border beam.
-   */
+  /** Styles supplémentaires. */
   style?: React.CSSProperties
-  /**
-   * Whether to reverse the animation direction.
-   */
+  /** Sens inverse. */
   reverse?: boolean
-  /**
-   * The initial offset position (0-100).
-   */
+  /** Position de départ sur le tracé, de 0 à 100. */
   initialOffset?: number
-  /**
-   * The border width of the beam.
-   */
+  /** Épaisseur du liseré, en pixels. */
   borderWidth?: number
 }
 
@@ -56,7 +50,6 @@ export const BorderBeam = ({
   duration = 6,
   colorFrom = "#ffaa40",
   colorTo = "#9c40ff",
-  transition,
   style,
   reverse = false,
   initialOffset = 0,
@@ -71,10 +64,12 @@ export const BorderBeam = ({
         } as React.CSSProperties
       }
     >
-      <motion.div
+      <div
+        aria-hidden="true"
         className={cn(
-          "absolute aspect-square",
+          "faisceau absolute aspect-square",
           "bg-linear-to-l from-(--color-from) via-(--color-to) to-transparent",
+          reverse && "faisceau--inverse",
           className
         )}
         style={
@@ -83,22 +78,12 @@ export const BorderBeam = ({
             offsetPath: `rect(0 auto auto 0 round ${size}px)`,
             "--color-from": colorFrom,
             "--color-to": colorTo,
+            "--faisceau-duree": `${duration}s`,
+            "--faisceau-retard": `${-delay}s`,
+            "--faisceau-depart": `${initialOffset}%`,
             ...style,
-          } as MotionStyle
+          } as React.CSSProperties
         }
-        initial={{ offsetDistance: `${initialOffset}%` }}
-        animate={{
-          offsetDistance: reverse
-            ? [`${100 - initialOffset}%`, `${-initialOffset}%`]
-            : [`${initialOffset}%`, `${100 + initialOffset}%`],
-        }}
-        transition={{
-          repeat: Infinity,
-          ease: "linear",
-          duration,
-          delay: -delay,
-          ...transition,
-        }}
       />
     </div>
   )

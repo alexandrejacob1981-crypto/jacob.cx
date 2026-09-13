@@ -80,8 +80,14 @@ body {
 img, svg, video { display: block; max-width: 100%; }
 img { height: auto; }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: var(--accent-hi); }
+/* Les couleurs de lien passent par :where(), de spécificité nulle, pour que
+   toute classe les emporte — y compris les utilitaires Tailwind du hero. Avec
+   le sélecteur d'élément nu (0,1,1), `a:hover` battait `.text-primary-foreground`
+   (0,1,0) et le bouton principal virait ambre sur ambre au survol, donc illisible.
+   Les liens sans classe gardent exactement le même rendu qu'avant. */
+a { text-decoration: none; }
+:where(a) { color: var(--accent); }
+:where(a:hover) { color: var(--accent-hi); }
 
 :focus-visible {
   outline: 2px solid var(--accent);

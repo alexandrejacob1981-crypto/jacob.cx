@@ -105,10 +105,59 @@
     --muted-foreground: var(--ink-2);
     --border: var(--paper-line);
     --input: var(--paper-line);
+    /* Ces trois-là manquaient. --primary restait l'ambre clair du thème sombre :
+       sur fond papier, le surtitre en text-primary tombait à 1,90:1, très loin
+       des 4,5:1 exigés. --accent-deep est la déclinaison prévue pour les fonds
+       clairs — 5,4:1 sur blanc. */
+    --primary: var(--accent-deep);
+    --primary-foreground: var(--paper-pure);
+    --ring: var(--accent-deep);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
     }
+}
+
+/* ------------------------------------------------------------------
+   Faisceau de bordure, animé en CSS.
+
+   L'original Magic UI passait par motion/react, ce qui imposait
+   d'hydrater tout le hero : 126,8 Ko gzip de React par page pour deux
+   filets de 1 px. `offset-distance` est nativement animable en CSS, le
+   rendu est identique et le composant redevient purement statique.
+------------------------------------------------------------------- */
+@keyframes faisceau-avance {
+  from { offset-distance: 0%; }
+  to   { offset-distance: 100%; }
+}
+@keyframes faisceau-recule {
+  from { offset-distance: 100%; }
+  to   { offset-distance: 0%; }
+}
+.faisceau {
+  offset-distance: var(--faisceau-depart, 0%);
+  animation: faisceau-avance var(--faisceau-duree, 6s) linear infinite;
+  animation-delay: var(--faisceau-retard, 0s);
+}
+.faisceau--inverse { animation-name: faisceau-recule; }
+
+/* La règle générale de global.css ramène les durées à 0,01 ms sans toucher au
+   nombre d'itérations : sur une animation infinie, ça produirait un
+   clignotement pire que le mouvement d'origine. On masque franchement. */
+@media (prefers-reduced-motion: reduce) {
+  .faisceau { animation: none !important; display: none; }
+}
+
+/* ------------------------------------------------------------------
+   Retour du contour de focus dans le hero.
+
+   Le bouton shadcn porte `outline-none`, qui neutralisait le contour de
+   focus défini dans global.css. Ce sélecteur est plus spécifique et le
+   rétablit pour toutes les cibles du hero.
+------------------------------------------------------------------- */
+.hero-magic :focus-visible {
+  outline: 2px solid var(--ring, var(--accent));
+  outline-offset: 3px;
 }
