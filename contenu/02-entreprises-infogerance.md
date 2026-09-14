@@ -205,11 +205,12 @@ grandir avec le client sans renégociation.
 | Formule | Contenu | Tarif proposé |
 |---|---|---|
 | **Suivi** | Supervision du parc, mises à jour, assistance à distance illimitée, sauvegarde surveillée | 29 € HT / poste / mois |
-| **Infogérance** | Le Suivi + messagerie administrée, réseau et WiFi, interventions sur site incluses, test de restauration annuel | 49 € HT / poste / mois |
+| **Infogérance** | Le Suivi + messagerie administrée, réseau et WiFi, deux interventions sur site par an, test de restauration annuel | 49 € HT / poste / mois |
 | **Sur mesure** | Serveurs, multi-sites, contraintes métier, délai d'intervention garanti | sur devis |
 
-**Forfait plancher : 149 € HT / mois** — en dessous de 4 ou 5 postes, le suivi coûte
-le même travail quel que soit le nombre de machines.
+**Forfait plancher : 199 € HT / mois** — en dessous de sept postes en Suivi, de
+quatre en Infogérance, le travail de supervision est le même quel que soit le
+nombre de machines.
 
 **Hors contrat :**
 
@@ -320,7 +321,7 @@ ici : c'est la seule offre récurrente du site.*
 
 ## Questions ouvertes pour Alexandre
 
-1. ✅ **Grille de forfaits validée** (29 / 49 € HT par poste, plancher 149 €) —
+1. ✅ **Grille de forfaits validée** (29 / 49 € HT par poste, plancher 199 €, deux interventions sur site par an) —
    « cohérent, on réajustera si nécessaire ».
 2. ✅ **Facturation au poste** conservée.
 3. ✅ **État des lieux : facturé, déduit du premier mois.** Intégré au tarif et au
