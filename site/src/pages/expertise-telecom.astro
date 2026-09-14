@@ -6,6 +6,8 @@ import otdr from '../assets/otdr-mesure-baie.jpg';
 import courbe from '../assets/otdr-courbe.jpg';
 import avant from '../assets/repartiteur-avant.jpg';
 import apres from '../assets/repartiteur-apres.jpg';
+import prise from '../assets/argus-prise-non-cablee.jpg';
+import certif from '../assets/signaltek-certification-passed.jpg';
 
 const instruments = [
   ['Lignes cuivre — ADSL, VDSL, RTC', 'ARGUS 52+', 'Qualification complète de la paire : débit réellement synchronisable, atténuation, marge au bruit, longueur, défauts de ligne. C’est l’appareil qui établit l’écart entre le débit vendu et le débit que la ligne peut porter.'],
@@ -110,6 +112,37 @@ const questions = [
           <p>{texte}</p>
         </div>
       ))}
+    </div>
+
+    <!-- Deux relevés réels : un défaut trouvé, une liaison certifiée. -->
+    <div class="grid grid--2 releves">
+      <figure>
+        <Image
+          src={prise}
+          alt="Écran d'un ARGUS 152 en réflectométrie : le câble s'arrête à 25 m, la prise n'est pas raccordée"
+          widths={[420, 640, 900]}
+          sizes="(max-width: 62rem) 92vw, 46vw"
+          loading="lazy"
+        />
+        <figcaption>
+          <b>Un défaut trouvé.</b> La prise ne fonctionnait pas. Le câble existe, il fait
+          25 mètres, et il n'est raccordé à rien au bout. Sans mesure, on aurait retiré
+          une cloison pour le découvrir.
+        </figcaption>
+      </figure>
+      <figure>
+        <Image
+          src={certif}
+          alt="Écran d'un SignalTEK II : liaison certifiée à 1000 Mb/s, 823 452 trames, zéro erreur"
+          widths={[420, 640, 900]}
+          sizes="(max-width: 62rem) 92vw, 46vw"
+          loading="lazy"
+        />
+        <figcaption>
+          <b>Une liaison certifiée.</b> 823 452 trames envoyées, 823 452 reçues, zéro
+          erreur à 1 Gb/s. C'est ce relevé qui vous est remis — pas un « ça a l'air bon ».
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -270,4 +303,24 @@ const questions = [
     color: var(--faint);
   }
   .chantier figcaption b { color: var(--accent); font-weight: 500; }
+
+  .releves { margin-top: 2.25rem; }
+  .releves figure { margin: 0; }
+  /* Photos d'appareil en portrait : sans plafond de hauteur, elles occupent
+     un ecran entier chacune sur grand moniteur et ecrasent le texte. */
+  .releves img {
+    width: auto;
+    max-width: 100%;
+    max-height: 30rem;
+    height: auto;
+    border: 1px solid var(--line-strong);
+  }
+  .releves figcaption {
+    margin-top: 0.8rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--dim);
+    max-width: 46ch;
+  }
+  .releves figcaption b { color: var(--text); font-weight: 600; }
 </style>
