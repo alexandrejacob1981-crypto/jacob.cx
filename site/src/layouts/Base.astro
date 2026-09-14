@@ -16,9 +16,9 @@ interface Props {
 }
 
 const { titre, description, chemin, chat = true } = Astro.props;
-const canonique = new URL(chemin, Astro.site ?? 'https://jacob.cx').href;
+const canonique = new URL(chemin, Astro.site ?? 'https://www.jacob.cx').href;
 // Image de partage : sans elle, tout lien vers le site poste un bloc gris.
-const partage = new URL('/partage.jpg', Astro.site ?? 'https://jacob.cx').href;
+const partage = new URL('/partage.jpg', Astro.site ?? 'https://www.jacob.cx').href;
 
 /**
  * Données structurées LocalBusiness : elles aident Google à comprendre
@@ -29,7 +29,7 @@ const donneesStructurees = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: `${site.nom} — Infogérance, dépannage informatique et réseaux WiFi`,
-  url: 'https://jacob.cx',
+  url: 'https://www.jacob.cx',
   telephone: '+33614026047',
   email: site.courriel,
   address: {
