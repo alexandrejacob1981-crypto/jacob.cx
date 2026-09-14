@@ -7,6 +7,10 @@ import { Hero } from '../components/hero-1';
 import { imageHero } from '../lib/hero-image';
 import otdr from '../assets/otdr-mesure-baie.jpg';
 import courbe from '../assets/otdr-courbe.jpg';
+import avant from '../assets/repartiteur-avant.jpg';
+import apres from '../assets/repartiteur-apres.jpg';
+import prise from '../assets/argus-prise-non-cablee.jpg';
+import certif from '../assets/signaltek-certification-passed.jpg';
 
 const heroImage = await imageHero(otdr, "Réflectomètre optique raccordé, courbe de mesure à l'écran, devant une baie");
 
@@ -105,6 +109,37 @@ const questions = [
         </div>
       ))}
     </div>
+
+    <!-- Deux relevés réels : un défaut trouvé, une liaison certifiée. -->
+    <div class="grid grid--2 releves">
+      <figure>
+        <Image
+          src={prise}
+          alt="Écran d'un ARGUS 152 en réflectométrie : le câble s'arrête à 25 m, la prise n'est pas raccordée"
+          widths={[420, 640, 900]}
+          sizes="(max-width: 62rem) 92vw, 46vw"
+          loading="lazy"
+        />
+        <figcaption>
+          <b>Un défaut trouvé.</b> La prise ne fonctionnait pas. Le câble existe, il fait
+          25 mètres, et il n'est raccordé à rien au bout. Sans mesure, on aurait retiré
+          une cloison pour le découvrir.
+        </figcaption>
+      </figure>
+      <figure>
+        <Image
+          src={certif}
+          alt="Écran d'un SignalTEK II : liaison certifiée à 1000 Mb/s, 823 452 trames, zéro erreur"
+          widths={[420, 640, 900]}
+          sizes="(max-width: 62rem) 92vw, 46vw"
+          loading="lazy"
+        />
+        <figcaption>
+          <b>Une liaison certifiée.</b> 823 452 trames envoyées, 823 452 reçues, zéro
+          erreur à 1 Gb/s. C'est ce relevé qui vous est remis — pas un « ça a l'air bon ».
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="section--line">
@@ -134,6 +169,40 @@ const questions = [
           quoi la lui opposer.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ un chantier réel -->
+  <section class="section section--line wrap">
+    <p class="eyebrow eyebrow--quiet">Un chantier</p>
+    <h2>Reprise d'un répartiteur cuivre.</h2>
+    <p class="lead chantier__lead">
+      Le même mur, à trois semaines d'intervalle. Avant, les câbles pendaient en vrac
+      devant les réglettes : impossible d'intervenir sur une paire sans en déranger
+      vingt. Après, chaque câble suit un guide, chaque réglette reste accessible, et
+      le repérage est refait.
+    </p>
+    <div class="grid grid--2 chantier">
+      <figure>
+        <Image
+          src={avant}
+          alt="Répartiteur téléphonique avant intervention : câbles en vrac devant les réglettes"
+          widths={[420, 700, 1000]}
+          sizes="(max-width: 62rem) 92vw, 46vw"
+          loading="lazy"
+        />
+        <figcaption><b>Avant</b> — octobre 2025</figcaption>
+      </figure>
+      <figure>
+        <Image
+          src={apres}
+          alt="Le même répartiteur après intervention : câbles routés sur guides, réglettes dégagées"
+          widths={[420, 700, 1000]}
+          sizes="(max-width: 62rem) 92vw, 46vw"
+          loading="lazy"
+        />
+        <figcaption><b>Après</b> — novembre 2025</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -218,4 +287,36 @@ const questions = [
     .ticks[style] { grid-template-columns: minmax(0, 1fr) !important; }
     .instrument__tete { flex-direction: column; gap: 0.2rem; }
   }
+
+  .chantier__lead { margin-top: 1.1rem; }
+  .chantier { margin-top: 1.9rem; }
+  .chantier figure { margin: 0; }
+  .chantier img { width: 100%; height: auto; border: 1px solid var(--line-strong); }
+  .chantier figcaption {
+    margin-top: 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+  .chantier figcaption b { color: var(--accent); font-weight: 500; }
+
+  .releves { margin-top: 2.25rem; }
+  .releves figure { margin: 0; }
+  /* Photos d'appareil en portrait : sans plafond de hauteur, elles occupent
+     un ecran entier chacune sur grand moniteur et ecrasent le texte. */
+  .releves img {
+    width: auto;
+    max-width: 100%;
+    max-height: 30rem;
+    height: auto;
+    border: 1px solid var(--line-strong);
+  }
+  .releves figcaption {
+    margin-top: 0.8rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--dim);
+    max-width: 46ch;
+  }
+  .releves figcaption b { color: var(--text); font-weight: 600; }
 </style>
