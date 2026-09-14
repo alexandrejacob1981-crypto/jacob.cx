@@ -359,17 +359,49 @@ Matériel installé : Aruba, Ruckus, Zyxel.
       jeton ambre du site — ne jamais le redéfinir dans `tailwind.css`.
       Tailwind est importé **hors layer** pour que ses classes battent les règles
       d'éléments (h1, p) de `global.css`.
-- [ ] **Bascule DNS — à faire dans cet ordre, le jour J**
-  - [ ] Ajouter le domaine `jacob.cx` au projet Pages (Custom domains),
-        apex **et** `www`.
-  - [ ] **Créer la redirection `www.jacob.cx/*` vers `jacob.cx/:splat` en 301.**
-        Cloudflare > Règles > Règles de redirection. Gratuit.
-        ⚠️ Ça ne peut PAS se faire dans `_redirects`, qui ne sait pas filtrer
-        par nom d'hôte (contrairement à `_headers`). Or le Wix est indexé sur
-        `www` et le nouveau site se déclare sur l'apex : sans cette règle, tout
-        le référencement acquis sur `www` reste orphelin.
-  - [ ] Vérifier les 13 redirections une fois le domaine branché.
-  - [ ] Contrôler en Search Console que les anciennes URL renvoient bien 301
-        et non 404, puis soumettre le nouveau sitemap.
-  - [ ] Le `noindex` de `_headers` ne vise que `pages.dev` : rien à retirer.
-        Vérifier tout de même qu'il n'apparaît pas sur `jacob.cx`.
+- [x] **Direction B retenue le 14/09/2026** et fusionnée dans `main`.
+- [x] **Références clients retirées** avant mise en ligne, faute d'accord des
+      intéressés. Réversible en une ligne : voir `site/src/data/site.ts`.
+- [ ] **Bascule DNS — en cours, 14/09/2026**
+
+  Zone hébergée chez **OVH** (ns16 / dns16.ovh.net). Inventaire complet relevé
+  le 14/09 — douze enregistrements, rien d'autre n'existe :
+
+  | Nom | Type | Valeur |
+  |---|---|---|
+  | `jacob.cx` | A | 185.230.63.107 (Wix) |
+  | `www` | CNAME | pointing.wixdns.net. (Wix) |
+  | `@` | MX | jacob-cx.mail.protection.outlook.com |
+  | `autodiscover` | CNAME | autodiscover.outlook.com. |
+  | `selector1._domainkey` | CNAME | …alexandrejacob.onmicrosoft.com |
+  | `selector2._domainkey` | CNAME | …alexandrejacob.onmicrosoft.com |
+  | `_dmarc` | TXT | v=DMARC1; p=quarantine; pct=100 |
+  | `@` | TXT | SPF, MS=ms37114214, pinterest-site-verification |
+  | `mail`, `smtp` | | ns0.ovh.net |
+  | `sip` | | sip1.start.ovh.net |
+
+  ⚠️ **La messagerie d'Alexandre est sur Microsoft 365.** Ne jamais toucher aux
+  MX, TXT, _domainkey, _dmarc ni autodiscover. Casser sa messagerie serait bien
+  plus grave qu'un site indisponible.
+
+  **Choix retenu : on ne déplace PAS les serveurs de noms.** On change deux
+  enregistrements web chez OVH, la propagation se compte en minutes et la
+  messagerie n'est jamais concernée. La zone pourra être déplacée chez
+  Cloudflare plus tard, sans rien changer au canonique : les deux décisions
+  sont indépendantes.
+
+  **Canonique sur `www.jacob.cx`**, pas sur l'apex. OVH ne sait pas pointer un
+  apex vers un CNAME, et www est de toute façon l'hôte que Google indexe déjà
+  (le sitemap Wix ne liste que des URL en www). On évite une migration d'hôte
+  par-dessus la migration de plateforme.
+
+  - [x] `www.jacob.cx` ajouté au projet Pages, méthode « My DNS provider ».
+        Cible à poser : **`jacob-cx.pages.dev`**
+  - [ ] Chez OVH : `www` CNAME → `jacob-cx.pages.dev.` (remplace Wix)
+  - [ ] Chez OVH : supprimer le A de l'apex, créer une redirection 301 de
+        `jacob.cx` vers `https://www.jacob.cx`
+  - [ ] Cloudflare : « Check DNS records », puis attendre le certificat
+  - [ ] Vérifier les 13 redirections depuis les anciennes URL Wix
+  - [ ] **Vérifier qu'aucun noindex n'apparaît sur www.jacob.cx** — le plus
+        important : un noindex oublié effacerait le site de Google
+  - [ ] Search Console : soumettre le sitemap, contrôler les anciennes URL
