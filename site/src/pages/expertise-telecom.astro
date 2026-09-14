@@ -4,6 +4,8 @@ import Base from '../layouts/Base.astro';
 import Appel from '../components/Appel.astro';
 import otdr from '../assets/otdr-mesure-baie.jpg';
 import courbe from '../assets/otdr-courbe.jpg';
+import avant from '../assets/repartiteur-avant.jpg';
+import apres from '../assets/repartiteur-apres.jpg';
 
 const instruments = [
   ['Lignes cuivre — ADSL, VDSL, RTC', 'ARGUS 52+', 'Qualification complète de la paire : débit réellement synchronisable, atténuation, marge au bruit, longueur, défauts de ligne. C’est l’appareil qui établit l’écart entre le débit vendu et le débit que la ligne peut porter.'],
@@ -141,6 +143,40 @@ const questions = [
     </div>
   </section>
 
+  <!-- ------------------------------------------------ un chantier réel -->
+  <section class="section section--line wrap">
+    <p class="eyebrow eyebrow--quiet">Un chantier</p>
+    <h2>Reprise d'un répartiteur cuivre.</h2>
+    <p class="lead chantier__lead">
+      Le même mur, à trois semaines d'intervalle. Avant, les câbles pendaient en vrac
+      devant les réglettes : impossible d'intervenir sur une paire sans en déranger
+      vingt. Après, chaque câble suit un guide, chaque réglette reste accessible, et
+      le repérage est refait.
+    </p>
+    <div class="grid grid--2 chantier">
+      <figure>
+        <Image
+          src={avant}
+          alt="Répartiteur téléphonique avant intervention : câbles en vrac devant les réglettes"
+          widths={[420, 700, 1000]}
+          sizes="(max-width: 62rem) 92vw, 46vw"
+          loading="lazy"
+        />
+        <figcaption><b>Avant</b> — octobre 2025</figcaption>
+      </figure>
+      <figure>
+        <Image
+          src={apres}
+          alt="Le même répartiteur après intervention : câbles routés sur guides, réglettes dégagées"
+          widths={[420, 700, 1000]}
+          sizes="(max-width: 62rem) 92vw, 46vw"
+          loading="lazy"
+        />
+        <figcaption><b>Après</b> — novembre 2025</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <section class="section wrap">
     <h2>Les interventions</h2>
     <ul class="ticks" style="margin-top: 1.35rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem 2.5rem;">
@@ -222,4 +258,16 @@ const questions = [
     .ticks[style] { grid-template-columns: minmax(0, 1fr) !important; }
     .instrument__tete { flex-direction: column; gap: 0.2rem; }
   }
+
+  .chantier__lead { margin-top: 1.1rem; }
+  .chantier { margin-top: 1.9rem; }
+  .chantier figure { margin: 0; }
+  .chantier img { width: 100%; height: auto; border: 1px solid var(--line-strong); }
+  .chantier figcaption {
+    margin-top: 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+  .chantier figcaption b { color: var(--accent); font-weight: 500; }
 </style>

@@ -25,7 +25,7 @@ Ensuite, dis-moi simplement « les photos sont là », et je les regarde.
 
 ## Déjà en place (au 08/09/2026)
 
-**20 photos triées.** Les trois marquées `HERO` sont les images d'ouverture du site :
+**22 photos triées.** Les trois marquées `HERO` sont les images d'ouverture du site :
 
 - `fibre/…HERO-otdr-en-main-devant-baie` — l'OTDR raccordé, courbe à l'écran, baie
   Aruba derrière. L'image du site.
