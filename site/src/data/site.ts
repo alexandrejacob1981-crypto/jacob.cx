@@ -44,13 +44,20 @@ export const communes = [
 ] as const;
 
 /**
- * Références clients — citation validée par Alexandre le 08/09/2026.
- * L'orthographe exacte des agences reste à confirmer avant mise en ligne.
+ * Références clients — RETIRÉES DU SITE avant la mise en ligne du 14/09/2026.
+ *
+ * Alexandre les avait citées le 08/09, mais les intéressés n'ont pas encore
+ * donné leur accord, et la clause de confidentialité côté Passman n'a pas été
+ * vérifiée. On ne publie pas le nom d'un client sans son accord.
+ *
+ * POUR LES REMETTRE : décommenter la liste ci-dessous et supprimer le tableau
+ * vide. Les trois sections « Ils me font confiance » réapparaissent seules,
+ * elles sont conditionnées à cette liste.
+ *
+ *   'Passman',
+ *   'Punto Architecte',
+ *   'Agnès et Agnès',
+ *   'Fréquence Architecture',
+ *   'Agence Lacombe',
  */
-export const references = [
-  'Passman',
-  'Punto Architecte',
-  'Agnès et Agnès',
-  'Fréquence Architecture',
-  'Agence Lacombe',
-] as const;
+export const references: readonly string[] = [];
