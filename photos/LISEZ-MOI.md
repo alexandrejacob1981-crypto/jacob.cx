@@ -17,6 +17,7 @@ Ensuite, dis-moi simplement « les photos sont là », et je les regarde.
 | Dossier | Contenu |
 |---|---|
 | `a-trier/` | **Ta boîte de dépôt.** Tout arrive ici. |
+| `futuredge/` | Photos de gravure laser et de signalétique : elles relèvent de futuredge.fr, pas de jacob.cx. |
 | `materiel-mesure/` | ARGUS, OTDR, qualificateur RJ45, Toughbook |
 | `fibre/` | Soudeuse Sumitomo, épissures, raccordements |
 | `atelier-soudure/` | Micro-soudure sous microscope, rebillage, Rusolut VNR |
