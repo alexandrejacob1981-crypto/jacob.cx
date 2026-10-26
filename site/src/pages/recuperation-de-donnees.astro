@@ -1,8 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Appel from '../components/Appel.astro';
 import { site } from '../data/site';
 import { Hero } from '../components/hero-1';
+import microscope from '../assets/microscope-composant.jpg';
+import thermique from '../assets/thermique-carte.jpg';
 
 const cas = [
   'Fichiers supprimés par erreur — documents, photos, corbeille vidée',
@@ -108,6 +111,37 @@ const questions = [
             parisienne, et je fais le lien. Vous gardez un seul interlocuteur.
           </p>
         </div>
+      </div>
+
+      <!-- Le laboratoire, montré plutôt que décrit. -->
+      <div class="grid grid--2 labo">
+        <figure>
+          <Image
+            src={microscope}
+            alt="Vue au microscope d'une carte électronique, emplacement d'un composant dessoudé"
+            widths={[420, 700, 1100]}
+            sizes="(max-width: 62rem) 92vw, 46vw"
+            loading="lazy"
+          />
+          <figcaption>
+            <b>Sous microscope.</b> La puce mémoire est dessoudée ici, pas ailleurs. Le
+            support ne quitte pas l'atelier, et personne d'autre ne le manipule.
+          </figcaption>
+        </figure>
+        <figure>
+          <Image
+            src={thermique}
+            alt="Image thermique d'une carte électronique : un point chaud relevé à 37,8 °C"
+            widths={[420, 700, 1100]}
+            sizes="(max-width: 62rem) 92vw, 46vw"
+            loading="lazy"
+          />
+          <figcaption>
+            <b>Et avant de souder, on cherche.</b> La caméra thermique montre le composant
+            qui chauffe — ici 37,8 °C sur une carte au repos. On répare ce qui est en
+            cause, pas ce qu'on suppose.
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -236,4 +270,27 @@ const questions = [
   @media (max-width: 48rem) {
     .ticks[style] { grid-template-columns: minmax(0, 1fr) !important; }
   }
+
+  /* Le bloc vit dans .wrap.split, une grille a 12 colonnes : sans cette
+     ligne il se retrouve coince dans une seule colonne. */
+  .labo { grid-column: 1 / -1; margin-top: 2.25rem; }
+  .labo figure { margin: 0; }
+  .labo img {
+    width: 100%;
+    height: auto;
+    max-height: 28rem;
+    object-fit: cover;
+    border: 1px solid var(--line-strong);
+  }
+  .labo figcaption {
+    margin-top: 0.8rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--dim);
+    max-width: 46ch;
+  }
+  .labo figcaption b { color: var(--text); font-weight: 600; }
+  /* La thermique est plus haute que son cadre : on la cale en bas pour que
+     le releve de temperature, qui est tout l'intérêt de la photo, reste visible. */
+  .labo figure:last-child img { object-position: center bottom; }
 </style>

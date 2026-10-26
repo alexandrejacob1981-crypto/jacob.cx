@@ -9,6 +9,8 @@ import signaltek from '../assets/signaltek-poe.jpg';
 
 const heroImage = await imageHero(signaltek, "Testeur réseau affichant une liaison à 1000 Mb/s avec alimentation PoE 55 V");
 import tiroir from '../assets/tiroir-optique.jpg';
+import releve from '../assets/releve-wifi.jpg';
+import baie from '../assets/baie-ruckus.jpg';
 
 const symptomes = [
   ['Le WiFi tombe aux heures de forte affluence', 'Trop de terminaux sur une borne unique, ou un canal saturé par les réseaux voisins.'],
@@ -96,6 +98,38 @@ const questions = [
         Quand j'affirme que votre problème de WiFi vient de la ligne et non des bornes, je
         vous le prouve — et ce relevé vous sert aussi face à votre opérateur.
       </p>
+
+      <!-- Un relevé réel, puis l'installation qui en découle. -->
+      <div class="grid grid--2 preuves">
+        <figure>
+          <Image
+            src={releve}
+            alt="Carte de couverture WiFi relevée sur tablette : zones vertes et jaunes, position des bornes"
+            widths={[420, 700, 1100]}
+            sizes="(max-width: 62rem) 92vw, 46vw"
+            loading="lazy"
+          />
+          <figcaption>
+            <b>D'abord mesurer.</b> Relevé de couverture étage par étage, avec analyse du
+            spectre 2,4 GHz. On voit où le signal tient, où il s'effondre, et ce que
+            captent les bornes voisines.
+          </figcaption>
+        </figure>
+        <figure>
+          <Image
+            src={baie}
+            alt="Baie de brassage : panneaux étiquetés, câbles rangés, contrôleur Ruckus ZoneDirector"
+            widths={[420, 700, 1200]}
+            sizes="(max-width: 62rem) 92vw, 46vw"
+            loading="lazy"
+          />
+          <figcaption>
+            <b>Puis installer.</b> Bornes placées d'après le relevé, contrôleur en baie,
+            chaque câble repéré. Une installation qu'un autre technicien peut reprendre
+            sans vous rappeler.
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -249,4 +283,22 @@ const questions = [
   .refs__in { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.75rem; }
   .refs__liste { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; font-weight: 600; color: var(--text-2); }
   .refs__suite { color: var(--faint); }
+
+  .preuves { margin-top: 2.25rem; }
+  .preuves figure { margin: 0; }
+  .preuves img {
+    width: 100%;
+    height: auto;
+    max-height: 30rem;
+    object-fit: cover;
+    border: 1px solid var(--line-strong);
+  }
+  .preuves figcaption {
+    margin-top: 0.8rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--dim);
+    max-width: 46ch;
+  }
+  .preuves figcaption b { color: var(--text); font-weight: 600; }
 </style>
