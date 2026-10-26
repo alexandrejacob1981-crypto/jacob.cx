@@ -362,46 +362,48 @@ Matériel installé : Aruba, Ruckus, Zyxel.
 - [x] **Direction B retenue le 14/09/2026** et fusionnée dans `main`.
 - [x] **Références clients retirées** avant mise en ligne, faute d'accord des
       intéressés. Réversible en une ligne : voir `site/src/data/site.ts`.
-- [ ] **Bascule DNS — en cours, 14/09/2026**
+- [x] **BASCULE FAITE — 14/09/2026. Wix résilié le 27/10/2026.**
 
-  Zone hébergée chez **OVH** (ns16 / dns16.ovh.net). Inventaire complet relevé
-  le 14/09 — douze enregistrements, rien d'autre n'existe :
+  Le plan initial — garder la zone chez OVH et ne changer que deux
+  enregistrements — a été abandonné en cours de route. Raison : OVH ne sait
+  pas pointer un apex vers un CNAME, et sa fonction de redirection n'a pas
+  de certificat pour `jacob.cx`. Or le site Wix envoyait un en-tête HSTS
+  d'un an : tout navigateur ayant visité `https://jacob.cx` aurait refusé le
+  HTTP en clair et affiché une erreur de sécurité bloquante.
 
-  | Nom | Type | Valeur |
-  |---|---|---|
-  | `jacob.cx` | A | 185.230.63.107 (Wix) |
-  | `www` | CNAME | pointing.wixdns.net. (Wix) |
-  | `@` | MX | jacob-cx.mail.protection.outlook.com |
-  | `autodiscover` | CNAME | autodiscover.outlook.com. |
-  | `selector1._domainkey` | CNAME | …alexandrejacob.onmicrosoft.com |
-  | `selector2._domainkey` | CNAME | …alexandrejacob.onmicrosoft.com |
-  | `_dmarc` | TXT | v=DMARC1; p=quarantine; pct=100 |
-  | `@` | TXT | SPF, MS=ms37114214, pinterest-site-verification |
-  | `mail`, `smtp` | | ns0.ovh.net |
-  | `sip` | | sip1.start.ovh.net |
+  **La zone a donc été déplacée chez Cloudflare**, serveurs de noms
+  `leland` et `marge.ns.cloudflare.com`. Le domaine reste enregistré chez
+  OVH.
 
-  ⚠️ **La messagerie d'Alexandre est sur Microsoft 365.** Ne jamais toucher aux
-  MX, TXT, _domainkey, _dmarc ni autodiscover. Casser sa messagerie serait bien
-  plus grave qu'un site indisponible.
+  ⚠️ **Le piège, si l'opération est refaite un jour :** Cloudflare passe par
+  défaut TOUS les enregistrements A et CNAME en « Proxied ». Sept l'étaient
+  à tort, dont `autodiscover`, `mail`, `smtp` et `pop3`. Le proxy ne traite
+  que du HTTP : laissés ainsi, **Outlook aurait cessé de se configurer et la
+  messagerie aurait cassé sans prévenir.** Tous repassés en « DNS only ».
+  Seuls `www` et l'apex sont derrière le proxy.
 
-  **Choix retenu : on ne déplace PAS les serveurs de noms.** On change deux
-  enregistrements web chez OVH, la propagation se compte en minutes et la
-  messagerie n'est jamais concernée. La zone pourra être déplacée chez
-  Cloudflare plus tard, sans rien changer au canonique : les deux décisions
-  sont indépendantes.
+  Le scan automatique de Cloudflare a d'ailleurs trouvé 15 enregistrements
+  là où un sondage manuel n'en avait relevé que 12 — `pop3`, `vpn` et `ftp`
+  manquaient.
 
-  **Canonique sur `www.jacob.cx`**, pas sur l'apex. OVH ne sait pas pointer un
-  apex vers un CNAME, et www est de toute façon l'hôte que Google indexe déjà
-  (le sitemap Wix ne liste que des URL en www). On évite une migration d'hôte
-  par-dessus la migration de plateforme.
+  État final, vérifié le 27/10/2026 après résiliation de Wix :
 
-  - [x] `www.jacob.cx` ajouté au projet Pages, méthode « My DNS provider ».
-        Cible à poser : **`jacob-cx.pages.dev`**
-  - [ ] Chez OVH : `www` CNAME → `jacob-cx.pages.dev.` (remplace Wix)
-  - [ ] Chez OVH : supprimer le A de l'apex, créer une redirection 301 de
-        `jacob.cx` vers `https://www.jacob.cx`
-  - [ ] Cloudflare : « Check DNS records », puis attendre le certificat
-  - [ ] Vérifier les 13 redirections depuis les anciennes URL Wix
-  - [ ] **Vérifier qu'aucun noindex n'apparaît sur www.jacob.cx** — le plus
-        important : un noindex oublié effacerait le site de Google
-  - [ ] Search Console : soumettre le sitemap, contrôler les anciennes URL
+  | | |
+  |---|---|
+  | `www.jacob.cx` | 200, canonique, certificat Cloudflare |
+  | `jacob.cx` | 301 vers www, règle de redirection Cloudflare |
+  | `http://` | 301 vers HTTPS (« Always Use HTTPS ») |
+  | 13 redirections Wix | fonctionnelles |
+  | DNS | plus aucune IP Wix |
+  | Messagerie | MX Outlook intact |
+  | `noindex` | absent du domaine réel |
+
+- [ ] **Search Console** — sitemap soumis le 24/09/2026. Reste à contrôler
+      que l'index a bien basculé sur les nouveaux titres, et que les
+      anciennes URL remontent en 301 et non en 404.
+- [ ] **Références clients** — retirées avant mise en ligne faute d'accord.
+      Réversible en une ligne : voir `site/src/data/site.ts`.
+- [ ] **Numéro de déclaration SAP** dans les mentions légales — seul point
+      à portée réglementaire encore ouvert.
+- [ ] **Photo pour la page Maintenance à distance** — la dernière page sans
+      image. Une capture d'une prise en main en cours suffirait.
