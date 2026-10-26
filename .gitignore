@@ -20,3 +20,7 @@ npm-debug.log*
 .env
 .env.*
 !.env.example
+
+# conversions temporaires de photos (HEIC -> JPEG)
+.tmp-tri/
+.tmp-zoom/
